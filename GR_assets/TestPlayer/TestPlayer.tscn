@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="CapsuleShape" id=1]
+height = 2.0
+
+[sub_resource type="CapsuleMesh" id=2]
+mid_height = 2.0
+
+[node name="TestPlayer" type="KinematicBody"]
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 2, 0 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 2, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="GimbalX" type="Spatial" parent="."]
+
+[node name="GimbalY" type="Spatial" parent="GimbalX"]
+
+[node name="Camera" type="Camera" parent="GimbalX/GimbalY"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.51099, 10.311 )
