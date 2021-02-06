@@ -1,0 +1,3 @@
+Place game ready assets here.
+
+By game ready I mean scene that can be dagged and dropped into scene
