@@ -1,0 +1,3 @@
+In this folder place raw assets.
+
+This mean: unprocessed 3D models (.glb files), textures etc
