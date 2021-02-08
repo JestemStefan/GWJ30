@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://GR_assets/TestPlayer/TestPlayer2.gd" type="Script" id=1]
+
+[sub_resource type="CapsuleShape" id=1]
+height = 2.0
+
+[sub_resource type="CapsuleMesh" id=2]
+mid_height = 2.0
+
+[sub_resource type="CubeMesh" id=3]
+size = Vector3( 0.2, 0.2, 2 )
+
+[node name="TestPlayer2" type="KinematicBody"]
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 2, 0 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 2, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6971, -1.93959 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="GimbalX" type="Spatial" parent="."]
+
+[node name="GimbalY" type="Spatial" parent="GimbalX"]
+
+[node name="Camera" type="Camera" parent="GimbalX/GimbalY"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.51099, 10.311 )
