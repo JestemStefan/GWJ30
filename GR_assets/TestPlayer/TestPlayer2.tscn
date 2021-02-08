@@ -5,11 +5,11 @@
 [sub_resource type="CapsuleShape" id=1]
 height = 2.0
 
+[sub_resource type="CubeMesh" id=3]
+size = Vector3( 0.2, 0.2, 4 )
+
 [sub_resource type="CapsuleMesh" id=2]
 mid_height = 2.0
-
-[sub_resource type="CubeMesh" id=3]
-size = Vector3( 0.2, 0.2, 2 )
 
 [node name="TestPlayer2" type="KinematicBody"]
 script = ExtResource( 1 )
@@ -18,19 +18,20 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 2, 0 )
 shape = SubResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 2, 0 )
-mesh = SubResource( 2 )
-material/0 = null
+[node name="GimbalY" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.70576, 0 )
 
-[node name="MeshInstance2" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6971, -1.93959 )
+[node name="GimbalX" type="Spatial" parent="GimbalY"]
+
+[node name="Camera" type="Camera" parent="GimbalY/GimbalX"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.85366, 10.311 )
+
+[node name="Mesh_Nose" type="MeshInstance" parent="GimbalY/GimbalX"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00865555, -2.37858 )
 mesh = SubResource( 3 )
 material/0 = null
 
-[node name="GimbalX" type="Spatial" parent="."]
-
-[node name="GimbalY" type="Spatial" parent="GimbalX"]
-
-[node name="Camera" type="Camera" parent="GimbalX/GimbalY"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.51099, 10.311 )
+[node name="Mesh_Body" type="MeshInstance" parent="GimbalY"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, -0.705755, 0 )
+mesh = SubResource( 2 )
+material/0 = null
