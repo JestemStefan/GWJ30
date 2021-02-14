@@ -46,7 +46,6 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.438, 0 )
-move_speed = 20.0
 jump_speed = 24.0
 gravity = -32.0
 
