@@ -13,3 +13,5 @@ func _process(_delta):
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
+func set_heart_rate(val: float):
+	$Root/HeartRateContainer/BarContainer/HeartRateBar.value = val
