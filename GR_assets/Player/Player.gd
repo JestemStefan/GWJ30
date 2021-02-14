@@ -4,6 +4,7 @@ extends KinematicBody
 export(float) var move_speed = 8.0
 export(float) var jump_speed = 12.0
 export(float) var gravity = -9.8
+export(NodePath) var weapon_container
 
 # Functional
 var input_vector: Vector3 = Vector3.ZERO
@@ -13,10 +14,11 @@ var vertical_velocity: float = 0.0
 var current_velocity: Vector3 = Vector3.ZERO
 var is_grounded: bool = false
 var current_weapon = null
+var wep_cont_node = null
 
 # Node assignments
 onready var camera_controller = $CameraYaw
-onready var weapon_container = $CameraYaw/CameraPitch/GunOffset
+onready var right_hand_ik = $Armature/Skeleton/RightHandIK
 
 # Utils
 var input_amount = 1.0
@@ -27,10 +29,14 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	first_person_offset = self.transform.origin
 	third_person_offset = camera_controller.transform.origin
-	if weapon_container.get_child_count() > 0:
-		print(current_weapon)
-		current_weapon = weapon_container.get_child(0)
-		print(current_weapon)
+	var wep_cont = get_node_or_null(weapon_container)
+	if wep_cont:
+		if wep_cont.get_child_count() > 0:
+			print(current_weapon)
+			current_weapon = wep_cont.get_child(0)
+			print(current_weapon)
+	# Set up IK
+	right_hand_ik.start()
 
 func _physics_process(delta):
 	# Handle the basic movement key input here since many states use it
@@ -54,14 +60,22 @@ func _physics_process(delta):
 	is_grounded = is_on_floor()
 	# Do all the player stuff that isn't walking
 	action_inputs()
+	# Check animation stuff
+	if $AnimationTree.get("parameters/melee_1/active") == false:
+		right_hand_ik.interpolation = 0.9
 
 func action_inputs():
 	if Input.is_action_just_pressed("jump") and $FloorCast.is_colliding():
 		vertical_velocity = jump_speed
 	if Input.is_action_pressed("left_click"):
 		if current_weapon != null:
-			var shoot_direction = current_weapon.muzzle.global_transform.origin.direction_to(camera_controller.aim_position)
-			current_weapon.fire(shoot_direction)
+			current_weapon.fire(camera_controller.aim_position)
+	if Input.is_action_just_pressed("right_click"):
+		do_melee_attack()
+
+func do_melee_attack():
+	right_hand_ik.interpolation = 0.1
+	$AnimationTree.set("parameters/melee_1/active", true)
 
 func vertical_velocity_logic(delta):
 	# If our head hit something, end jump

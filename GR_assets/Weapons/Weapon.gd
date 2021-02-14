@@ -35,7 +35,8 @@ func _ready():
 		var _b = sfx_timer.connect("timeout", self, "sfx_timer_timeout")
 
 # Try to fire the weapon. Returns true if it fired
-func fire(direction: Vector3) -> bool:
+func fire(point_to_shoot: Vector3) -> bool:
+	var direction = get_vector_to_location(muzzle, point_to_shoot)
 	if can_shoot and current_ammo > 0:
 		can_shoot = false
 		rof_timer.start(fire_rate)
@@ -79,3 +80,11 @@ func shoot_timer_timeout():
 func sfx_timer_timeout():
 	if sfx.playing and can_shoot:
 		sfx.stop()
+
+func get_vector_to_location(base, location) -> Vector3:
+	var dist_to_loc = base.global_transform.origin.distance_to(location)
+	var vec_to_loc = location - base.global_transform.origin
+	var gun_forward = base.global_transform.basis.z
+	if dist_to_loc < 10.0:
+		vec_to_loc = lerp(vec_to_loc, gun_forward, 1 - (dist_to_loc / 10.0))
+	return vec_to_loc
