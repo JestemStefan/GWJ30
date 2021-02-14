@@ -1,0 +1,52 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=11 format=2]
+
+[sub_resource type="AnimationNodeTimeScale" id=10]
+
+[sub_resource type="AnimationNodeOneShot" id=1]
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "Attack1"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "RunFWD"
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "RunBACK"
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "RunRIGHT"
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "RunLEFT"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=8]
+blend_point_0/node = SubResource( 3 )
+blend_point_0/pos = Vector2( 0, 0 )
+blend_point_1/node = SubResource( 4 )
+blend_point_1/pos = Vector2( 0, 1 )
+blend_point_2/node = SubResource( 5 )
+blend_point_2/pos = Vector2( 0, -1 )
+blend_point_3/node = SubResource( 6 )
+blend_point_3/pos = Vector2( 1, 0 )
+blend_point_4/node = SubResource( 7 )
+blend_point_4/pos = Vector2( -1, 0 )
+
+[sub_resource type="AnimationNodeTimeScale" id=9]
+
+[resource]
+graph_offset = Vector2( -430.4, 64.8 )
+nodes/TimeScale/node = SubResource( 10 )
+nodes/TimeScale/position = Vector2( -64, 304 )
+nodes/melee_1/node = SubResource( 1 )
+nodes/melee_1/position = Vector2( 112, 176 )
+nodes/melee_1_anim/node = SubResource( 2 )
+nodes/melee_1_anim/position = Vector2( -272, 304 )
+nodes/output/position = Vector2( 400, 144 )
+nodes/run_blend/node = SubResource( 8 )
+nodes/run_blend/position = Vector2( -288, 144 )
+nodes/run_speed/node = SubResource( 9 )
+nodes/run_speed/position = Vector2( -80, 144 )
+node_connections = [ "output", 0, "melee_1", "TimeScale", 0, "melee_1_anim", "run_speed", 0, "run_blend", "melee_1", 0, "run_speed", "melee_1", 1, "TimeScale" ]

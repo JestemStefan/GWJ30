@@ -54,7 +54,7 @@ func _physics_process(delta):
 	# Handle recoil
 	(camera as Spatial).rotation_degrees.x = lerp(0.0, recoil.x, 0.3)
 	(camera as Spatial).rotation_degrees.y = lerp(-180, -180 + recoil.y, 0.3)
-	recoil = lerp(recoil, Vector2.ZERO, 0.1)
+	recoil = lerp(recoil, Vector2.ZERO, 0.2)
 	# Raycast from camera to the world to adjust where bullets need to be pointed
 	var ray_start = camera.global_transform.origin
 	var aim_ray_end = camera.global_transform.origin - camera.global_transform.basis.z * 500
@@ -69,6 +69,7 @@ func _unhandled_input(event):
 	var just_pressed = event.is_pressed() and not event.is_echo()
 	if Input.is_action_pressed("toggle_3p") and (event.is_pressed() and not event.is_echo()):
 		toggle_third_person(!third_person)
+		player.toggle_third_person(third_person)
 	# Mouse zoom
 	if event is InputEventMouseButton:
 		if event.is_pressed():
