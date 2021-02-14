@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 func _ready():
+	OS.set_window_position(Vector2(OS.window_position.x + 440, OS.window_position.y))
 	pass
 
 func _process(_delta):
@@ -11,3 +12,6 @@ func _process(_delta):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE) # Free the mouse
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+func set_heart_rate(val: float):
+	$Root/HeartRateContainer/BarContainer/HeartRateBar.value = val
