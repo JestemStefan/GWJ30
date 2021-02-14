@@ -1,52 +1,98 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=11 format=2]
+[gd_resource type="AnimationNodeBlendTree" load_steps=21 format=2]
 
 [sub_resource type="AnimationNodeTimeScale" id=1]
 
-[sub_resource type="AnimationNodeOneShot" id=2]
+[sub_resource type="AnimationNodeBlend2" id=2]
 
 [sub_resource type="AnimationNodeAnimation" id=3]
-animation = "Attack1"
+animation = "charactersDodgeFWD"
 
 [sub_resource type="AnimationNodeAnimation" id=4]
-animation = "Idle"
+animation = "charactersDodgeBACK"
 
 [sub_resource type="AnimationNodeAnimation" id=5]
-animation = "RunFWD"
+animation = "charactersDodgeLEFT"
 
 [sub_resource type="AnimationNodeAnimation" id=6]
+animation = "charactersDodgeRIGHT"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=7]
+blend_point_0/node = SubResource( 3 )
+blend_point_0/pos = Vector2( 0, 1 )
+blend_point_1/node = SubResource( 4 )
+blend_point_1/pos = Vector2( 0, -1 )
+blend_point_2/node = SubResource( 5 )
+blend_point_2/pos = Vector2( -1, 0 )
+blend_point_3/node = SubResource( 6 )
+blend_point_3/pos = Vector2( 1, 0 )
+
+[sub_resource type="AnimationNodeBlend2" id=8]
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "charactersFallDown"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "charactersJumpUP"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=11]
+blend_point_0/node = SubResource( 9 )
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource( 10 )
+blend_point_1/pos = 1.0
+
+[sub_resource type="AnimationNodeOneShot" id=12]
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "Attack1"
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "RunFWD"
+
+[sub_resource type="AnimationNodeAnimation" id=16]
 animation = "RunBACK"
 
-[sub_resource type="AnimationNodeAnimation" id=7]
+[sub_resource type="AnimationNodeAnimation" id=17]
 animation = "RunRIGHT"
 
-[sub_resource type="AnimationNodeAnimation" id=8]
+[sub_resource type="AnimationNodeAnimation" id=18]
 animation = "RunLEFT"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=9]
-blend_point_0/node = SubResource( 4 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=19]
+blend_point_0/node = SubResource( 14 )
 blend_point_0/pos = Vector2( 0, 0 )
-blend_point_1/node = SubResource( 5 )
+blend_point_1/node = SubResource( 15 )
 blend_point_1/pos = Vector2( 0, 1 )
-blend_point_2/node = SubResource( 6 )
+blend_point_2/node = SubResource( 16 )
 blend_point_2/pos = Vector2( 0, -1 )
-blend_point_3/node = SubResource( 7 )
+blend_point_3/node = SubResource( 17 )
 blend_point_3/pos = Vector2( 1, 0 )
-blend_point_4/node = SubResource( 8 )
+blend_point_4/node = SubResource( 18 )
 blend_point_4/pos = Vector2( -1, 0 )
 
-[sub_resource type="AnimationNodeTimeScale" id=10]
+[sub_resource type="AnimationNodeTimeScale" id=20]
 
 [resource]
-graph_offset = Vector2( -430.4, 64.8 )
+graph_offset = Vector2( -350.4, 57.2 )
 nodes/TimeScale/node = SubResource( 1 )
-nodes/TimeScale/position = Vector2( -64, 304 )
-nodes/melee_1/node = SubResource( 2 )
-nodes/melee_1/position = Vector2( 112, 176 )
-nodes/melee_1_anim/node = SubResource( 3 )
-nodes/melee_1_anim/position = Vector2( -272, 304 )
-nodes/output/position = Vector2( 400, 144 )
-nodes/run_blend/node = SubResource( 9 )
-nodes/run_blend/position = Vector2( -288, 144 )
-nodes/run_speed/node = SubResource( 10 )
-nodes/run_speed/position = Vector2( -80, 144 )
-node_connections = [ "output", 0, "melee_1", "run_speed", 0, "run_blend", "melee_1", 0, "run_speed", "melee_1", 1, "TimeScale", "TimeScale", 0, "melee_1_anim" ]
+nodes/TimeScale/position = Vector2( -160, 224 )
+nodes/dodge_blend/node = SubResource( 2 )
+nodes/dodge_blend/position = Vector2( 448, 176 )
+nodes/dodge_dir/node = SubResource( 7 )
+nodes/dodge_dir/position = Vector2( 192, 384 )
+nodes/jump_blend/node = SubResource( 8 )
+nodes/jump_blend/position = Vector2( 240, 128 )
+nodes/jump_up_down/node = SubResource( 11 )
+nodes/jump_up_down/position = Vector2( 16, 256 )
+nodes/melee_1/node = SubResource( 12 )
+nodes/melee_1/position = Vector2( 32, 64 )
+nodes/melee_1_anim/node = SubResource( 13 )
+nodes/melee_1_anim/position = Vector2( -416, 240 )
+nodes/output/position = Vector2( 672, 224 )
+nodes/run_blend/node = SubResource( 19 )
+nodes/run_blend/position = Vector2( -352, 80 )
+nodes/run_speed/node = SubResource( 20 )
+nodes/run_speed/position = Vector2( -160, 80 )
+node_connections = [ "output", 0, "dodge_blend", "run_speed", 0, "run_blend", "dodge_blend", 0, "jump_blend", "dodge_blend", 1, "dodge_dir", "jump_blend", 0, "melee_1", "jump_blend", 1, "jump_up_down", "melee_1", 0, "run_speed", "melee_1", 1, "TimeScale", "TimeScale", 0, "melee_1_anim" ]
