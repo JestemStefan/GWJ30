@@ -9,14 +9,14 @@ bottom_radius = 0.2
 height = 4.0
 radial_segments = 6
 
-[sub_resource type="OpenSimplexNoise" id=3]
+[sub_resource type="OpenSimplexNoise" id=2]
 
-[sub_resource type="NoiseTexture" id=4]
-noise = SubResource( 3 )
+[sub_resource type="NoiseTexture" id=3]
+noise = SubResource( 2 )
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="SpatialMaterial" id=4]
 albedo_color = Color( 1, 0.203922, 0.203922, 1 )
-albedo_texture = SubResource( 4 )
+albedo_texture = SubResource( 3 )
 emission_enabled = true
 emission = Color( 1, 0, 0, 1 )
 emission_energy = 4.0
@@ -25,7 +25,7 @@ emission_on_uv2 = false
 
 [node name="BaseProjectile" type="Spatial"]
 script = ExtResource( 1 )
-gravity = -19.6
+gravity = -64.0
 leave_projectile = true
 impact_effects = [ ExtResource( 3 ) ]
 
@@ -33,7 +33,7 @@ impact_effects = [ ExtResource( 3 ) ]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 cast_shadow = 0
 mesh = SubResource( 1 )
-material/0 = SubResource( 2 )
+material/0 = SubResource( 4 )
 
 [node name="ImpactRay" type="RayCast" parent="."]
 enabled = true
