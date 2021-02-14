@@ -3,6 +3,7 @@ extends KinematicBody
 # Config
 export(float) var move_speed = 8.0
 export(float) var jump_speed = 12.0
+export(float) var dodge_speed = 64.0
 export(float) var gravity = -9.8
 export(NodePath) var weapon_container
 
@@ -10,6 +11,7 @@ export(NodePath) var weapon_container
 var input_vector: Vector3 = Vector3.ZERO
 var rotated_input_vector: Vector3 = Vector3.ZERO
 var desired_velocity: Vector3 = Vector3.ZERO
+var impact_velocity: Vector3 = Vector3.ZERO
 var vertical_velocity: float = 0.0
 var current_velocity: Vector3 = Vector3.ZERO
 var is_grounded: bool = false
@@ -58,7 +60,15 @@ func _physics_process(delta):
 		input_vector.x -= input_amount
 	input_vector = -input_vector.normalized()
 	rotated_input_vector = input_vector.rotated(Vector3.UP, camera_controller.global_transform.basis.get_euler().y + PI)
-	desired_velocity = lerp(desired_velocity, rotated_input_vector * move_speed, 1.0 - pow(0.01, delta))
+	if impact_velocity.length() > 16.0:
+		desired_velocity = impact_velocity
+		anim_tree.set("parameters/dodge_blend/blend_amount", impact_velocity.length() / dodge_speed)
+		if floor_check.is_colliding():
+			Utils.instantiate(load("res://GR_assets/Effects/DustEffect.tscn"),  self.global_transform.origin, Vector3.UP)
+	else:
+		desired_velocity = lerp(desired_velocity, rotated_input_vector * move_speed, 1.0 - pow(0.01, delta))
+		anim_tree.set("parameters/dodge_blend/blend_amount", 0.0)
+	impact_velocity = lerp(impact_velocity, Vector3.ZERO, 1.0 - pow(0.1, delta))
 	vertical_velocity_logic(delta)
 	# Add everything together and move
 	var final_move = desired_velocity + Vector3.UP * vertical_velocity - get_floor_normal() * 4.0
@@ -68,9 +78,14 @@ func _physics_process(delta):
 	# Do all the player stuff that isn't walking
 	action_inputs()
 	# Do animation stuff
-	#$GunAimPivot.transform.basis.z = camera_controller.camera_pitch.transform.basis.z
-	$AnimationTree.set("parameters/run_blend/blend_position", convert_movement_to_anim(desired_velocity))
-	if $AnimationTree.get("parameters/melee_1/active") == false:
+	if is_grounded:
+		anim_tree.set("parameters/run_blend/blend_position", convert_movement_to_anim(desired_velocity))
+		anim_tree.set("parameters/jump_blend/blend_amount", 0.0)
+	else:
+		anim_tree.set("parameters/jump_blend/blend_amount", 1.0)
+		anim_tree.set("parameters/jump_up_down/blend_position", vertical_velocity / jump_speed)
+		
+	if anim_tree.get("parameters/melee_1/active") == false:
 		right_hand_ik.interpolation = 0.9
 		left_hand_ik.interpolation = 0.9
 
@@ -83,6 +98,14 @@ func action_inputs():
 				camera_controller.recoil += current_weapon.recoil
 	if Input.is_action_just_pressed("melee"):
 		do_melee_attack()
+	if Input.is_action_just_pressed("dodge") and impact_velocity.length() < 16.0:
+		dodge(rotated_input_vector)
+
+func dodge(direction: Vector3):
+	var relative_dodge_dir = direction.rotated(Vector3(0,1.0,0), -self.global_transform.basis.get_euler().y)
+	anim_tree.set("parameters/dodge_dir/blend_position", Vector2(-relative_dodge_dir.x, relative_dodge_dir.z))
+	self.impact_velocity = direction * dodge_speed
+	self.vertical_velocity = 4.0
 
 func do_melee_attack():
 	right_hand_ik.interpolation = 0.1

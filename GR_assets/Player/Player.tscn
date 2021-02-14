@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://GR_assets/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://GR_assets/Player/CameraController.gd" type="Script" id=2]
@@ -7,6 +7,12 @@
 [ext_resource path="res://raw_assets/3D/characters/TorsoMat.material" type="Material" id=5]
 [ext_resource path="res://GR_assets/Player/PlayerAnimationTree.tres" type="AnimationNodeBlendTree" id=6]
 [ext_resource path="res://GR_assets/Player/Player_spatialmaterial.tres" type="Material" id=7]
+[ext_resource path="res://GR_assets/Player/animations/charactersDodgeFWD.tres" type="Animation" id=8]
+[ext_resource path="res://GR_assets/Player/animations/charactersFallDown.tres" type="Animation" id=9]
+[ext_resource path="res://GR_assets/Player/animations/charactersDodgeBACK.tres" type="Animation" id=10]
+[ext_resource path="res://GR_assets/Player/animations/charactersJumpUP.tres" type="Animation" id=11]
+[ext_resource path="res://GR_assets/Player/animations/charactersDodgeLEFT.tres" type="Animation" id=12]
+[ext_resource path="res://GR_assets/Player/animations/charactersDodgeRIGHT.tres" type="Animation" id=13]
 
 [sub_resource type="ArrayMesh" id=1]
 surfaces/0 = {
@@ -1175,7 +1181,7 @@ gravity = -30.0
 weapon_container = NodePath("Armature/Skeleton/Weapon/GunOffset")
 
 [node name="Armature" type="Spatial" parent="."]
-transform = Transform( 0.867504, 0, 0, 0, 0.867504, 0, 0, 0, 0.867504, 0, 0.137746, 0 )
+transform = Transform( 0.867504, 0, 0, 0, 0.867504, 0, 0, 0, 0.867504, 0, 0, 0 )
 
 [node name="Skeleton" type="Skeleton" parent="Armature"]
 bones/0/name = "spine"
@@ -1222,7 +1228,7 @@ bones/8/name = "hand_r"
 bones/8/parent = 7
 bones/8/rest = Transform( 0.998753, 0.0491725, -0.00858797, -0.0497289, 0.995071, -0.0857958, 0.00432685, 0.0861159, 0.996276, 5.02109e-09, 0.697214, -7.45058e-09 )
 bones/8/enabled = true
-bones/8/bound_children = [ NodePath("Weapon") ]
+bones/8/bound_children = [  ]
 bones/9/name = "spine_4"
 bones/9/parent = 4
 bones/9/rest = Transform( 1, -4.78347e-08, -1.54919e-07, -5.32907e-15, 0.955488, -0.295029, 1.62136e-07, 0.295029, 0.955488, -5.55112e-17, 0.317633, -1.38778e-17 )
@@ -1285,7 +1291,7 @@ bones/20/enabled = true
 bones/20/bound_children = [  ]
 
 [node name="Weapon" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.993618, -0.103371, 0.0451619, 0.0415377, 0.0369497, 0.998455, -0.10488, 0.993957, -0.0324201, -0.632866, 1.97245, 0.882135 )
+transform = Transform( -0.995961, -0.0829122, 0.0344718, 0.0229095, 0.136563, 0.990368, -0.0868212, 0.987157, -0.134112, -0.60358, 2.14091, 0.942031 )
 bone_name = "hand_r"
 
 [node name="GunOffset" type="Spatial" parent="Armature/Skeleton/Weapon"]
@@ -1335,7 +1341,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.402641, -0.401638 )
 transform = Transform( -0.864368, -0.0717992, 0.0166234, 0.00724485, 0.111945, 0.86022, -0.0733415, 0.857249, -0.11094, -0.610839, -0.101895, 0.943673 )
 
 [node name="Camera" type="Camera" parent="CameraYaw/CameraPitch"]
-transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -2.5, 1, -4 )
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -1.5, 0.809, -3 )
 fov = 90.0
 far = 500.0
 
@@ -1348,8 +1354,12 @@ tree_root = ExtResource( 6 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/TimeScale/scale = 0.75
+parameters/dodge_blend/blend_amount = 0.0
+parameters/dodge_dir/blend_position = Vector2( -0.0158679, 0.525 )
+parameters/jump_blend/blend_amount = 0.0
+parameters/jump_up_down/blend_position = 1.0
 parameters/melee_1/active = false
-parameters/run_blend/blend_position = Vector2( 0.00306332, 0.0161986 )
+parameters/run_blend/blend_position = Vector2( 0.0100389, 0.85231 )
 parameters/run_speed/scale = 2.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -1360,3 +1370,9 @@ anims/RunBACK = SubResource( 7 )
 anims/RunFWD = SubResource( 8 )
 anims/RunLEFT = SubResource( 9 )
 anims/RunRIGHT = SubResource( 10 )
+anims/charactersDodgeBACK = ExtResource( 10 )
+anims/charactersDodgeFWD = ExtResource( 8 )
+anims/charactersDodgeLEFT = ExtResource( 12 )
+anims/charactersDodgeRIGHT = ExtResource( 13 )
+anims/charactersFallDown = ExtResource( 9 )
+anims/charactersJumpUP = ExtResource( 11 )
