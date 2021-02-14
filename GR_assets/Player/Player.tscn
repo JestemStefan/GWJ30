@@ -1222,7 +1222,7 @@ bones/8/name = "hand_r"
 bones/8/parent = 7
 bones/8/rest = Transform( 0.998753, 0.0491725, -0.00858797, -0.0497289, 0.995071, -0.0857958, 0.00432685, 0.0861159, 0.996276, 5.02109e-09, 0.697214, -7.45058e-09 )
 bones/8/enabled = true
-bones/8/bound_children = [  ]
+bones/8/bound_children = [ NodePath("Weapon") ]
 bones/9/name = "spine_4"
 bones/9/parent = 4
 bones/9/rest = Transform( 1, -4.78347e-08, -1.54919e-07, -5.32907e-15, 0.955488, -0.295029, 1.62136e-07, 0.295029, 0.955488, -5.55112e-17, 0.317633, -1.38778e-17 )
@@ -1285,13 +1285,13 @@ bones/20/enabled = true
 bones/20/bound_children = [  ]
 
 [node name="Weapon" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.851403, -0.515069, 0.0990864, 0.524484, -0.83802, 0.150471, 0.00553401, 0.180081, 0.983638, -0.954417, 1.38231, 0.0290291 )
+transform = Transform( -0.993618, -0.103371, 0.0451619, 0.0415377, 0.0369497, 0.998455, -0.10488, 0.993957, -0.0324201, -0.632866, 1.97245, 0.882135 )
 bone_name = "hand_r"
 
 [node name="GunOffset" type="Spatial" parent="Armature/Skeleton/Weapon"]
 transform = Transform( -1, 3.27826e-07, 1.49012e-08, -9.68575e-08, -8.9407e-08, 1, 3.42727e-07, 1, 1.78814e-07, -0.0361408, 0.107592, 0.19281 )
 
-[node name="BasicGun" parent="Armature/Skeleton/Weapon/GunOffset" instance=ExtResource( 3 )]
+[node name="SpikeGun" parent="Armature/Skeleton/Weapon/GunOffset" instance=ExtResource( 3 )]
 
 [node name="RightHandIK" type="SkeletonIK" parent="Armature/Skeleton"]
 process_priority = 1
@@ -1332,7 +1332,7 @@ script = ExtResource( 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.402641, -0.401638 )
 
 [node name="GunAim" type="Position3D" parent="CameraYaw/CameraPitch/GunAimPivot"]
-transform = Transform( -0.865129, 0.0639083, -0.0056039, -2.81589e-07, 0.0757738, 0.864188, 0.0641535, 0.861822, -0.0755663, -0.78601, -0.0402045, 0.952714 )
+transform = Transform( -0.864368, -0.0717992, 0.0166234, 0.00724485, 0.111945, 0.86022, -0.0733415, 0.857249, -0.11094, -0.610839, -0.101895, 0.943673 )
 
 [node name="Camera" type="Camera" parent="CameraYaw/CameraPitch"]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -2.5, 1, -4 )
