@@ -3,7 +3,7 @@ extends Spatial
 # Config
 export var drag: float = 0.0
 export var gravity: float = 0.0
-
+export var leave_projectile: bool = false
 # Misc
 export(Array, PackedScene) var impact_effects
 
@@ -39,6 +39,7 @@ func init(newdmg, newvelocity, nohitarray):
 func _process(delta):
 	velocity_and_gravity = Vector3(velocity.x, velocity.y + added_gravity, velocity.z)
 	$ImpactRay.cast_to = Vector3.BACK * velocity_and_gravity.length() * delta
+	$ImpactRay.force_raycast_update()
 	if $ImpactRay.is_colliding() and ignore_array.find($ImpactRay.get_collider()) == -1:
 		do_impact($ImpactRay.get_collider(), $ImpactRay.get_collision_point(), $ImpactRay.get_collision_normal())
 	if drag != 0.0:
@@ -49,6 +50,13 @@ func _process(delta):
 	self.global_translate(velocity_and_gravity * delta)
 
 func do_impact(collider, point, normal):
+	# Make the mesh stay stuck in the wall
+	if leave_projectile:
+		var cachepos = bullet_mesh.global_transform
+		self.remove_child(bullet_mesh)
+		collider.add_child(bullet_mesh)
+		bullet_mesh.global_transform = cachepos
+		bullet_mesh.global_transform.origin = point
 	if collider is RigidBody:
 		collider.apply_impulse(point - collider.global_transform.origin, velocity_and_gravity * 0.01)
 	if collider.has_method("take_damage"):

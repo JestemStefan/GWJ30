@@ -19,11 +19,17 @@ var wep_cont_node = null
 # Node assignments
 onready var camera_controller = $CameraYaw
 onready var right_hand_ik = $Armature/Skeleton/RightHandIK
+onready var left_hand_ik = $Armature/Skeleton/LeftHandIK
+onready var player_mesh = $Armature/Skeleton/CharacterMesh
+onready var floor_check = $FloorCast
+onready var anim_tree = $AnimationTree
 
 # Utils
 var input_amount = 1.0
 var first_person_offset
 var third_person_offset
+onready var normal_material = preload("res://GR_assets/Player/Player_spatialmaterial.tres")
+onready var invis_material = preload("res://GR_assets/Player/Invisible_spatialmaterial.tres")
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -37,6 +43,7 @@ func _ready():
 			print(current_weapon)
 	# Set up IK
 	right_hand_ik.start()
+	left_hand_ik.start()
 
 func _physics_process(delta):
 	# Handle the basic movement key input here since many states use it
@@ -51,7 +58,7 @@ func _physics_process(delta):
 		input_vector.x -= input_amount
 	input_vector = -input_vector.normalized()
 	rotated_input_vector = input_vector.rotated(Vector3.UP, camera_controller.global_transform.basis.get_euler().y + PI)
-	desired_velocity = lerp(desired_velocity, rotated_input_vector * move_speed, 1.0 - pow(0.025, delta))
+	desired_velocity = lerp(desired_velocity, rotated_input_vector * move_speed, 1.0 - pow(0.01, delta))
 	vertical_velocity_logic(delta)
 	# Add everything together and move
 	var final_move = desired_velocity + Vector3.UP * vertical_velocity - get_floor_normal() * 4.0
@@ -60,22 +67,27 @@ func _physics_process(delta):
 	is_grounded = is_on_floor()
 	# Do all the player stuff that isn't walking
 	action_inputs()
-	# Check animation stuff
+	# Do animation stuff
+	#$GunAimPivot.transform.basis.z = camera_controller.camera_pitch.transform.basis.z
+	$AnimationTree.set("parameters/run_blend/blend_position", convert_movement_to_anim(desired_velocity))
 	if $AnimationTree.get("parameters/melee_1/active") == false:
 		right_hand_ik.interpolation = 0.9
+		left_hand_ik.interpolation = 0.9
 
 func action_inputs():
-	if Input.is_action_just_pressed("jump") and $FloorCast.is_colliding():
+	if Input.is_action_just_pressed("jump") and floor_check.is_colliding():
 		vertical_velocity = jump_speed
 	if Input.is_action_pressed("left_click"):
 		if current_weapon != null:
-			current_weapon.fire(camera_controller.aim_position)
-	if Input.is_action_just_pressed("right_click"):
+			if current_weapon.fire(camera_controller.aim_position):
+				camera_controller.recoil += current_weapon.recoil
+	if Input.is_action_just_pressed("melee"):
 		do_melee_attack()
 
 func do_melee_attack():
 	right_hand_ik.interpolation = 0.1
-	$AnimationTree.set("parameters/melee_1/active", true)
+	left_hand_ik.interpolation = 0.1
+	anim_tree.set("parameters/melee_1/active", true)
 
 func vertical_velocity_logic(delta):
 	# If our head hit something, end jump
@@ -99,3 +111,18 @@ func vertical_velocity_logic(delta):
 			vertical_velocity += gravity * delta
 		else:
 			vertical_velocity += gravity * 2.0 * delta
+
+func convert_movement_to_anim(move_vector) -> Vector2:
+	var retval = Vector2(0.0, 0.0)
+	var measure_vector = (move_vector / move_speed)
+	measure_vector = (measure_vector as Vector3).rotated(Vector3(0,1.0,0), -self.global_transform.basis.get_euler().y)
+	retval.y = measure_vector.z
+	retval.x = -measure_vector.x
+	return retval
+
+func toggle_third_person(third_person_enabled: bool):
+	if !third_person_enabled:
+		player_mesh.set_surface_material(0, invis_material)
+	else:
+		player_mesh.set_surface_material(0, normal_material)
+		
