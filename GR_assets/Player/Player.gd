@@ -113,7 +113,7 @@ func action_inputs():
 		if current_weapon != null:
 			if current_weapon.fire(camera_controller.aim_position):
 				camera_controller.recoil += current_weapon.recoil
-	if Input.is_action_just_pressed("melee") and anim_tree.get("parameters/melee/active") == false:
+	if Input.is_action_pressed("melee") and anim_tree.get("parameters/melee/active") == false:
 		do_melee_attack()
 	if Input.is_action_just_pressed("dodge") and impact_velocity.length() < 16.0:
 		dodge(rotated_input_vector)
@@ -130,7 +130,7 @@ func do_melee_attack():
 	#right_hand_ik.stop()
 	#left_hand_ik.stop()
 	anim_tree.set("parameters/melee/active", true)
-	self.impact_velocity = self.global_transform.basis.z * 16.0
+	self.impact_velocity = self.global_transform.basis.z * 12.0
 	if is_equal_approx(anim_tree.get("parameters/melee_choice/blend_amount"), 0.0):
 		anim_tree.set("parameters/melee_choice/blend_amount", 1.0)
 	else:
@@ -148,8 +148,8 @@ func melee_do_hit():
 		increase_heart_rate(10.0)
 		# One-off hit things
 		if not is_grounded:
-			vertical_velocity = 10.0
-		pass
+			#vertical_velocity = 10.0
+			pass
 	#for hit in hits:
 	#	hit["collider"].take_damage(self.global_transform.origin, body.global_transform.basis.z, dmg, dmg_type, 0.0)
 
@@ -189,7 +189,6 @@ func toggle_third_person(third_person_enabled: bool):
 		player_mesh.set_surface_material(0, invis_material)
 	else:
 		player_mesh.set_surface_material(0, normal_material)
-
 
 func update_movement_vars():
 	move_speed = min_move_speed + (max_move_speed - min_move_speed) * heart_rate / 100.0

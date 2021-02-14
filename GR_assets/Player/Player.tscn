@@ -1026,7 +1026,7 @@ material/0 = ExtResource( 7 )
 material/1 = ExtResource( 7 )
 
 [node name="HeartAttach" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.745477, -1.4444e-13, 1.20869e-07, -3.45204e-09, 0.745174, 0.0212908, -1.20819e-07, -0.0212908, 0.745174, -8.40953e-11, 2.02666, -0.189895 )
+transform = Transform( 0.73506, -1.42275e-13, 1.1918e-07, -3.40381e-09, 0.734762, 0.0209933, -1.19131e-07, -0.0209933, 0.734762, -8.40953e-11, 2.02666, -0.189895 )
 bone_name = "heartbeat"
 
 [node name="Sprite3D" type="Sprite3D" parent="Armature/Skeleton/HeartAttach"]
@@ -1056,7 +1056,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.402641, -0.401638 )
 transform = Transform( -0.864368, -0.0717992, 0.0166234, 0.00724485, 0.111945, 0.86022, -0.0733415, 0.857249, -0.11094, -0.610839, -0.101895, 0.943673 )
 
 [node name="Camera" type="Camera" parent="CameraYaw/CameraPitch"]
-transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -1.5, 0.809, -3 )
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -1.5, 0.809, -4 )
 fov = 90.0
 far = 500.0
 
@@ -1076,7 +1076,7 @@ parameters/jump_blend/blend_amount = 0.0
 parameters/jump_up_down/blend_position = 1.0
 parameters/melee/active = false
 parameters/melee_choice/blend_amount = 0.0
-parameters/melee_speed/scale = 1.0
+parameters/melee_speed/scale = 1.5
 parameters/run_blend/blend_position = Vector2( 0, 0 )
 parameters/run_speed/scale = 2.0
 
