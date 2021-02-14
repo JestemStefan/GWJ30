@@ -1,9 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://raw_assets/fonts/AnotherDanger120.tres" type="DynamicFont" id=1]
-[ext_resource path="res://levels/scene_to_load.gd" type="Script" id=2]
-[ext_resource path="res://raw_assets/AnotherDanger60.tres" type="DynamicFont" id=3]
-
+[ext_resource path="res://raw_assets/fonts/AnotherDanger60.tres" type="DynamicFont" id=2]
 
 [node name="MarginContainer" type="MarginContainer"]
 anchor_right = 1.0
@@ -55,9 +53,8 @@ rect_min_size = Vector2( 250, 0 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.5
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 2 )
 text = "Play"
-script = ExtResource( 2 )
 
 [node name="ExitButton" type="Button" parent="VBoxContainer/HBoxContainer/Container"]
 margin_top = 130.0
@@ -67,7 +64,7 @@ rect_min_size = Vector2( 250, 0 )
 rect_pivot_offset = Vector2( 100, 0 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 2 )
 text = "Exit"
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
