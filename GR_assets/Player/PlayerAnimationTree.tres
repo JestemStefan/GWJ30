@@ -1,24 +1,24 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=26 format=2]
+[gd_resource type="AnimationNodeBlendTree" load_steps=27 format=2]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
-animation = "charactersAttack2"
+animation = "Attack2"
 
 [sub_resource type="AnimationNodeAnimation" id=2]
-animation = "charactersHeartbeat"
+animation = "Heartbeat"
 
 [sub_resource type="AnimationNodeBlend2" id=3]
 
 [sub_resource type="AnimationNodeAnimation" id=4]
-animation = "charactersDodgeFWD"
+animation = "DodgeFWD"
 
 [sub_resource type="AnimationNodeAnimation" id=5]
-animation = "charactersDodgeBACK"
+animation = "DodgeBACK"
 
 [sub_resource type="AnimationNodeAnimation" id=6]
-animation = "charactersDodgeLEFT"
+animation = "DodgeLEFT"
 
 [sub_resource type="AnimationNodeAnimation" id=7]
-animation = "charactersDodgeRIGHT"
+animation = "DodgeRIGHT"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=8]
 blend_point_0/node = SubResource( 4 )
@@ -39,57 +39,64 @@ filters = [ "Armature/Skeleton:heartbeat" ]
 [sub_resource type="AnimationNodeBlend2" id=11]
 
 [sub_resource type="AnimationNodeAnimation" id=12]
-animation = "charactersFallDown"
+animation = "FallDown"
 
 [sub_resource type="AnimationNodeAnimation" id=13]
-animation = "charactersJumpUP"
+animation = "JumpUP"
 
-[sub_resource type="AnimationNodeBlendSpace1D" id=14]
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "MidJump"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=15]
 blend_point_0/node = SubResource( 12 )
 blend_point_0/pos = -1.0
 blend_point_1/node = SubResource( 13 )
 blend_point_1/pos = 1.0
+blend_point_2/node = SubResource( 14 )
+blend_point_2/pos = 0.0
 
-[sub_resource type="AnimationNodeOneShot" id=15]
+[sub_resource type="AnimationNodeOneShot" id=16]
+filter_enabled = true
+filters = [ ".", "Armature/Skeleton:forearm_l", "Armature/Skeleton:forearm_r", "Armature/Skeleton:hand_l", "Armature/Skeleton:hand_r", "Armature/Skeleton:shoulder_l", "Armature/Skeleton:shoulder_r", "Armature/Skeleton:spine_1", "Armature/Skeleton:spine_2", "Armature/Skeleton:spine_3", "Armature/Skeleton:spine_4", "Armature/Skeleton:spine_5", "Armature/Skeleton:upper_arm_l", "Armature/Skeleton:upper_arm_r", "SlashEffect:rotation_degrees", "SlashEffect:translation", "SlashEffect:visible" ]
 
-[sub_resource type="AnimationNodeAnimation" id=16]
-animation = "charactersAttack1"
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "Attack1"
 
-[sub_resource type="AnimationNodeBlend2" id=17]
+[sub_resource type="AnimationNodeBlend2" id=18]
 
-[sub_resource type="AnimationNodeTimeScale" id=18]
-
-[sub_resource type="AnimationNodeAnimation" id=19]
-animation = "Idle"
+[sub_resource type="AnimationNodeTimeScale" id=19]
 
 [sub_resource type="AnimationNodeAnimation" id=20]
-animation = "RunFWD"
+animation = "Idle"
 
 [sub_resource type="AnimationNodeAnimation" id=21]
-animation = "RunBACK"
+animation = "RunFWD"
 
 [sub_resource type="AnimationNodeAnimation" id=22]
-animation = "RunRIGHT"
+animation = "RunBACK"
 
 [sub_resource type="AnimationNodeAnimation" id=23]
+animation = "RunRIGHT"
+
+[sub_resource type="AnimationNodeAnimation" id=24]
 animation = "RunLEFT"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=24]
-blend_point_0/node = SubResource( 19 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=25]
+blend_point_0/node = SubResource( 20 )
 blend_point_0/pos = Vector2( 0, 0 )
-blend_point_1/node = SubResource( 20 )
+blend_point_1/node = SubResource( 21 )
 blend_point_1/pos = Vector2( 0, 1 )
-blend_point_2/node = SubResource( 21 )
+blend_point_2/node = SubResource( 22 )
 blend_point_2/pos = Vector2( 0, -1 )
-blend_point_3/node = SubResource( 22 )
+blend_point_3/node = SubResource( 23 )
 blend_point_3/pos = Vector2( 1, 0 )
-blend_point_4/node = SubResource( 23 )
+blend_point_4/node = SubResource( 24 )
 blend_point_4/pos = Vector2( -1, 0 )
 
-[sub_resource type="AnimationNodeTimeScale" id=25]
+[sub_resource type="AnimationNodeTimeScale" id=26]
 
 [resource]
-graph_offset = Vector2( 423.2, 207.4 )
+graph_offset = Vector2( 6.4, 159.4 )
 nodes/Animation/node = SubResource( 2 )
 nodes/Animation/position = Vector2( 432, 368 )
 "nodes/Animation 2/node" = SubResource( 1 )
@@ -104,19 +111,19 @@ nodes/heart_rate/node = SubResource( 10 )
 nodes/heart_rate/position = Vector2( 656, 256 )
 nodes/jump_blend/node = SubResource( 11 )
 nodes/jump_blend/position = Vector2( 240, 128 )
-nodes/jump_up_down/node = SubResource( 14 )
+nodes/jump_up_down/node = SubResource( 15 )
 nodes/jump_up_down/position = Vector2( 16, 272 )
-nodes/melee/node = SubResource( 15 )
+nodes/melee/node = SubResource( 16 )
 nodes/melee/position = Vector2( 912, 192 )
-nodes/melee_1_anim/node = SubResource( 16 )
+nodes/melee_1_anim/node = SubResource( 17 )
 nodes/melee_1_anim/position = Vector2( 592, 480 )
-nodes/melee_choice/node = SubResource( 17 )
+nodes/melee_choice/node = SubResource( 18 )
 nodes/melee_choice/position = Vector2( 800, 416 )
-nodes/melee_speed/node = SubResource( 18 )
+nodes/melee_speed/node = SubResource( 19 )
 nodes/melee_speed/position = Vector2( 992, 400 )
 nodes/output/position = Vector2( 1248, 192 )
-nodes/run_blend/node = SubResource( 24 )
+nodes/run_blend/node = SubResource( 25 )
 nodes/run_blend/position = Vector2( -176, 96 )
-nodes/run_speed/node = SubResource( 25 )
+nodes/run_speed/node = SubResource( 26 )
 nodes/run_speed/position = Vector2( 32, 144 )
-node_connections = [ "output", 0, "melee", "melee_choice", 0, "melee_1_anim", "melee_choice", 1, "Animation 2", "heart_blend", 0, "dodge_blend", "heart_blend", 1, "heart_rate", "dodge_blend", 0, "jump_blend", "dodge_blend", 1, "dodge_dir", "run_speed", 0, "run_blend", "melee_speed", 0, "melee_choice", "jump_blend", 0, "run_speed", "jump_blend", 1, "jump_up_down", "melee", 0, "heart_blend", "melee", 1, "melee_speed", "heart_rate", 0, "Animation" ]
+node_connections = [ "output", 0, "melee", "heart_rate", 0, "Animation", "jump_blend", 0, "run_speed", "jump_blend", 1, "jump_up_down", "dodge_blend", 0, "jump_blend", "dodge_blend", 1, "dodge_dir", "melee_choice", 0, "melee_1_anim", "melee_choice", 1, "Animation 2", "melee", 0, "heart_blend", "melee", 1, "melee_speed", "heart_blend", 0, "dodge_blend", "heart_blend", 1, "heart_rate", "melee_speed", 0, "melee_choice", "run_speed", 0, "run_blend" ]
