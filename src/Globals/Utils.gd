@@ -78,3 +78,8 @@ func get_flat_distance(start: Vector3, dest: Vector3) -> Vector3:
 	var self_no_y = Vector3(start.x, 0.0, start.z)
 	var point_no_y = Vector3(dest.x, 0.0, dest.z)
 	return self_no_y.distance_to(point_no_y)
+
+func do_hitstop(time: float):
+	Engine.time_scale = 0.1
+	yield(get_tree().create_timer(time), "timeout")
+	Engine.time_scale = 1.0

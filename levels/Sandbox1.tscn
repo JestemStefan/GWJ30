@@ -34,7 +34,7 @@ glow_enabled = true
 glow_bicubic_upscale = true
 
 [sub_resource type="SpatialMaterial" id=3]
-albedo_color = Color( 0.662745, 0.662745, 0.662745, 1 )
+albedo_color = Color( 0.560784, 0.498039, 0.415686, 1 )
 albedo_texture = ExtResource( 4 )
 uv1_scale = Vector3( 0.1, 0.1, 0.1 )
 uv1_triplanar = true
@@ -50,6 +50,7 @@ script = ExtResource( 6 )
 ]]
 
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
+visible = false
 navmesh = SubResource( 1 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

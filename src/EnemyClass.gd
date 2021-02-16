@@ -1,7 +1,5 @@
-extends KinematicBody
+extends Entity
 class_name EnemyClass
-
-export var health: int
 
 var path = []
 var path_node = 0
@@ -13,6 +11,7 @@ var dist2player: float
 var nav: Navigation
 
 func _ready():
+	._ready()
 	# Access navigation node
 	nav = get_tree().get_nodes_in_group("Navigation")[0]
 	player = get_tree().get_nodes_in_group("Player")[0]
@@ -42,21 +41,3 @@ func process_movement(direction):
 func get_new_path(target_pos):
 	path = nav.get_simple_path(global_transform.origin, target_pos)
 	path_node = 0
-
-func take_damage(point, normal, damage):
-	Utils.instantiate(load("res://GR_assets/Effects/bloodhit/BloodHit.tscn"), self.global_transform.origin, self.global_transform.basis.z, 12.0)
-	health -= damage
-	if health <= 0:
-		die()
-
-func die():
-	var blood_glob = load("res://GR_assets/Effects/bloodglob/BloodGlob.tscn")
-	var blood_hit = load("res://GR_assets/Effects/bloodhit/BloodHit.tscn")
-	var blood_pickup = load("res://GR_assets/Gameplay/BloodPickup.tscn")
-	Utils.instantiate(blood_pickup, self.global_transform.origin + Vector3.UP, Vector3.UP)
-	Utils.instantiate(blood_pickup, self.global_transform.origin + Vector3.UP, Vector3.UP)
-	Utils.instantiate(blood_pickup, self.global_transform.origin + Vector3.UP, Vector3.UP)
-	Utils.instantiate(blood_glob, self.global_transform.origin + Vector3.UP, Vector3.UP, 3.0)
-	Utils.instantiate(blood_glob, self.global_transform.origin + Vector3.UP, Vector3.UP, 3.0)
-	Utils.instantiate(blood_hit, self.global_transform.origin, self.global_transform.basis.z, 8.0)
-	pass
