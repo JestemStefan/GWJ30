@@ -4,7 +4,7 @@
 [ext_resource path="res://raw_assets/fonts/AnotherDanger120.tres" type="DynamicFont" id=2]
 [ext_resource path="res://levels/PauseMenu.gd" type="Script" id=3]
 
-[node name="MarginContainer" type="CenterContainer"]
+[node name="PauseMenu" type="CenterContainer"]
 pause_mode = 2
 anchor_left = 0.548
 anchor_top = 0.363
