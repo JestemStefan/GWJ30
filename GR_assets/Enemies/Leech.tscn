@@ -47,15 +47,14 @@ bind/7/name = "bone_7"
 bind/7/bone = -1
 bind/7/pose = Transform( 1, 8.92372e-05, -5.7501e-07, 1.49539e-09, 0.00642672, 0.999979, 8.94131e-05, -1.00193, 0.00645605, -8.52853e-06, 1.02542, 0.0957558 )
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=3]
 albedo_texture = ExtResource( 1 )
 roughness_texture = ExtResource( 2 )
 normal_enabled = true
 normal_scale = 1.0
 normal_texture = ExtResource( 3 )
 
-[sub_resource type="Animation" id=3]
-resource_name = "Attack"
+[sub_resource type="Animation" id=4]
 length = 0.5
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature001/Skeleton:bone")
@@ -114,8 +113,7 @@ tracks/7/imported = true
 tracks/7/enabled = true
 tracks/7/keys = PoolRealArray( 0, 1, 0, 0, 0, 1.49012e-08, -4.96308e-24, -9.09899e-24, 1, 1, 1, 1, 0.133333, 1, -1.25843e-17, 0.10854, 0.0621753, 1.49012e-08, -4.96308e-24, -9.09899e-24, 1, 1, 1, 1, 0.2, 1, -1.89502e-17, 0.120615, 0.055077, -0.0108095, 2.54818e-18, -1.57766e-19, 0.999942, 1, 1, 1, 0.333333, 1, -3.18294e-17, 0.0603742, -0.0354917, -0.0540342, 1.27379e-17, -7.88656e-19, 0.998539, 1, 1, 1, 0.5, 1, 0, 0, 0, 1.49012e-08, -4.96308e-24, -9.09899e-24, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=4]
-resource_name = "Idle"
+[sub_resource type="Animation" id=5]
 length = 2.0
 loop = true
 tracks/0/type = "transform"
@@ -175,8 +173,7 @@ tracks/7/imported = true
 tracks/7/enabled = true
 tracks/7/keys = PoolRealArray( 0, 1, 0, 0, 0, -0.258628, 6.09683e-17, -3.77473e-18, 0.965977, 1, 1, 1, 2, 1, 0, 0, 0, -0.258628, 6.09683e-17, -3.77473e-18, 0.965977, 1, 1, 1 )
 
-[sub_resource type="Animation" id=5]
-resource_name = "Walk"
+[sub_resource type="Animation" id=6]
 loop = true
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature001/Skeleton:bone")
@@ -289,12 +286,12 @@ bones/7/bound_children = [  ]
 [node name="Leech" type="MeshInstance" parent="Armature001/Skeleton"]
 mesh = SubResource( 1 )
 skin = SubResource( 2 )
-material/0 = SubResource( 6 )
+material/0 = SubResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Attack = SubResource( 3 )
-anims/Idle = SubResource( 4 )
-anims/Walk = SubResource( 5 )
+anims/Attack = SubResource( 4 )
+anims/Idle = SubResource( 5 )
+anims/Walk = SubResource( 6 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.436553, 0.112089 )
@@ -302,3 +299,5 @@ shape = SubResource( 7 )
 
 [node name="PathTimer" type="Timer" parent="."]
 autostart = true
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="timeout" from="PathTimer" to="." method="_on_PathTimer_timeout"]

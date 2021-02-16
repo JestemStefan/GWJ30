@@ -4,7 +4,7 @@ onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 
 enum State {IDLE, WALK, ATTACK, DIE}
 var current_state: int
-var speed: int = 20
+var speed: int = 10
 export var speed_modifier: float = 1
 
 
@@ -22,6 +22,7 @@ func enter_state(new_state):
 			
 		State.WALK:
 			play_animation("Walk")
+		
 			
 		State.ATTACK:
 			play_animation("Attack")
@@ -56,12 +57,15 @@ func play_animation(anim_name: String):
 	match anim_name:
 		"Idle":
 			animationPlayer.play("Idle")
+			animationPlayer.set_speed_scale(1)
 			
 		"Walk":
 			animationPlayer.play("Walk")
+			animationPlayer.set_speed_scale(2)
 		
 		"Attack":
 			animationPlayer.play("Attack")
+			animationPlayer.set_speed_scale(1)
 		
 
 func die():
