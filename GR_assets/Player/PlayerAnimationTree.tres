@@ -126,4 +126,4 @@ nodes/run_blend/node = SubResource( 25 )
 nodes/run_blend/position = Vector2( -176, 96 )
 nodes/run_speed/node = SubResource( 26 )
 nodes/run_speed/position = Vector2( 32, 144 )
-node_connections = [ "output", 0, "melee", "dodge_blend", 0, "jump_blend", "dodge_blend", 1, "dodge_dir", "heart_blend", 0, "dodge_blend", "heart_blend", 1, "heart_rate", "jump_blend", 0, "run_speed", "jump_blend", 1, "jump_up_down", "melee", 0, "heart_blend", "melee", 1, "melee_speed", "melee_choice", 0, "melee_1_anim", "melee_choice", 1, "Animation 2", "melee_speed", 0, "melee_choice", "run_speed", 0, "run_blend", "heart_rate", 0, "Animation" ]
+node_connections = [ "output", 0, "melee", "heart_rate", 0, "Animation", "jump_blend", 0, "run_speed", "jump_blend", 1, "jump_up_down", "dodge_blend", 0, "jump_blend", "dodge_blend", 1, "dodge_dir", "run_speed", 0, "run_blend", "melee", 0, "heart_blend", "melee", 1, "melee_speed", "melee_choice", 0, "melee_1_anim", "melee_choice", 1, "Animation 2", "melee_speed", 0, "melee_choice", "heart_blend", 0, "dodge_blend", "heart_blend", 1, "heart_rate" ]
