@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://raw_assets/3D/equipment/spikegun.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://src/Gameplay/Weapon.gd" type="Script" id=2]
 [ext_resource path="res://raw_assets/2D/effects/spikegun_particle.png" type="Texture" id=3]
 [ext_resource path="res://GR_assets/Weapons/SpikeGun/SpikeGunProjectile.tscn" type="PackedScene" id=4]
+[ext_resource path="res://raw_assets/audio/transfusion_gun3.wav" type="AudioStream" id=5]
+[ext_resource path="res://GR_assets/Weapons/SpikeGun/SpikeGunProjectileBuffed.tscn" type="PackedScene" id=6]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.25, 0.25, 0.550026 )
@@ -44,13 +46,13 @@ collision_layer = 4
 mode = 3
 script = ExtResource( 2 )
 damage = 75.0
-fire_rate = 0.5
-spread = 1.0
-recoil = Vector2( 10, 0 )
-muzzle_velocity = 200.0
+fire_rate = 0.2
+recoil = Vector2( 5, 0 )
+muzzle_velocity = 250.0
 projectiles_per_shot = 1
 audio_one_shot = true
 projectile = ExtResource( 4 )
+buffed_projectile = ExtResource( 6 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 0.768856, 0, 0, 0, 0.768856, 0, 0, 0, 0.768856, 0, -0.165913, 0 )
@@ -78,3 +80,5 @@ draw_pass_1 = SubResource( 6 )
 [node name="SfxTimer" type="Timer" parent="."]
 
 [node name="ShootSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 5 )
+unit_size = 6.0

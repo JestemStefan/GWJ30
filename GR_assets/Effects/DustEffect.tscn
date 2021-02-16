@@ -4,8 +4,7 @@
 [ext_resource path="res://src/Effects/SelfDestruct.gd" type="Script" id=2]
 
 [sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0.00576369, 1 )
-colors = PoolColorArray( 1, 0.773406, 0.401978, 1, 1, 0.739437, 0.419964, 0 )
+colors = PoolColorArray( 0.69043, 0.598914, 0.448903, 1, 1, 0.739437, 0.419964, 0 )
 
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )

@@ -10,6 +10,7 @@ export var speed_modifier: float = 1
 
 
 func _ready():
+	._ready()
 	enter_state(State.WALK)
 
 func enter_state(new_state):

@@ -29,6 +29,7 @@ var wep_cont_node = null
 # Gameplay
 var heart_rate: float = 20.0
 var blood: int = 0
+var heartbeat_buff: bool = false
 
 # Node assignments
 onready var camera_controller = $CameraYaw
@@ -90,7 +91,7 @@ func _physics_process(delta):
 		desired_velocity = lerp(desired_velocity, rotated_input_vector * move_speed, 1.0 - pow(0.01, delta))
 		anim_tree.set("parameters/dodge_blend/blend_amount", 0.0)
 	# Slow sliding speed down
-	impact_velocity = lerp(impact_velocity, Vector3.ZERO, 1.0 - pow(0.1, delta))
+	impact_velocity = lerp(impact_velocity, Vector3.ZERO, 1.0 - pow(0.2, delta))
 	# Add up/down logic
 	vertical_velocity_logic(delta)
 	# Add everything together and move
@@ -129,8 +130,10 @@ func action_inputs():
 		vertical_velocity = jump_speed
 	if Input.is_action_pressed("left_click"):
 		if current_weapon != null:
-			if current_weapon.fire(camera_controller.aim_position):
+			if current_weapon.fire(camera_controller.aim_position, heartbeat_buff):
 				camera_controller.recoil += current_weapon.recoil
+				if heartbeat_buff:
+					Utils.do_hitstop(0.02)
 	if Input.is_action_pressed("melee") and anim_tree.get("parameters/melee/active") == false and not is_sliding:
 		do_melee_attack()
 	if Input.is_action_just_pressed("dodge") and not is_sliding:
@@ -224,3 +227,11 @@ func increase_heart_rate(val):
 	heart_rate += val
 	if heart_rate > 100.0:
 		heart_rate = 100.0
+
+func set_heartbeat_buff():
+	heartbeat_buff = true
+	$HeartbeatTimer.start(0.2)
+	hud.heartbeat()
+
+func _on_HeartbeatTimer_timeout():
+	heartbeat_buff = false

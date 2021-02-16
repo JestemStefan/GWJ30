@@ -9,13 +9,19 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "KinematicBody",
+"base": "Entity",
 "class": "EnemyClass",
 "language": "GDScript",
 "path": "res://src/EnemyClass.gd"
+}, {
+"base": "KinematicBody",
+"class": "Entity",
+"language": "GDScript",
+"path": "res://src/Entity.gd"
 } ]
 _global_script_class_icons={
-"EnemyClass": ""
+"EnemyClass": "",
+"Entity": ""
 }
 
 [application]
