@@ -47,7 +47,10 @@ func _physics_process(delta):
 	# Handle camera shake
 	if cam_shake > 0.0:
 		var cam_shake_offset = Vector3.LEFT.rotated(Vector3.FORWARD, rand_range(0.0, 2 * PI)) * cam_shake
-		camera.translation = lerp(camera.translation, camera.translation + cam_shake_offset, 0.5)
+		if third_person:
+			camera.translation = lerp(camera.translation, third_person_offset + cam_shake_offset, 0.5)
+		else:
+			camera.translation = lerp(camera.translation, cam_shake_offset, 0.5)
 		cam_shake -= delta/2
 		if cam_shake <= 0.0:
 			cam_shake = 0.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://GR_assets/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://GR_assets/Player/CameraController.gd" type="Script" id=2]
@@ -7,14 +7,16 @@
 [ext_resource path="res://raw_assets/3D/characters/TorsoMat.material" type="Material" id=5]
 [ext_resource path="res://GR_assets/Player/PlayerAnimationTree.tres" type="AnimationNodeBlendTree" id=6]
 [ext_resource path="res://GR_assets/Player/Player_spatialmaterial.tres" type="Material" id=7]
+[ext_resource path="res://GR_assets/Player/animations/charactersRunFWD.tres" type="Animation" id=8]
+[ext_resource path="res://GR_assets/Player/BloodAbsorber.gd" type="Script" id=9]
 [ext_resource path="res://raw_assets/3D/equipment/spikegun_particle.png" type="Texture" id=14]
 [ext_resource path="res://raw_assets/2D/character/slash.png" type="Texture" id=18]
 
-[sub_resource type="CapsuleShape" id=1]
+[sub_resource type="CapsuleShape" id=24]
 radius = 0.75
 height = 1.8
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=25]
 resource_name = "Attack1"
 length = 0.416667
 step = 0.01
@@ -2687,8 +2689,8 @@ tracks/20/enabled = true
 tracks/20/keys = PoolRealArray( 0, 1, -7.10543e-15, 1.19209e-07, 0, 0, 0, -1.77636e-15, 1, 1, 1, 1, 0.0666667, 1, -7.10543e-15, 1.19209e-07, 0, -0.0170243, 0.0576633, -0.00421952, 0.998182, 1, 1, 1, 0.133333, 1, -7.10543e-15, 1.19209e-07, 0, -0.0551795, 0.186899, -0.0136763, 0.980733, 1, 1, 1, 0.2, 1, -7.10543e-15, 1.19209e-07, 0, -0.100994, 0.342077, -0.0250315, 0.933894, 1, 1, 1, 0.266667, 1, -7.10543e-15, 1.19209e-07, 0, -0.135902, 0.460316, -0.0336837, 0.876644, 1, 1, 1, 0.333333, 1, -7.10543e-15, 1.19209e-07, 0, -0.15058, 0.510029, -0.0373214, 0.846052, 1, 1, 1, 0.4, 1, 0, -0.116347, 0.227096, -0.15058, 0.510029, -0.0373214, 0.846052, 1, 1, 1, 0.466667, 1, -1.86703e-08, -0.280838, 0.548164, -0.15058, 0.510029, -0.0373214, 0.846052, 1, 1, 1, 0.533333, 1, -9.33516e-08, -0.298377, 0.611102, -0.15058, 0.510029, -0.0373214, 0.846052, 1, 1, 1, 0.6, 1, -8.76254e-08, -0.205151, 0.588181, -0.15058, 0.510029, -0.0373214, 0.846052, 1, 1, 1, 0.733333, 1, -8.76254e-08, -0.0112447, 0.604795, -0.15058, 0.510029, -0.0373214, 0.846052, 1, 1, 1, 0.8, 1, -8.9817e-08, 0.0682102, 0.636798, -0.15058, 0.510029, -0.0373214, 0.846052, 1, 1, 1, 0.866667, 1, -9.85834e-08, 0.130436, 0.698024, -0.15058, 0.510029, -0.0373214, 0.846052, 1, 1, 1, 0.933333, 1, -9.85834e-08, 0.170752, 0.798088, -0.15058, 0.510029, -0.0373214, 0.846052, 1, 1, 1, 1, 1, -1.38135e-07, 0.18669, 0.92701, -0.15058, 0.510029, -0.0373214, 0.846052, 1, 1, 1, 1.06667, 1, -1.38135e-07, 0.0669283, 1.07274, -0.0233374, 0.455863, 0.0166404, 0.889589, 1, 1, 1, 1.13333, 1, -1.48136e-07, -0.126751, 1.20703, 0.158993, 0.358217, 0.0927724, 0.915311, 1, 1, 1, 1.2, 1, -1.88139e-07, -0.236044, 1.30388, 0.188273, 0.331204, 0.105727, 0.91852, 1, 1, 1, 1.26667, 1, -1.88139e-07, -0.287307, 1.3611, 0.124445, 0.33769, 0.0845233, 0.929158, 1, 1, 1, 1.33333, 1, -1.88139e-07, -0.314104, 1.39102, 0.0322149, 0.345988, 0.0529046, 0.936192, 1, 1, 1, 1.4, 1, -1.88139e-07, -0.322551, 1.40045, -0.0469415, 0.349844, 0.0230813, 0.935346, 1, 1, 1, 1.46667, 1, -2.08913e-07, -0.313911, 1.39873, -0.0763621, 0.34159, 0.00687681, 0.936717, 1, 1, 1, 1.53333, 1, -2.08913e-07, -0.178218, 1.34972, -0.0548316, 0.245277, 0.00347892, 0.967895, 1, 1, 1, 1.6, 1, -2.08913e-07, 0.0361142, 1.23912, -0.0199308, 0.0891563, 0.00263135, 0.995815, 1, 1, 1, 1.66667, 1, -1.62824e-07, 0.157927, 1.09269, -1.19209e-07, 4.07506e-07, -6.51316e-08, 1, 1, 1, 1, 1.73333, 1, -1.62824e-07, 0.103002, 0.931608, -0.0217451, 0.0736529, -0.00847101, 0.997011, 1, 1, 1, 1.8, 1, -1.62824e-07, -0.0118401, 0.780286, -0.0683173, 0.231398, -0.0201577, 0.970248, 1, 1, 1, 1.86667, 1, -1.62824e-07, -0.138937, 0.660845, -0.118114, 0.400066, -0.030901, 0.908318, 1, 1, 1, 1.93333, 1, -1.32743e-07, -0.218372, 0.59753, -0.146285, 0.495484, -0.0365039, 0.855432, 1, 1, 1, 1.95833, 1, -8.76254e-08, -0.231309, 0.588045, -0.15058, 0.510029, -0.0373214, 0.846052, 1, 1, 1 )
 
 [sub_resource type="CapsuleShape" id=19]
-radius = 1.39216
-height = 1.15539
+radius = 1.97643
+height = 1.4482
 
 [sub_resource type="ArrayMesh" id=20]
 surfaces/0 = {
@@ -2792,17 +2794,19 @@ emission_energy = 2.0
 emission_operator = 0
 emission_on_uv2 = false
 
+[sub_resource type="SphereShape" id=23]
+radius = 8.0
+
 [node name="Player" type="KinematicBody" groups=[
 "Player",
 ]]
 collision_layer = 2
 script = ExtResource( 1 )
-min_move_speed = 10.0
-min_jump_speed = 20.0
-min_dodge_speed = 24.0
-max_jump_speed = 20.0
-max_dodge_speed = 48.0
-gravity = -32.0
+min_move_speed = 8.0
+min_jump_speed = 24.0
+max_move_speed = 14.0
+max_dodge_speed = 36.0
+gravity = -48.0
 weapon_container = NodePath("Armature/Skeleton/Weapon/GunOffset")
 
 [node name="SiphonAim" type="Position3D" parent="."]
@@ -2810,11 +2814,12 @@ transform = Transform( -0.867504, 0, -2.82669e-07, -2.82669e-07, -3.79198e-08, 0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 1.65, 0 )
-shape = SubResource( 1 )
+shape = SubResource( 24 )
 
 [node name="CameraYaw" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.65545, 0.401638 )
 script = ExtResource( 2 )
+default_fov = 80.0
 
 [node name="CameraPitch" type="Spatial" parent="CameraYaw"]
 
@@ -2825,7 +2830,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.402641, -0.401638 )
 transform = Transform( -0.864368, -0.0717992, 0.0166234, 0.00724485, 0.111945, 0.86022, -0.0733415, 0.857249, -0.11094, -0.295501, -0.5492, 1.20909 )
 
 [node name="Camera" type="Camera" parent="CameraYaw/CameraPitch"]
-transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -1.5, 0.809, -4 )
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -1.5, 0.5, -4 )
 fov = 90.0
 far = 500.0
 
@@ -2841,15 +2846,15 @@ parameters/dodge_dir/blend_position = Vector2( -0.316386, 0.472902 )
 parameters/heart_blend/blend_amount = 1.0
 parameters/heart_rate/scale = 0.5
 parameters/jump_blend/blend_amount = 0.0
-parameters/jump_up_down/blend_position = 0.000919104
+parameters/jump_up_down/blend_position = -0.037071
 parameters/melee/active = false
 parameters/melee_choice/blend_amount = 0.0
-parameters/melee_speed/scale = 1.5
-parameters/run_blend/blend_position = Vector2( 0.0100389, 1.00787 )
+parameters/melee_speed/scale = 1.25
+parameters/run_blend/blend_position = Vector2( -0.000323832, 0.996842 )
 parameters/run_speed/scale = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Attack1 = SubResource( 2 )
+anims/Attack1 = SubResource( 25 )
 anims/Attack2 = SubResource( 3 )
 anims/DodgeBACK = SubResource( 4 )
 anims/DodgeFWD = SubResource( 5 )
@@ -2866,9 +2871,10 @@ anims/RunFWD = SubResource( 15 )
 anims/RunLEFT = SubResource( 16 )
 anims/RunRIGHT = SubResource( 17 )
 anims/Siphon = SubResource( 18 )
+anims/charactersRunFWD = ExtResource( 8 )
 
 [node name="MeleeShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60736, 2.10961 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60736, 2.85935 )
 shape = SubResource( 19 )
 disabled = true
 
@@ -2988,7 +2994,7 @@ material/0 = ExtResource( 7 )
 material/1 = ExtResource( 7 )
 
 [node name="Weapon" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.412801, -0.353516, 0.839417, 0.909012, -0.217949, 0.355239, 0.0573667, 0.909685, 0.41132, -0.791584, 1.7048, 0.74665 )
+transform = Transform( -0.842953, 0.191824, 0.502627, 0.528809, 0.123602, 0.839692, 0.0989472, 0.973615, -0.205629, -0.33774, 1.88286, 0.905601 )
 bone_name = "hand_r"
 
 [node name="GunOffset" type="Spatial" parent="Armature/Skeleton/Weapon"]
@@ -3017,7 +3023,7 @@ magnet = Vector3( 2, 2, -4 )
 target_node = NodePath("../../../SiphonAim")
 
 [node name="HeartAttach" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.999959, 0.00661852, 0.00625328, -0.00172873, 0.812272, -0.583277, -0.00893978, 0.583241, 0.812251, 0.00115488, 1.68372, 0.0852783 )
+transform = Transform( 0.999993, 0.00139887, 0.00339673, -0.00160077, 0.998186, 0.0601821, -0.00330638, -0.0601873, 0.998183, 0.000400988, 1.75519, -0.179263 )
 bone_name = "heartbeat"
 
 [node name="Sprite3D" type="Sprite3D" parent="Armature/Skeleton/HeartAttach"]
@@ -3029,7 +3035,19 @@ billboard = 1
 texture = ExtResource( 14 )
 
 [node name="SlashEffect" type="Sprite3D" parent="."]
-transform = Transform( 1.45423, -2.61159, 0.254573, 0.90477, 0.225863, -2.85138, 2.46305, 1.45897, 0.897115, -0.218378, 1.3888, 1.59335 )
+transform = Transform( -0.739856, 0.772263, -2.80289, -0.244274, 2.86549, 0.853988, 2.89705, 0.438835, -0.643802, 0.418728, 1.8871, 1.38098 )
+visible = false
 material_override = SubResource( 22 )
 modulate = Color( 1, 0.678431, 0.678431, 1 )
 texture = ExtResource( 18 )
+
+[node name="BloodAbsorb" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
+collision_layer = 0
+collision_mask = 16
+script = ExtResource( 9 )
+
+[node name="CollisionShape" type="CollisionShape" parent="BloodAbsorb"]
+shape = SubResource( 23 )
+[connection signal="body_entered" from="BloodAbsorb" to="BloodAbsorb" method="_on_BloodAbsorb_body_entered"]
+[connection signal="body_exited" from="BloodAbsorb" to="BloodAbsorb" method="_on_BloodAbsorb_body_exited"]

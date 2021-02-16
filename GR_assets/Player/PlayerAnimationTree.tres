@@ -70,7 +70,7 @@ animation = "Attack1"
 animation = "Idle"
 
 [sub_resource type="AnimationNodeAnimation" id=21]
-animation = "RunFWD"
+animation = "charactersRunFWD"
 
 [sub_resource type="AnimationNodeAnimation" id=22]
 animation = "RunBACK"
@@ -96,7 +96,7 @@ blend_point_4/pos = Vector2( -1, 0 )
 [sub_resource type="AnimationNodeTimeScale" id=26]
 
 [resource]
-graph_offset = Vector2( 6.4, 159.4 )
+graph_offset = Vector2( -297.6, 8.8 )
 nodes/Animation/node = SubResource( 2 )
 nodes/Animation/position = Vector2( 432, 368 )
 "nodes/Animation 2/node" = SubResource( 1 )

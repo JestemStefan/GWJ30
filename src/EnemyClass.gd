@@ -44,11 +44,19 @@ func get_new_path(target_pos):
 	path_node = 0
 
 func take_damage(point, normal, damage):
-	damage = 200
+	Utils.instantiate(load("res://GR_assets/Effects/bloodhit/BloodHit.tscn"), self.global_transform.origin, self.global_transform.basis.z, 12.0)
 	health -= damage
-	
 	if health <= 0:
 		die()
 
 func die():
+	var blood_glob = load("res://GR_assets/Effects/bloodglob/BloodGlob.tscn")
+	var blood_hit = load("res://GR_assets/Effects/bloodhit/BloodHit.tscn")
+	var blood_pickup = load("res://GR_assets/Gameplay/BloodPickup.tscn")
+	Utils.instantiate(blood_pickup, self.global_transform.origin + Vector3.UP, Vector3.UP)
+	Utils.instantiate(blood_pickup, self.global_transform.origin + Vector3.UP, Vector3.UP)
+	Utils.instantiate(blood_pickup, self.global_transform.origin + Vector3.UP, Vector3.UP)
+	Utils.instantiate(blood_glob, self.global_transform.origin + Vector3.UP, Vector3.UP, 3.0)
+	Utils.instantiate(blood_glob, self.global_transform.origin + Vector3.UP, Vector3.UP, 3.0)
+	Utils.instantiate(blood_hit, self.global_transform.origin, self.global_transform.basis.z, 8.0)
 	pass
