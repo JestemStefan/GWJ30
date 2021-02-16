@@ -1,7 +1,5 @@
-extends KinematicBody
+extends Entity
 class_name EnemyClass
-
-export var health: int
 
 var path = []
 var path_node = 0
@@ -13,6 +11,7 @@ var dist2player: float
 var nav: Navigation
 
 func _ready():
+	._ready()
 	# Access navigation node
 	nav = get_tree().get_nodes_in_group("Navigation")[0]
 	player = get_tree().get_nodes_in_group("Player")[0]
@@ -42,13 +41,3 @@ func process_movement(direction):
 func get_new_path(target_pos):
 	path = nav.get_simple_path(global_transform.origin, target_pos)
 	path_node = 0
-
-func take_damage(point, normal, damage):
-	damage = 200
-	health -= damage
-	
-	if health <= 0:
-		die()
-
-func die():
-	pass

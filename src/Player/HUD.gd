@@ -15,3 +15,7 @@ func _process(_delta):
 	
 func set_heart_rate(val: float):
 	$Root/HeartRateContainer/BarContainer/HeartRateBar.value = val
+
+func heartbeat():
+	$Root/AnimationPlayer.stop(true)
+	$Root/AnimationPlayer.play("Heartbeat")

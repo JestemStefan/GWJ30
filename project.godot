@@ -9,13 +9,19 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "KinematicBody",
+"base": "Entity",
 "class": "EnemyClass",
 "language": "GDScript",
 "path": "res://src/EnemyClass.gd"
+}, {
+"base": "KinematicBody",
+"class": "Entity",
+"language": "GDScript",
+"path": "res://src/Entity.gd"
 } ]
 _global_script_class_icons={
-"EnemyClass": ""
+"EnemyClass": "",
+"Entity": ""
 }
 
 [application]
@@ -26,8 +32,8 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Globals="*res://src/Globals.gd"
-Utils="*res://src/Utils.gd"
+Globals="*res://src/Globals/Globals.gd"
+Utils="*res://src/Globals/Utils.gd"
 
 [display]
 
@@ -97,6 +103,7 @@ dodge={
 3d_physics/layer_1="environment"
 3d_physics/layer_2="movement_colliders"
 3d_physics/layer_3="items"
+3d_physics/layer_5="bloodpickup"
 
 [rendering]
 

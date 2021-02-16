@@ -11,6 +11,7 @@ export var muzzle_velocity: float
 export var projectiles_per_shot: int
 export var audio_one_shot: bool
 export (PackedScene) var projectile
+export (PackedScene) var buffed_projectile
 
 
 var current_ammo = 128
@@ -35,7 +36,7 @@ func _ready():
 		var _b = sfx_timer.connect("timeout", self, "sfx_timer_timeout")
 
 # Try to fire the weapon. Returns true if it fired
-func fire(point_to_shoot: Vector3) -> bool:
+func fire(point_to_shoot: Vector3, buffed: bool) -> bool:
 	var direction = get_vector_to_location(muzzle, point_to_shoot)
 	if can_shoot and current_ammo > 0:
 		can_shoot = false
@@ -45,21 +46,28 @@ func fire(point_to_shoot: Vector3) -> bool:
 				sfx.play()
 		if burst > 1:
 			for n in range(0, burst):
-				per_shot(direction)
+				per_shot(direction, buffed)
 				yield(get_tree().create_timer(burst_rate), "timeout")
 		else:
-			per_shot(direction)
+			per_shot(direction, buffed)
 		return true
 	else:
 		return false
 
-func per_shot(direction):
+func per_shot(direction, buffed):
 	if audio_one_shot:
 		sfx.play(0.0)
 	muzzle_flash.restart()
 	muzzle_flash.emitting = true
 	for _n in range(projectiles_per_shot):
-		var bullet = projectile.instance()
+		var bullet
+		var dmg
+		if not buffed:
+			bullet = projectile.instance()
+			dmg = damage
+		else:
+			bullet = buffed_projectile.instance()
+			dmg = damage * 2
 		Globals.scene_root.add_child(bullet)
 		bullet.global_transform.origin = muzzle.global_transform.origin
 		# Direction is usually normalized but, just to be sure
@@ -70,7 +78,7 @@ func per_shot(direction):
 		new_dir = new_dir.rotated(original_dir, rand_range(0, 2 * PI))
 		# Point the bullet towards the final direction
 		bullet.look_at(bullet.transform.origin - new_dir, Vector3.UP)
-		bullet.init(damage, muzzle_velocity, [self])
+		bullet.init(dmg, muzzle_velocity, [self])
 
 func shoot_timer_timeout():
 	can_shoot = true
