@@ -26,8 +26,8 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Globals="*res://src/Globals.gd"
-Utils="*res://src/Utils.gd"
+Globals="*res://src/Globals/Globals.gd"
+Utils="*res://src/Globals/Utils.gd"
 
 [display]
 

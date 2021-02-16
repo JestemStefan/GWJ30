@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://raw_assets/3D/environment/dust.png" type="Texture" id=1]
-[ext_resource path="res://GR_assets/Effects/SelfDestruct.gd" type="Script" id=2]
+[ext_resource path="res://raw_assets/2D/effects/dust.png" type="Texture" id=1]
+[ext_resource path="res://src/Effects/SelfDestruct.gd" type="Script" id=2]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.00576369, 1 )

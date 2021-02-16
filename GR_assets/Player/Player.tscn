@@ -1,22 +1,22 @@
 [gd_scene load_steps=35 format=2]
 
-[ext_resource path="res://GR_assets/Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://GR_assets/Player/CameraController.gd" type="Script" id=2]
+[ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://src/Player/CameraController.gd" type="Script" id=2]
 [ext_resource path="res://GR_assets/Weapons/SpikeGun/SpikeGun.tscn" type="PackedScene" id=3]
 [ext_resource path="res://raw_assets/3D/characters/ArmLegMat.material" type="Material" id=4]
 [ext_resource path="res://raw_assets/3D/characters/TorsoMat.material" type="Material" id=5]
 [ext_resource path="res://GR_assets/Player/PlayerAnimationTree.tres" type="AnimationNodeBlendTree" id=6]
 [ext_resource path="res://GR_assets/Player/Player_spatialmaterial.tres" type="Material" id=7]
 [ext_resource path="res://GR_assets/Player/animations/charactersRunFWD.tres" type="Animation" id=8]
-[ext_resource path="res://GR_assets/Player/BloodAbsorber.gd" type="Script" id=9]
-[ext_resource path="res://raw_assets/3D/equipment/spikegun_particle.png" type="Texture" id=14]
+[ext_resource path="res://src/Player/BloodAbsorber.gd" type="Script" id=9]
+[ext_resource path="res://raw_assets/2D/effects/spikegun_particle.png" type="Texture" id=14]
 [ext_resource path="res://raw_assets/2D/character/slash.png" type="Texture" id=18]
 
-[sub_resource type="CapsuleShape" id=24]
+[sub_resource type="CapsuleShape" id=1]
 radius = 0.75
 height = 1.8
 
-[sub_resource type="Animation" id=25]
+[sub_resource type="Animation" id=2]
 resource_name = "Attack1"
 length = 0.416667
 step = 0.01
@@ -2802,7 +2802,6 @@ radius = 8.0
 ]]
 collision_layer = 2
 script = ExtResource( 1 )
-min_move_speed = 8.0
 min_jump_speed = 24.0
 max_move_speed = 14.0
 max_dodge_speed = 36.0
@@ -2814,7 +2813,7 @@ transform = Transform( -0.867504, 0, -2.82669e-07, -2.82669e-07, -3.79198e-08, 0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 1.65, 0 )
-shape = SubResource( 24 )
+shape = SubResource( 1 )
 
 [node name="CameraYaw" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.65545, 0.401638 )
@@ -2827,7 +2826,7 @@ default_fov = 80.0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.402641, -0.401638 )
 
 [node name="GunAim" type="Position3D" parent="CameraYaw/CameraPitch/GunAimPivot"]
-transform = Transform( -0.864368, -0.0717992, 0.0166234, 0.00724485, 0.111945, 0.86022, -0.0733415, 0.857249, -0.11094, -0.295501, -0.5492, 1.20909 )
+transform = Transform( -0.862769, 0.0904037, -0.00449826, 0.00724485, 0.111945, 0.86022, 0.0902252, 0.855487, -0.112088, -0.480129, -0.259573, 1.20909 )
 
 [node name="Camera" type="Camera" parent="CameraYaw/CameraPitch"]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -1.5, 0.5, -4 )
@@ -2841,6 +2840,7 @@ cast_to = Vector3( 0, -0.5, 0 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = ExtResource( 6 )
 anim_player = NodePath("../AnimationPlayer")
+active = true
 parameters/dodge_blend/blend_amount = 0.0
 parameters/dodge_dir/blend_position = Vector2( -0.316386, 0.472902 )
 parameters/heart_blend/blend_amount = 1.0
@@ -2850,11 +2850,11 @@ parameters/jump_up_down/blend_position = -0.037071
 parameters/melee/active = false
 parameters/melee_choice/blend_amount = 0.0
 parameters/melee_speed/scale = 1.25
-parameters/run_blend/blend_position = Vector2( -0.000323832, 0.996842 )
+parameters/run_blend/blend_position = Vector2( 0, 0.33 )
 parameters/run_speed/scale = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Attack1 = SubResource( 25 )
+anims/Attack1 = SubResource( 2 )
 anims/Attack2 = SubResource( 3 )
 anims/DodgeBACK = SubResource( 4 )
 anims/DodgeFWD = SubResource( 5 )
@@ -2900,7 +2900,7 @@ bones/3/name = "heartbeat"
 bones/3/parent = 2
 bones/3/rest = Transform( 1, -4.18728e-10, 3.34656e-08, 5.2763e-10, 0.999995, -0.00325421, -3.3464e-08, 0.00325421, 0.999995, 2.08721e-08, 0.060612, -0.162213 )
 bones/3/enabled = true
-bones/3/bound_children = [ NodePath("HeartAttach") ]
+bones/3/bound_children = [  ]
 bones/4/name = "spine_3"
 bones/4/parent = 2
 bones/4/rest = Transform( 1, -4.18728e-10, 3.34656e-08, 5.27631e-10, 0.999995, -0.00325425, -3.3464e-08, 0.00325425, 0.999995, 3.53884e-16, 0.247374, 2.79397e-09 )
@@ -2925,7 +2925,7 @@ bones/8/name = "hand_r"
 bones/8/parent = 7
 bones/8/rest = Transform( 0.998753, 0.0491725, -0.00858782, -0.0497289, 0.995071, -0.0857957, 0.0043267, 0.0861158, 0.996276, -1.06992e-07, 0.604836, -7.45058e-09 )
 bones/8/enabled = true
-bones/8/bound_children = [ NodePath("Weapon") ]
+bones/8/bound_children = [  ]
 bones/9/name = "spine_4"
 bones/9/parent = 4
 bones/9/rest = Transform( 1, -4.78347e-08, -1.54919e-07, -7.10543e-15, 0.955488, -0.295029, 1.62136e-07, 0.295029, 0.955488, 3.60822e-16, 0.275548, 1.86265e-09 )
@@ -2994,7 +2994,7 @@ material/0 = ExtResource( 7 )
 material/1 = ExtResource( 7 )
 
 [node name="Weapon" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.842953, 0.191824, 0.502627, 0.528809, 0.123602, 0.839692, 0.0989472, 0.973615, -0.205629, -0.33774, 1.88286, 0.905601 )
+transform = Transform( -0.892263, -0.404577, 0.200457, 0.448995, -0.748215, 0.488443, -0.047628, 0.525825, 0.849259, -0.70592, 1.15998, 0.357396 )
 bone_name = "hand_r"
 
 [node name="GunOffset" type="Spatial" parent="Armature/Skeleton/Weapon"]
@@ -3023,7 +3023,7 @@ magnet = Vector3( 2, 2, -4 )
 target_node = NodePath("../../../SiphonAim")
 
 [node name="HeartAttach" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.999993, 0.00139887, 0.00339673, -0.00160077, 0.998186, 0.0601821, -0.00330638, -0.0601873, 0.998183, 0.000400988, 1.75519, -0.179263 )
+transform = Transform( 1.02277, -5.1445e-10, 1.46531e-07, 3.64167e-08, 0.991571, -0.250701, -1.41936e-07, 0.250701, 0.991572, 1.06029e-08, 1.76006, -0.0966096 )
 bone_name = "heartbeat"
 
 [node name="Sprite3D" type="Sprite3D" parent="Armature/Skeleton/HeartAttach"]

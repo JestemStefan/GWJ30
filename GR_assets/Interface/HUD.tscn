@@ -2,9 +2,11 @@
 
 [ext_resource path="res://raw_assets/fonts/Inconsolata-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://raw_assets/2D/interface/crosshair010.png" type="Texture" id=2]
-[ext_resource path="res://GR_assets/Interface/HUD.gd" type="Script" id=3]
+[ext_resource path="res://src/Player/HUD.gd" type="Script" id=3]
 [ext_resource path="res://GR_assets/Interface/HUDfONT.tres" type="DynamicFont" id=4]
 [ext_resource path="res://raw_assets/2D/environment/dirtfloor1.png" type="Texture" id=5]
+
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 64

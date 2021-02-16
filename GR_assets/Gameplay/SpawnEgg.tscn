@@ -1,7 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://GR_assets/Gameplay/SpawnEgg.gd" type="Script" id=1]
+[ext_resource path="res://src/Gameplay/SpawnEgg.gd" type="Script" id=1]
 [ext_resource path="res://GR_assets/Enemies/Leech.tscn" type="PackedScene" id=2]
+
+
 
 [sub_resource type="SphereMesh" id=1]
 height = 4.0
