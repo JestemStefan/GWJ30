@@ -2774,7 +2774,7 @@ bones/3/name = "heartbeat"
 bones/3/parent = 2
 bones/3/rest = Transform( 1, -4.18728e-10, 3.34656e-08, 5.2763e-10, 0.999995, -0.00325421, -3.3464e-08, 0.00325421, 0.999995, 2.08721e-08, 0.060612, -0.162213 )
 bones/3/enabled = true
-bones/3/bound_children = [  ]
+bones/3/bound_children = [ NodePath("HeartAttach") ]
 bones/4/name = "spine_3"
 bones/4/parent = 2
 bones/4/rest = Transform( 1, -4.18728e-10, 3.34656e-08, 5.27631e-10, 0.999995, -0.00325425, -3.3464e-08, 0.00325425, 0.999995, 3.53884e-16, 0.247374, 2.79397e-09 )
@@ -2799,7 +2799,7 @@ bones/8/name = "hand_r"
 bones/8/parent = 7
 bones/8/rest = Transform( 0.998753, 0.0491725, -0.00858782, -0.0497289, 0.995071, -0.0857957, 0.0043267, 0.0861158, 0.996276, -1.06992e-07, 0.604836, -7.45058e-09 )
 bones/8/enabled = true
-bones/8/bound_children = [  ]
+bones/8/bound_children = [ NodePath("Weapon") ]
 bones/9/name = "spine_4"
 bones/9/parent = 4
 bones/9/rest = Transform( 1, -4.78347e-08, -1.54919e-07, -7.10543e-15, 0.955488, -0.295029, 1.62136e-07, 0.295029, 0.955488, 3.60822e-16, 0.275548, 1.86265e-09 )
@@ -2868,7 +2868,7 @@ material/0 = ExtResource( 7 )
 material/1 = ExtResource( 7 )
 
 [node name="Weapon" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.815526, 0.24879, 0.522514, 0.564787, 0.145232, 0.812356, 0.126221, 0.957608, -0.258955, -0.279996, 1.89752, 0.991983 )
+transform = Transform( -0.923649, -0.377523, 0.065936, 0.383237, -0.909876, 0.158914, 7.72998e-08, 0.172051, 0.985089, -0.668639, 1.12123, 0.0285191 )
 bone_name = "hand_r"
 
 [node name="GunOffset" type="Spatial" parent="Armature/Skeleton/Weapon"]
@@ -2896,7 +2896,7 @@ magnet = Vector3( 2, 2, -4 )
 target_node = NodePath("../../../SiphonAim")
 
 [node name="HeartAttach" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.999993, 0.00139896, 0.00339701, -0.001808, 0.992335, 0.123563, -0.00319811, -0.123569, 0.992332, 0.00040102, 1.71034, -0.175413 )
+transform = Transform( 1, 1.92013e-13, 1.62136e-07, -4.63053e-09, 0.999592, 0.0285601, -1.6207e-07, -0.0285603, 0.999593, -7.27223e-11, 1.75813, -0.164734 )
 bone_name = "heartbeat"
 
 [node name="Sprite3D" type="Sprite3D" parent="Armature/Skeleton/HeartAttach"]
@@ -2909,6 +2909,7 @@ texture = ExtResource( 14 )
 
 [node name="SlashEffect" type="Sprite3D" parent="."]
 transform = Transform( -0.739855, 0.772263, -2.80289, -0.244274, 2.86549, 0.853987, 2.89705, 0.438835, -0.643802, 0.418728, 1.8871, 1.38098 )
+visible = false
 material_override = SubResource( 22 )
 modulate = Color( 1, 0.678431, 0.678431, 1 )
 texture = ExtResource( 18 )
