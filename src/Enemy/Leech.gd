@@ -10,6 +10,7 @@ export var speed_modifier: float = 1
 
 
 func _ready():
+	._ready()
 	enter_state(State.WALK)
 
 func enter_state(new_state):
@@ -39,7 +40,7 @@ func process_movement(direction):
 			pass
 			
 		State.WALK:
-			look_at(path[path_node], Vector3.UP)
+			Utils.fixed_look_at(self, path[path_node])
 			move_and_slide(direction.normalized() * speed * speed_modifier, Vector3.UP)
 			
 			if dist2player < 10:
@@ -64,6 +65,7 @@ func play_animation(anim_name: String):
 		
 
 func die():
+	.die()
 	call_deferred("free")
 
 func _on_PathTimer_timeout():

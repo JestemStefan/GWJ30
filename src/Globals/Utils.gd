@@ -9,7 +9,7 @@ func instantiate(obj: PackedScene, point: Vector3, direction: Vector3, scale: fl
 	else:
 		Globals.scene_root.add_child(new_obj)
 	# Bump the object a tiny bit off the direction it was created at
-	new_obj.global_transform = Transform(Basis.IDENTITY, point + direction/20.0)
+	new_obj.global_transform = Transform(Basis.IDENTITY, point + direction/5.0)
 	Utils.fixed_look_at(new_obj, point - direction)
 	new_obj.global_scale(Vector3.ONE * scale)
 
@@ -78,3 +78,8 @@ func get_flat_distance(start: Vector3, dest: Vector3) -> Vector3:
 	var self_no_y = Vector3(start.x, 0.0, start.z)
 	var point_no_y = Vector3(dest.x, 0.0, dest.z)
 	return self_no_y.distance_to(point_no_y)
+
+func do_hitstop(time: float):
+	Engine.time_scale = 0.1
+	yield(get_tree().create_timer(time), "timeout")
+	Engine.time_scale = 1.0

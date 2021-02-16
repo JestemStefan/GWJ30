@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://raw_assets/fonts/Inconsolata-Regular.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://raw_assets/2D/interface/crosshair010.png" type="Texture" id=2]
-[ext_resource path="res://GR_assets/Interface/HUD.gd" type="Script" id=3]
+[ext_resource path="res://raw_assets/2D/interface/crosshair118.png" type="Texture" id=2]
+[ext_resource path="res://src/Player/HUD.gd" type="Script" id=3]
 [ext_resource path="res://GR_assets/Interface/HUDfONT.tres" type="DynamicFont" id=4]
 [ext_resource path="res://raw_assets/2D/environment/dirtfloor1.png" type="Texture" id=5]
 
@@ -11,6 +11,35 @@ size = 64
 outline_size = 2
 outline_color = Color( 1, 0, 0, 1 )
 font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Heartbeat"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("CenterContainer/Crosshair:rect_min_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 64, 64 ), Vector2( 128, 128 ), Vector2( 64, 64 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CenterContainer/Crosshair:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 3 )
@@ -37,16 +66,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="Root"]
+[node name="CenterContainer" type="CenterContainer" parent="Root"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -27.8215
-margin_top = -17.6393
-margin_right = 91.1785
-margin_bottom = 101.361
-rect_scale = Vector2( 0.5, 0.5 )
+margin_left = -64.0
+margin_top = -64.0
+margin_right = 64.0
+margin_bottom = 64.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Crosshair" type="TextureRect" parent="Root/CenterContainer"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 112.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 96, 96 )
 mouse_filter = 2
 texture = ExtResource( 2 )
 expand = true
@@ -123,3 +162,6 @@ nine_patch_stretch = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Root"]
+anims/Heartbeat = SubResource( 2 )

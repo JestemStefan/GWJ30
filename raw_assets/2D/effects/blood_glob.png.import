@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/spikegun_particle.png-58b9466c89546ad47e7d8967d62cae08.s3tc.stex"
-path.etc2="res://.import/spikegun_particle.png-58b9466c89546ad47e7d8967d62cae08.etc2.stex"
+path.s3tc="res://.import/blood_glob.png-5ab2f06853c790ca5a96bfbda3f274eb.s3tc.stex"
+path.etc2="res://.import/blood_glob.png-5ab2f06853c790ca5a96bfbda3f274eb.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://raw_assets/3D/equipment/spikegun_particle.png"
-dest_files=[ "res://.import/spikegun_particle.png-58b9466c89546ad47e7d8967d62cae08.s3tc.stex", "res://.import/spikegun_particle.png-58b9466c89546ad47e7d8967d62cae08.etc2.stex" ]
+source_file="res://raw_assets/2D/effects/blood_glob.png"
+dest_files=[ "res://.import/blood_glob.png-5ab2f06853c790ca5a96bfbda3f274eb.s3tc.stex", "res://.import/blood_glob.png-5ab2f06853c790ca5a96bfbda3f274eb.etc2.stex" ]
 
 [params]
 
