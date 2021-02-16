@@ -1,8 +1,11 @@
 [gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://GR_assets/Effects/bloodhit/bloodsplat.tres" type="Material" id=1]
-[ext_resource path="res://GR_assets/Effects/SelfDestruct.gd" type="Script" id=2]
-[ext_resource path="res://GR_assets/Effects/bloodhit/blad_stretch.png" type="Texture" id=4]
+[ext_resource path="res://raw_assets/2D/effects/bloodsplat.tres" type="Material" id=1]
+[ext_resource path="res://src/Effects/SelfDestruct.gd" type="Script" id=2]
+[ext_resource path="res://raw_assets/2D/effects/blad_stretch.png" type="Texture" id=4]
+
+
+
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.100756, 1 )

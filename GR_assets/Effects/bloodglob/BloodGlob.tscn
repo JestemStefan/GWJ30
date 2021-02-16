@@ -1,8 +1,11 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://GR_assets/Effects/bloodglob/blood_glob.png" type="Texture" id=1]
-[ext_resource path="res://GR_assets/Effects/bloodglob/BloodGlob.gd" type="Script" id=2]
+[ext_resource path="res://raw_assets/2D/effects/blood_glob.png" type="Texture" id=1]
+[ext_resource path="res://src/Effects/BloodGlob.gd" type="Script" id=2]
 [ext_resource path="res://GR_assets/Effects/bloodglob/BloodSplatDecal.tscn" type="PackedScene" id=3]
+
+
+
 
 [node name="BloodGlob" type="Spatial"]
 script = ExtResource( 2 )

@@ -79,7 +79,7 @@ func _physics_process(delta):
 	input_vector = -input_vector.normalized()
 	rotated_input_vector = input_vector.rotated(Vector3.UP, camera_controller.global_transform.basis.get_euler().y + PI)
 	# Handle sliding
-	if impact_velocity.length() > 15.0:
+	if impact_velocity.length() > 16.0:
 		is_sliding = true
 		desired_velocity = impact_velocity
 		anim_tree.set("parameters/dodge_blend/blend_amount", impact_velocity.length() / dodge_speed)
@@ -111,13 +111,18 @@ func _physics_process(delta):
 		anim_tree.set("parameters/jump_up_down/blend_position", vertical_velocity / jump_speed)
 	
 	if anim_tree.get("parameters/melee/active") == false:
-		new_ik_interp = 1.0 - anim_tree.get("parameters/dodge_blend/blend_amount")
+		new_ik_interp = 0.9 - anim_tree.get("parameters/dodge_blend/blend_amount")
 	anim_tree.set("parameters/heart_rate/scale", heart_rate / 50.0)
 	hud.set_heart_rate(heart_rate)
 	update_movement_vars()
 	# Finalize the IK interp so its always smooth
-	right_hand_ik.interpolation = lerp(right_hand_ik.interpolation, new_ik_interp, 3.0 * delta)
-	left_hand_ik.interpolation = lerp(left_hand_ik.interpolation, new_ik_interp, 3.0 * delta)
+	if camera_controller.third_person:
+		right_hand_ik.interpolation = lerp(right_hand_ik.interpolation, new_ik_interp, 3.0 * delta)
+		left_hand_ik.interpolation = lerp(left_hand_ik.interpolation, new_ik_interp, 3.0 * delta)
+	else:
+		right_hand_ik.interpolation = 1.0
+		left_hand_ik.interpolation = 1.0
+		
 
 func action_inputs():
 	if Input.is_action_just_pressed("jump") and floor_check.is_colliding():

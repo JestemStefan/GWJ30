@@ -1,7 +1,10 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://raw_assets/3D/equipment/spikegun_particle.png" type="Texture" id=1]
-[ext_resource path="res://GR_assets/Effects/SelfDestruct.gd" type="Script" id=2]
+[ext_resource path="res://raw_assets/2D/effects/spikegun_particle.png" type="Texture" id=1]
+[ext_resource path="res://src/Effects/SelfDestruct.gd" type="Script" id=2]
+
+
+
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
