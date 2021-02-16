@@ -97,6 +97,7 @@ dodge={
 3d_physics/layer_1="environment"
 3d_physics/layer_2="movement_colliders"
 3d_physics/layer_3="items"
+3d_physics/layer_5="bloodpickup"
 
 [rendering]
 

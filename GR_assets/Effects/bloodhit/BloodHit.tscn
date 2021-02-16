@@ -1,0 +1,89 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://GR_assets/Effects/bloodhit/bloodsplat.tres" type="Material" id=1]
+[ext_resource path="res://GR_assets/Effects/SelfDestruct.gd" type="Script" id=2]
+[ext_resource path="res://GR_assets/Effects/bloodhit/blad_stretch.png" type="Texture" id=4]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0.100756, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0.0193182 ), 0.0, 1.68537, 0, 0, Vector2( 1, 0.665909 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+lifetime_randomness = 0.5
+direction = Vector3( 0, 0, -1 )
+spread = 10.0
+gravity = Vector3( 0, -5, 0 )
+initial_velocity = 5.0
+initial_velocity_random = 1.0
+angle = 180.0
+angle_random = 1.0
+scale_random = 1.0
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="QuadMesh" id=6]
+material = ExtResource( 1 )
+
+[sub_resource type="Curve" id=7]
+_data = [ Vector2( 0, 0.536364 ), 0.0, 0.0, 0, 0, Vector2( 0.522152, 0.927273 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.172727 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=8]
+curve = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+direction = Vector3( 1, 1, 1 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 1.0
+initial_velocity_random = 0.5
+angle = 70.5
+angle_random = 1.0
+scale = 4.0
+scale_random = 1.0
+scale_curve = SubResource( 8 )
+color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=10]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 4 )
+
+[sub_resource type="QuadMesh" id=11]
+material = SubResource( 10 )
+
+[node name="BloodHit" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="Particles" type="Particles" parent="."]
+emitting = false
+amount = 10
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 5 )
+draw_pass_1 = SubResource( 6 )
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Slash" type="Particles" parent="."]
+emitting = false
+amount = 3
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 9 )
+draw_pass_1 = SubResource( 11 )
+[connection signal="timeout" from="Timer" to="." method="on_timeout"]

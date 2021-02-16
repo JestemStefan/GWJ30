@@ -9,7 +9,7 @@ func instantiate(obj: PackedScene, point: Vector3, direction: Vector3, scale: fl
 	else:
 		Globals.scene_root.add_child(new_obj)
 	# Bump the object a tiny bit off the direction it was created at
-	new_obj.global_transform = Transform(Basis.IDENTITY, point + direction/20.0)
+	new_obj.global_transform = Transform(Basis.IDENTITY, point + direction/5.0)
 	Utils.fixed_look_at(new_obj, point - direction)
 	new_obj.global_scale(Vector3.ONE * scale)
 

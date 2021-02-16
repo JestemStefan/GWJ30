@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://raw_assets/3D/equipment/spikegun_particle.png" type="Texture" id=1]
+[ext_resource path="res://GR_assets/Gameplay/BloodPickup.gd" type="Script" id=2]
+
+[sub_resource type="PhysicsMaterial" id=5]
+bounce = 0.5
+
+[sub_resource type="SphereMesh" id=1]
+radial_segments = 16
+rings = 8
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_transparent = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 1 )
+emission_enabled = true
+emission = Color( 1, 0, 0, 1 )
+emission_energy = 3.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="CapsuleShape" id=3]
+radius = 0.472065
+height = 2.17132
+
+[node name="Blood" type="RigidBody"]
+collision_layer = 2147483664
+physics_material_override = SubResource( 5 )
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 0.259913, 0, 0, 0, 0.259913, 0, 0, 0, 0.259913, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="Sprite3D" type="Sprite3D" parent="MeshInstance"]
+transform = Transform( 3.69, 0, 0, 0, 3.69, 0, 0, 0, 3.69, 0, 0, 0 )
+material_override = SubResource( 4 )
+billboard = 1
+double_sided = false
+texture = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+shape = SubResource( 3 )

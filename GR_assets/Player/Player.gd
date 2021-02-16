@@ -28,6 +28,7 @@ var wep_cont_node = null
 
 # Gameplay
 var heart_rate: float = 20.0
+var blood: int = 0
 
 # Node assignments
 onready var camera_controller = $CameraYaw
@@ -78,7 +79,7 @@ func _physics_process(delta):
 	input_vector = -input_vector.normalized()
 	rotated_input_vector = input_vector.rotated(Vector3.UP, camera_controller.global_transform.basis.get_euler().y + PI)
 	# Handle sliding
-	if impact_velocity.length() > 12.0:
+	if impact_velocity.length() > 15.0:
 		is_sliding = true
 		desired_velocity = impact_velocity
 		anim_tree.set("parameters/dodge_blend/blend_amount", impact_velocity.length() / dodge_speed)
@@ -102,7 +103,7 @@ func _physics_process(delta):
 	# Do animation stuff
 	if is_grounded:
 		anim_tree.set("parameters/run_blend/blend_position", convert_movement_to_anim(desired_velocity))
-		anim_tree.set("parameters/run_speed/scale", (move_speed / max_move_speed) * 2.5)
+		anim_tree.set("parameters/run_speed/scale", (move_speed / max_move_speed) * 1.5)
 		anim_tree.set("parameters/jump_blend/blend_amount", 0.0)
 	else:
 		var current_jump_blend = anim_tree.get("parameters/jump_blend/blend_amount")
@@ -157,14 +158,20 @@ func melee_do_hit():
 	query.set_transform(melee_shape.get_global_transform())
 	var hits = space_state.intersect_shape(query)
 	if not hits.empty():
-		increase_heart_rate(10.0)
 		# One-off hit things
 		if not is_grounded:
 			#vertical_velocity = 10.0
 			pass
 	for hit in hits:
-		if hit["collider"].has_method("take_damage"):
-			hit["collider"].take_damage(self.global_transform.origin, self.global_transform.basis.z, 10.0)
+		if is_instance_valid(hit["collider"]):
+			if hit["collider"].has_method("take_damage"):
+				camera_controller.add_shake(0.5)
+				increase_heart_rate(10.0)
+				hit["collider"].take_damage(self.global_transform.origin, self.global_transform.basis.z, 50.0)
+				Engine.time_scale = 0.1
+				yield(get_tree().create_timer(0.015), "timeout")
+				Engine.time_scale = 1.0
+
 
 func vertical_velocity_logic(delta):
 	# If our head hit something, end jump
