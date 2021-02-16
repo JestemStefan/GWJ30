@@ -1,0 +1,93 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://raw_assets/fonts/AnotherDanger60.tres" type="DynamicFont" id=1]
+[ext_resource path="res://raw_assets/fonts/AnotherDanger120.tres" type="DynamicFont" id=2]
+[ext_resource path="res://levels/PauseMenu.gd" type="Script" id=3]
+
+[node name="MarginContainer" type="CenterContainer"]
+pause_mode = 2
+anchor_left = 0.548
+anchor_top = 0.363
+anchor_right = 0.548
+anchor_bottom = 0.363
+margin_left = -378.66
+margin_top = -12.54
+margin_right = 194.34
+margin_bottom = 308.46
+rect_scale = Vector2( 0.5, 0.5 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_left = 293.0
+margin_top = 167.0
+margin_right = 293.0
+margin_bottom = 167.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color( 0.831373, 0.447059, 0.447059, 1 )
+margin_left = 293.0
+margin_top = 167.0
+margin_right = 293.0
+margin_bottom = 167.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.14902, 0.00784314, 0.00784314, 1 )
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+pause_mode = 2
+self_modulate = Color( 0.0980392, 0.0745098, 0.0745098, 1 )
+show_behind_parent = true
+margin_right = 587.0
+margin_bottom = 335.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 50, 50 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Title" type="VBoxContainer" parent="PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 580.0
+margin_bottom = 328.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="PanelContainer/Title"]
+modulate = Color( 0.729412, 0, 0, 1 )
+margin_right = 573.0
+margin_bottom = 207.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Transfusion"
+align = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/Title"]
+margin_top = 211.0
+margin_right = 573.0
+margin_bottom = 321.0
+
+[node name="ExitButton" type="Button" parent="PanelContainer/Title/CenterContainer"]
+margin_left = 161.0
+margin_right = 411.0
+margin_bottom = 110.0
+rect_min_size = Vector2( 250, 0 )
+rect_pivot_offset = Vector2( 100, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Exit"
+
+[node name="Options" type="VBoxContainer" parent="PanelContainer/Title"]
+visible = false
+margin_right = 573.0
+margin_bottom = 321.0
+[connection signal="pressed" from="PanelContainer/Title/CenterContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
