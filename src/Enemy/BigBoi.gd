@@ -7,7 +7,6 @@ onready var meatball = preload("res://GR_assets/Enemies/Meatball.tscn")
 enum State {IDLE, WALK, ATTACK, SHOOT, DIE}
 var current_state: int
 var speed: int = 10
-export var speed_modifier: float = 1
 
 var projectile_speed: int = 30
 
@@ -35,10 +34,8 @@ func enter_state(new_state):
 			var projectile: Meatball = meatball.instance()
 			var shoot_dir: Vector3 = -global_transform.basis.z
 			projectile.direction = shoot_dir.rotated(Vector3.RIGHT, angle)
-			owner.add_child(projectile)
+			self.get_parent().add_child(projectile)
 			projectile.global_transform.origin = projectile_origin.global_transform.origin
-			
-			
 			play_animation("Shoot")
 
 		State.DIE:
@@ -57,10 +54,10 @@ func process_movement(direction):
 			Utils.fixed_look_at(self, path[path_node])
 			move_and_slide(direction.normalized() * speed * speed_modifier, Vector3.UP)
 			
-			if dist2player < 10:
+			if dist2player < 20:
 				enter_state(State.ATTACK)
 			
-			elif dist2player > 300:
+			elif dist2player > 300 and dist2player < 500:
 				enter_state(State.SHOOT)
 			
 		State.ATTACK:
@@ -69,7 +66,7 @@ func process_movement(direction):
 		State.SHOOT:
 			look_at(player_position, Vector3.UP)
 			
-			if dist2player < 300:
+			if dist2player < 300 or dist2player > 500:
 				enter_state(State.WALK)
 		
 		State.DIE:
@@ -105,7 +102,6 @@ func calculate_shooting_angle(distance_to_target):
 func _on_PathTimer_timeout():
 	get_new_path(player_position) #put target in parameter
 
-
 func _on_AnimationPlayer_animation_finished(anim_name):
 	match anim_name:
 		"Attack", "Attack2":
@@ -116,3 +112,6 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		
 		"Shoot":
 			enter_state(State.SHOOT)
+
+func melee_do_hit():
+	.melee_do_hit()

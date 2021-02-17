@@ -1,4 +1,4 @@
-extends KinematicBody
+extends Entity
 
 # Config
 export(float) var min_move_speed = 8.0
@@ -133,7 +133,8 @@ func action_inputs():
 			if current_weapon.fire(camera_controller.aim_position, heartbeat_buff):
 				camera_controller.recoil += current_weapon.recoil
 				if heartbeat_buff:
-					Utils.do_hitstop(0.02)
+					#Utils.do_hitstop(0.02)
+					pass
 	if Input.is_action_pressed("melee") and anim_tree.get("parameters/melee/active") == false and not is_sliding:
 		do_melee_attack()
 	if Input.is_action_just_pressed("dodge") and not is_sliding:
@@ -157,6 +158,7 @@ func do_melee_attack():
 	else:
 		anim_tree.set("parameters/melee_choice/blend_amount", 0.0)
 
+# OVERRIDE
 func melee_do_hit():
 	var query = PhysicsShapeQueryParameters.new()
 	#query.set_collision_mask()
@@ -235,3 +237,23 @@ func set_heartbeat_buff():
 
 func _on_HeartbeatTimer_timeout():
 	heartbeat_buff = false
+
+# OVERRIDE
+func take_damage(point, normal, damage):
+	camera_controller.add_shake(0.3)
+	hud.damage()
+	Utils.instantiate(load("res://GR_assets/Effects/bloodhit/BloodHit.tscn"), self.global_transform.origin, self.global_transform.basis.z, 6.0)
+	heart_rate -= damage
+	if camera_controller.third_person:
+		do_damage_flash(true, 0)
+	do_damage_flash(true, 1)
+	camera_controller.camera.fov = 70
+	yield(get_tree().create_timer(0.01), "timeout")
+	do_damage_flash(false, 0)
+	do_damage_flash(false, 1)
+	camera_controller.desired_fov = camera_controller.default_fov
+	if heart_rate <= 0:
+		die()
+
+func die():
+	hud.game_over()
