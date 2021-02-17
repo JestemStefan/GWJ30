@@ -8,7 +8,8 @@ extends MarginContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,6 +21,5 @@ func _on_ExitButton_pressed():
 	get_tree().quit()
 
 
-func _on_PlayButton_pressed():
-	print("play!")	
+func _on_PlayButton_pressed():	
 	get_tree().change_scene("res://levels/Sandbox1.tscn")
