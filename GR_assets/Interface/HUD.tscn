@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://raw_assets/fonts/Inconsolata-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://raw_assets/2D/interface/crosshair118.png" type="Texture" id=2]
@@ -6,12 +6,41 @@
 [ext_resource path="res://GR_assets/Interface/HUDfONT.tres" type="DynamicFont" id=4]
 [ext_resource path="res://raw_assets/2D/environment/dirtfloor1.png" type="Texture" id=5]
 [ext_resource path="res://levels/PauseMenu.tscn" type="PackedScene" id=6]
+[ext_resource path="res://raw_assets/2D/interface/vignette.png" type="Texture" id=7]
+[ext_resource path="res://raw_assets/fonts/AnotherDanger120.tres" type="DynamicFont" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
 outline_size = 2
 outline_color = Color( 1, 0, 0, 1 )
 font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "Damage"
+tracks/0/type = "value"
+tracks/0/path = NodePath("VignetteCenter/Vignette:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0.25098 ), Color( 1, 0, 0, 0.25098 ), Color( 0, 0, 0, 0.25098 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("VignetteCenter/Vignette:rect_min_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 3600, 2600 ), Vector2( 2800, 2000 ), Vector2( 3600, 2600 ) ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "Heartbeat"
@@ -41,6 +70,110 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("VignetteCenter/Vignette:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.15, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0.25098 ), Color( 0, 0, 0, 0.537255 ), Color( 0, 0, 0, 0.25098 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("VignetteCenter/Vignette:rect_min_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = false
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.15, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 3600, 2600 ), Vector2( 2400, 1800 ), Vector2( 3600, 2600 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Damage"
+tracks/0/type = "value"
+tracks/0/path = NodePath("VignetteCenter/Vignette:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0.25098 ), Color( 1, 0, 0, 0.25098 ), Color( 0, 0, 0, 0.25098 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("VignetteCenter/Vignette:rect_min_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 3600, 2600 ), Vector2( 2800, 2000 ), Vector2( 3600, 2600 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Heartbeat"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("CenterContainer/Crosshair:rect_min_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 64, 64 ), Vector2( 128, 128 ), Vector2( 64, 64 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CenterContainer/Crosshair:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("VignetteCenter/Vignette:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.15, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0.25098 ), Color( 0, 0, 0, 0.537255 ), Color( 0, 0, 0, 0.25098 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("VignetteCenter/Vignette:rect_min_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = false
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.15, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 3600, 2600 ), Vector2( 2400, 1800 ), Vector2( 3600, 2600 ) ]
+}
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 3 )
@@ -49,6 +182,34 @@ script = ExtResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VignetteCenter" type="CenterContainer" parent="Root"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1537.7
+margin_top = -1464.06
+margin_right = 1542.3
+margin_bottom = 1455.94
+rect_min_size = Vector2( 5000, 4000 )
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Vignette" type="TextureRect" parent="Root/VignetteCenter"]
+self_modulate = Color( 0, 0, 0, 0.25098 )
+margin_left = 699.0
+margin_top = 700.0
+margin_right = 4299.0
+margin_bottom = 3300.0
+rect_min_size = Vector2( 3600, 2600 )
+mouse_filter = 2
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -82,37 +243,14 @@ __meta__ = {
 }
 
 [node name="Crosshair" type="TextureRect" parent="Root/CenterContainer"]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 112.0
-margin_bottom = 112.0
-rect_min_size = Vector2( 96, 96 )
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 96.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 64, 64 )
 mouse_filter = 2
 texture = ExtResource( 2 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Health" type="Label" parent="Root"]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_left = 159.254
-margin_top = -226.667
-margin_right = 383.254
-margin_bottom = -84.6666
-custom_fonts/font = SubResource( 1 )
-text = "100 HP"
-
-[node name="Ammo" type="Label" parent="Root"]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_left = 326.572
-margin_top = -131.921
-margin_right = 550.572
-margin_bottom = 10.0795
-custom_fonts/font = SubResource( 1 )
-text = "1000 BOOLET"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -164,8 +302,30 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Root"]
+[node name="CrosshairAnimation" type="AnimationPlayer" parent="Root"]
+anims/Damage = SubResource( 3 )
 anims/Heartbeat = SubResource( 2 )
+
+[node name="VignetteAnimation" type="AnimationPlayer" parent="Root"]
+anims/Damage = SubResource( 4 )
+anims/Heartbeat = SubResource( 5 )
+
+[node name="GameOver" type="Label" parent="Root"]
+visible = false
+modulate = Color( 0.729412, 0, 0, 1 )
+margin_left = 674.297
+margin_top = 314.521
+margin_right = 1247.3
+margin_bottom = 731.521
+rect_min_size = Vector2( 0, 50 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 8 )
+text = "GAME
+OVER"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="PauseMenu" parent="Root" instance=ExtResource( 6 )]
 visible = false

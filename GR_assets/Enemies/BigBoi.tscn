@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://GR_assets/Enemies/BigBoi.material" type="Material" id=1]
 [ext_resource path="res://src/Enemy/BigBoi.gd" type="Script" id=2]
@@ -104,6 +104,7 @@ bind/26/pose = Transform( -0.0571563, -0.998365, 0, 0, 0, 1, -0.998365, 0.057156
 
 [sub_resource type="Animation" id=3]
 resource_name = "Attack"
+step = 0.01
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature/Skeleton:head")
 tracks/0/interp = 1
@@ -293,9 +294,24 @@ tracks/26/loop_wrap = true
 tracks/26/imported = true
 tracks/26/enabled = true
 tracks/26/keys = PoolRealArray( 0, 1, -0.356599, -0.5591, -0.108577, 0, 0, 0, 1, 1, 1, 1, 0.0666667, 1, -0.338427, -0.418766, -0.110033, 0, 0, 0, 1, 1, 1, 1, 0.2, 1, -0.243376, 0.315292, -0.147897, 1.70339e-09, 0, 0, 1, 1, 1, 1, 0.266667, 1, -0.200044, 0.649936, -0.201779, 0, 0, 0, 1, 1, 1, 1, 0.333333, 1, -0.181872, 0.79027, -0.290613, 0, 0, 0, 1, 1, 1, 1, 0.4, 1, -0.19011, -0.311586, -0.524746, 0, 0, 0, 1, 1, 1, 1, 0.466667, 1, -0.135574, -0.721347, 0.395691, 0, 0, 0, 1, 1, 1, 1, 0.533333, 1, -0.117865, -0.723342, 0.868625, 0, 0, 0, 1, 1, 1, 1, 0.6, 1, -0.139933, -0.70816, 0.778295, 0, 0, 0, 1, 1, 1, 1, 0.666667, 1, -0.177477, -0.682331, 0.624618, 0, 0, 0, 1, 1, 1, 1, 0.866667, 1, -0.314183, -0.588281, 0.0650437, 0, 0, 0, 1, 1, 1, 1, 0.933333, 1, -0.344849, -0.567184, -0.0604794, 0, 0, 0, 1, 1, 1, 1, 1, 1, -0.356599, -0.5591, -0.108577, 0, 0, 0, 1, 1, 1, 1 )
+tracks/27/type = "method"
+tracks/27/path = NodePath(".")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/keys = {
+"times": PoolRealArray( 0.45 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "melee_do_hit"
+} ]
+}
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "Attack2"
+step = 0.01
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature/Skeleton:head")
 tracks/0/interp = 1
@@ -485,8 +501,22 @@ tracks/26/loop_wrap = true
 tracks/26/imported = true
 tracks/26/enabled = true
 tracks/26/keys = PoolRealArray( 0, 1, -0.356599, -0.5591, -0.108577, 0, 0, 0, 1, 1, 1, 1, 0.0666667, 1, -0.343205, -0.572458, -0.0741598, 0, 0, 0, 1, 1, 1, 1, 0.266667, 1, -0.241207, -0.674183, 0.187939, 0, 0, 0, 1, 1, 1, 1, 0.333333, 1, -0.227813, -0.687541, 0.222356, 0, 0, 0, 1, 1, 1, 1, 0.4, 1, -0.235658, -0.358591, -0.0179932, 0, 0, 0, 1, 1, 1, 1, 0.466667, 1, -0.254965, 0.145167, -0.389442, 0, 0, 0, 1, 1, 1, 1, 0.533333, 1, -0.279438, 0.229354, -0.45581, 0, 0, 0, 1, 1, 1, 1, 0.6, 1, -0.303964, 0.147158, -0.422859, 0, 0, 0, 1, 1, 1, 1, 0.866667, 1, -0.352682, -0.424542, -0.169764, 0, 0, 0, 1, 1, 1, 1, 0.933333, 1, -0.355741, -0.521956, -0.125515, 0, 0, 0, 1, 1, 1, 1, 1, 1, -0.356599, -0.5591, -0.108577, 0, 0, 0, 1, 1, 1, 1 )
+tracks/27/type = "method"
+tracks/27/path = NodePath(".")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/keys = {
+"times": PoolRealArray( 0.46 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "melee_do_hit"
+} ]
+}
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 resource_name = "Shoot"
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature/Skeleton:head")
@@ -678,7 +708,7 @@ tracks/26/imported = true
 tracks/26/enabled = true
 tracks/26/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.0666667, 1, -0.000949383, 0, -0.0272122, 0, 0, 0, 1, 1, 1, 1, 0.2, 1, -0.0111349, 0, -0.169552, 1.70339e-09, 0, 0, 1, 1, 1, 1, 0.266667, 1, -0.0220971, 0, -0.234442, 0, 0, 0, 1, 1, 1, 1, 0.333333, 1, -0.0381231, 0, -0.261654, 0, 0, 0, 1, 1, 1, 1, 0.4, 1, -0.0581372, 0.015689, -0.136992, 0, 0, 0, 1, 1, 1, 1, 0.466667, 1, -0.0733058, 0.0399357, 0.0556656, 0, 0, 0, 1, 1, 1, 1, 0.533333, 1, -0.0747422, 0.0440033, 0.0913187, 0, 0, 0, 1, 1, 1, 1, 0.6, 1, -0.0678333, 0.0399357, 0.0828775, 0, 0, 0, 1, 1, 1, 1, 0.666667, 1, -0.0560791, 0.0330156, 0.0685163, 0, 0, 0, 1, 1, 1, 1, 0.866667, 1, -0.0132797, 0.0078181, 0.0162247, 0, 0, 0, 1, 1, 1, 1, 0.933333, 1, -0.00367874, 0.00216582, 0.00449446, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=6]
 resource_name = "Walk"
 length = 1.03333
 loop = true
@@ -872,12 +902,18 @@ tracks/26/imported = true
 tracks/26/enabled = true
 tracks/26/keys = PoolRealArray( 0, 1, -0.356599, -0.5591, -0.108577, 0, 0, 0, 1, 1, 1, 1, 0.0666667, 1, -0.273819, -0.5591, -0.11253, 0, 0, 0, 1, 1, 1, 1, 0.133333, 1, -0.145887, -0.5591, -0.118639, 0, 0, 0, 1, 1, 1, 1, 0.2, 1, -0.122492, -0.5591, -0.118315, 1.70339e-09, 0, 0, 1, 1, 1, 1, 0.266667, 1, -0.130482, -0.5591, -0.107628, 0, 0, 0, 1, 1, 1, 1, 0.333333, 1, -0.145164, -0.5591, -0.0894459, 0, 0, 0, 1, 1, 1, 1, 0.466667, 1, -0.189184, -0.5591, -0.0439208, 0, 0, 0, 1, 1, 1, 1, 0.6, 1, -0.243709, -0.5591, -0.00838915, 0, 0, 0, 1, 1, 1, 1, 0.666667, 1, -0.271524, -0.5591, -0.00269848, 0, 0, 0, 1, 1, 1, 1, 0.733333, 1, -0.297857, -0.5591, -0.0137098, 0, 0, 0, 1, 1, 1, 1, 0.866667, 1, -0.339767, -0.5591, -0.0713077, 0, 0, 0, 1, 1, 1, 1, 0.933333, 1, -0.352122, -0.5591, -0.0975654, 0, 0, 0, 1, 1, 1, 1, 1, 1, -0.356599, -0.5591, -0.108577, 0, 0, 0, 1, 1, 1, 1, 1.03333, 1, -0.356599, -0.5591, -0.108577, 0, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="CapsuleShape" id=9]
+[sub_resource type="CapsuleShape" id=7]
 radius = 1.30019
 height = 1.0977
 
+[sub_resource type="SphereShape" id=8]
+radius = 1.80652
+
 [node name="BigBoi" type="KinematicBody"]
+collision_layer = 2
 script = ExtResource( 2 )
+health = 300
+melee_knockback = 24.0
 
 [node name="Armature" type="Spatial" parent="."]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
@@ -1026,13 +1062,13 @@ material/0 = ExtResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Attack = SubResource( 3 )
-anims/Attack2 = SubResource( 5 )
-anims/Shoot = SubResource( 6 )
-anims/Walk = SubResource( 8 )
+anims/Attack2 = SubResource( 4 )
+anims/Shoot = SubResource( 5 )
+anims/Walk = SubResource( 6 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 1.84217, 0 )
-shape = SubResource( 9 )
+shape = SubResource( 7 )
 
 [node name="PathTimer" type="Timer" parent="."]
 wait_time = 0.3
@@ -1040,5 +1076,10 @@ autostart = true
 
 [node name="ProjectileSpawn" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.01455, -1.21215 )
+
+[node name="MeleeShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2 )
+shape = SubResource( 8 )
+disabled = true
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="PathTimer" to="." method="_on_PathTimer_timeout"]

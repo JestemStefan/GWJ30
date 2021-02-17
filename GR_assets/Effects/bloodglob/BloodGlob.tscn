@@ -4,9 +4,6 @@
 [ext_resource path="res://src/Effects/BloodGlob.gd" type="Script" id=2]
 [ext_resource path="res://GR_assets/Effects/bloodglob/BloodSplatDecal.tscn" type="PackedScene" id=3]
 
-
-
-
 [node name="BloodGlob" type="Spatial"]
 script = ExtResource( 2 )
 splatter = ExtResource( 3 )

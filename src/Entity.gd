@@ -1,11 +1,12 @@
 extends KinematicBody
 class_name Entity
 
+# Config
 export var health: int
 
-onready var damage_flash_mat: SpatialMaterial = preload("res://GR_assets/Enemies/HitFlash.material")
 var mesh_mats: Array = []
 var meshes: Array = []
+onready var damage_flash_mat: SpatialMaterial = preload("res://GR_assets/Enemies/HitFlash.material")
 
 func _ready():
 	# Save a copy of all the materials used for this entity
@@ -19,18 +20,20 @@ func recursive_mesh_find(node):
 		if child.get_child_count() > 0:
 			recursive_mesh_find(child)
 
-func do_damage_flash(flashing: bool):
+func do_damage_flash(flashing: bool, mat_index = 0):
 	for index in meshes.size():
 		if flashing:
-			meshes[index].set_surface_material(0, damage_flash_mat)
+			if meshes[index].get_surface_material_count() > mat_index:
+				meshes[index].set_surface_material(mat_index, damage_flash_mat)
 		else:
-			meshes[index].set_surface_material(0, mesh_mats[index])
+			if meshes[index].get_surface_material_count() > mat_index:
+				meshes[index].set_surface_material(mat_index, mesh_mats[index])
 
 func take_damage(point, normal, damage):
-	Utils.instantiate(load("res://GR_assets/Effects/bloodhit/BloodHit.tscn"), self.global_transform.origin, self.global_transform.basis.z, 12.0)
+	Utils.instantiate(load("res://GR_assets/Effects/bloodhit/BloodHit.tscn"), self.global_transform.origin, self.global_transform.basis.z, 6.0)
 	health -= damage
 	do_damage_flash(true)
-	yield(get_tree().create_timer(0.1), "timeout")
+	yield(get_tree().create_timer(0.075), "timeout")
 	do_damage_flash(false)
 	if health <= 0:
 		die()
@@ -44,5 +47,5 @@ func die():
 	Utils.instantiate(blood_pickup, self.global_transform.origin + Vector3.UP, Vector3.UP)
 	Utils.instantiate(blood_glob, self.global_transform.origin + Vector3.UP, Vector3.UP, 3.0)
 	Utils.instantiate(blood_glob, self.global_transform.origin + Vector3.UP, Vector3.UP, 3.0)
-	Utils.instantiate(blood_hit, self.global_transform.origin, self.global_transform.basis.z, 8.0)
+	Utils.instantiate(blood_hit, self.global_transform.origin, self.global_transform.basis.z, 12.0)
 	pass
