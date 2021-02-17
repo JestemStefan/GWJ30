@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/BigBoi_Albedo.jpg-755331f777c052e6be841bc93677acf9.s3tc.stex"
-path.etc2="res://.import/BigBoi_Albedo.jpg-755331f777c052e6be841bc93677acf9.etc2.stex"
+path.s3tc="res://.import/Meatball_Albedo.jpg-f96cc9561907cbd2f9002ba11f2fb307.s3tc.stex"
+path.etc2="res://.import/Meatball_Albedo.jpg-f96cc9561907cbd2f9002ba11f2fb307.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://raw_assets/3D/enemies/big_guy/BigBoi_Albedo.jpg"
-dest_files=[ "res://.import/BigBoi_Albedo.jpg-755331f777c052e6be841bc93677acf9.s3tc.stex", "res://.import/BigBoi_Albedo.jpg-755331f777c052e6be841bc93677acf9.etc2.stex" ]
+source_file="res://raw_assets/3D/enemies/big_guy/Meatball/Meatball_Albedo.jpg"
+dest_files=[ "res://.import/Meatball_Albedo.jpg-f96cc9561907cbd2f9002ba11f2fb307.s3tc.stex", "res://.import/Meatball_Albedo.jpg-f96cc9561907cbd2f9002ba11f2fb307.etc2.stex" ]
 
 [params]
 

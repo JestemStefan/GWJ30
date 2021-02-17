@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/BigBoi_Albedo.jpg-755331f777c052e6be841bc93677acf9.s3tc.stex"
-path.etc2="res://.import/BigBoi_Albedo.jpg-755331f777c052e6be841bc93677acf9.etc2.stex"
+path.s3tc="res://.import/Meatball_Normal.jpg-54dfe490500cb24f7bd96145e786ff0d.s3tc.stex"
+path.etc2="res://.import/Meatball_Normal.jpg-54dfe490500cb24f7bd96145e786ff0d.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://raw_assets/3D/enemies/big_guy/BigBoi_Albedo.jpg"
-dest_files=[ "res://.import/BigBoi_Albedo.jpg-755331f777c052e6be841bc93677acf9.s3tc.stex", "res://.import/BigBoi_Albedo.jpg-755331f777c052e6be841bc93677acf9.etc2.stex" ]
+source_file="res://raw_assets/3D/enemies/big_guy/Meatball/Meatball_Normal.jpg"
+dest_files=[ "res://.import/Meatball_Normal.jpg-54dfe490500cb24f7bd96145e786ff0d.s3tc.stex", "res://.import/Meatball_Normal.jpg-54dfe490500cb24f7bd96145e786ff0d.etc2.stex" ]
 
 [params]
 
@@ -20,12 +20,12 @@ compress/mode=2
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=0
+compress/normal_map=1
 flags/repeat=true
 flags/filter=true
 flags/mipmaps=true
 flags/anisotropic=false
-flags/srgb=1
+flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false

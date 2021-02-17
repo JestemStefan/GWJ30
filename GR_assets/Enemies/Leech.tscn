@@ -298,6 +298,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.436553, 0.112089 )
 shape = SubResource( 7 )
 
 [node name="PathTimer" type="Timer" parent="."]
+wait_time = 0.5
 autostart = true
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="PathTimer" to="." method="_on_PathTimer_timeout"]
