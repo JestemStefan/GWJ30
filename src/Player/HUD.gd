@@ -17,5 +17,15 @@ func set_heart_rate(val: float):
 	$Root/HeartRateContainer/BarContainer/HeartRateBar.value = val
 
 func heartbeat():
-	$Root/AnimationPlayer.stop(true)
-	$Root/AnimationPlayer.play("Heartbeat")
+	$Root/CrosshairAnimation.stop(true)
+	$Root/CrosshairAnimation.play("Heartbeat")
+
+func damage():
+	$Root/VignetteAnimation.stop(true)
+	$Root/VignetteAnimation.play("Damage")
+
+func game_over():
+	$Root/GameOver.visible = true
+	Utils.do_hitstop(0.25)
+	yield(get_tree().create_timer(1.0), "timeout")
+	get_tree().change_scene("res://levels/MainMenu.tscn")
