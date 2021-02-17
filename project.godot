@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "Entity",
 "language": "GDScript",
 "path": "res://src/Entity.gd"
+}, {
+"base": "RigidBody",
+"class": "Meatball",
+"language": "GDScript",
+"path": "res://GR_assets/Enemies/Meatball.gd"
 } ]
 _global_script_class_icons={
 "EnemyClass": "",
-"Entity": ""
+"Entity": "",
+"Meatball": ""
 }
 
 [application]
