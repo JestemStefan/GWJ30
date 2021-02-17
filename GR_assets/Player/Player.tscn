@@ -2676,11 +2676,14 @@ radius = 8.0
 "Player",
 ]]
 collision_layer = 2
+collision_mask = 3
 script = ExtResource( 1 )
-min_jump_speed = 24.0
-max_move_speed = 14.0
-max_dodge_speed = 36.0
-gravity = -48.0
+min_move_speed = 10.0
+min_jump_speed = 20.0
+max_move_speed = 16.0
+max_jump_speed = 20.0
+max_dodge_speed = 48.0
+gravity = -32.0
 weapon_container = NodePath("Armature/Skeleton/Weapon/GunOffset")
 
 [node name="SiphonAim" type="Position3D" parent="."]
@@ -2693,7 +2696,7 @@ shape = SubResource( 1 )
 [node name="CameraYaw" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.65545, 0.401638 )
 script = ExtResource( 2 )
-default_fov = 80.0
+default_fov = 90.0
 
 [node name="CameraPitch" type="Spatial" parent="CameraYaw"]
 
@@ -2704,7 +2707,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.402641, -0.401638 )
 transform = Transform( -0.862769, 0.0904037, -0.00449826, 0.00724485, 0.111945, 0.86022, 0.0902252, 0.855487, -0.112088, -0.480129, -0.259573, 1.20909 )
 
 [node name="Camera" type="Camera" parent="CameraYaw/CameraPitch"]
-transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -1.5, 0.5, -4 )
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -1.5, 0.5, -3.5 )
 fov = 90.0
 far = 500.0
 
@@ -2715,6 +2718,7 @@ cast_to = Vector3( 0, -0.5, 0 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = ExtResource( 6 )
 anim_player = NodePath("../AnimationPlayer")
+active = true
 parameters/dodge_blend/blend_amount = 0.0
 parameters/dodge_dir/blend_position = Vector2( -0.316386, 0.472902 )
 parameters/heart_blend/blend_amount = 1.0
@@ -2774,7 +2778,7 @@ bones/3/name = "heartbeat"
 bones/3/parent = 2
 bones/3/rest = Transform( 1, -4.18728e-10, 3.34656e-08, 5.2763e-10, 0.999995, -0.00325421, -3.3464e-08, 0.00325421, 0.999995, 2.08721e-08, 0.060612, -0.162213 )
 bones/3/enabled = true
-bones/3/bound_children = [ NodePath("HeartAttach") ]
+bones/3/bound_children = [  ]
 bones/4/name = "spine_3"
 bones/4/parent = 2
 bones/4/rest = Transform( 1, -4.18728e-10, 3.34656e-08, 5.27631e-10, 0.999995, -0.00325425, -3.3464e-08, 0.00325425, 0.999995, 3.53884e-16, 0.247374, 2.79397e-09 )
@@ -2799,7 +2803,7 @@ bones/8/name = "hand_r"
 bones/8/parent = 7
 bones/8/rest = Transform( 0.998753, 0.0491725, -0.00858782, -0.0497289, 0.995071, -0.0857957, 0.0043267, 0.0861158, 0.996276, -1.06992e-07, 0.604836, -7.45058e-09 )
 bones/8/enabled = true
-bones/8/bound_children = [ NodePath("Weapon") ]
+bones/8/bound_children = [  ]
 bones/9/name = "spine_4"
 bones/9/parent = 4
 bones/9/rest = Transform( 1, -4.78347e-08, -1.54919e-07, -7.10543e-15, 0.955488, -0.295029, 1.62136e-07, 0.295029, 0.955488, 3.60822e-16, 0.275548, 1.86265e-09 )
@@ -2868,7 +2872,7 @@ material/0 = ExtResource( 7 )
 material/1 = ExtResource( 7 )
 
 [node name="Weapon" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.923649, -0.377523, 0.065936, 0.383237, -0.909876, 0.158914, 7.72998e-08, 0.172051, 0.985089, -0.668639, 1.12123, 0.0285191 )
+transform = Transform( -0.939696, -0.256988, 0.225669, 0.338231, -0.600515, 0.724556, -0.0506842, 0.757193, 0.651223, -0.576773, 1.19668, 0.656911 )
 bone_name = "hand_r"
 
 [node name="GunOffset" type="Spatial" parent="Armature/Skeleton/Weapon"]
@@ -2896,7 +2900,7 @@ magnet = Vector3( 2, 2, -4 )
 target_node = NodePath("../../../SiphonAim")
 
 [node name="HeartAttach" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 1, 1.92013e-13, 1.62136e-07, -4.63053e-09, 0.999592, 0.0285601, -1.6207e-07, -0.0285603, 0.999593, -7.27223e-11, 1.75813, -0.164734 )
+transform = Transform( 1.07361, -4.12028e-09, 1.68391e-07, 4.52706e-08, 1.04086, -0.263163, -1.62244e-07, 0.263163, 1.04086, -8.43349e-09, 1.72251, -0.112203 )
 bone_name = "heartbeat"
 
 [node name="Sprite3D" type="Sprite3D" parent="Armature/Skeleton/HeartAttach"]

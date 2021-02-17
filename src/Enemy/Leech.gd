@@ -5,9 +5,6 @@ onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 enum State {IDLE, WALK, ATTACK, DIE}
 var current_state: int
 var speed: int = 10
-export var speed_modifier: float = 1
-
-
 
 func _ready():
 	._ready()
@@ -83,3 +80,6 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 				enter_state(State.WALK)
 			else:
 				enter_state(State.ATTACK)
+
+func melee_do_hit():
+	.melee_do_hit()

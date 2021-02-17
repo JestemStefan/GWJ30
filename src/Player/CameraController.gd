@@ -36,6 +36,7 @@ func _ready():
 	space_state = get_world().get_direct_space_state()
 	# Set third person offset to default camera position
 	third_person_offset = camera.transform.origin
+	desired_fov = default_fov
 
 func _process(delta):
 	# Smooth fov changes

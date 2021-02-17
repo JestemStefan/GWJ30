@@ -1,9 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/Gameplay/SpawnEgg.gd" type="Script" id=1]
 [ext_resource path="res://GR_assets/Enemies/Leech.tscn" type="PackedScene" id=2]
-
-
+[ext_resource path="res://GR_assets/Enemies/BigBoi.tscn" type="PackedScene" id=3]
 
 [sub_resource type="SphereMesh" id=1]
 height = 4.0
@@ -13,12 +12,13 @@ rings = 8
 [node name="SpawnEgg" type="Spatial"]
 script = ExtResource( 1 )
 creature_1 = ExtResource( 2 )
+creature_2 = ExtResource( 3 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
 material/0 = null
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 10.0
 autostart = true
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
