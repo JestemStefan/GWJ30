@@ -338,8 +338,8 @@ margin_bottom = 169.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
-text = "100 BPM"
-align = 1
+text = "HEARTRATE"
+align = 2
 valign = 1
 
 [node name="BarContainer" type="CenterContainer" parent="Root/ResourcesContainer/HeartRateContainer"]
@@ -402,3 +402,6 @@ margin_left = 0.0
 margin_top = 0.0
 margin_right = 1918.0
 margin_bottom = 1084.0
+
+[node name="GameOverTimer" type="Timer" parent="."]
+[connection signal="timeout" from="GameOverTimer" to="." method="_on_GameOverTimer_timeout"]

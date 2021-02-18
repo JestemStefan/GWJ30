@@ -77,7 +77,7 @@ func per_shot(direction, buffed):
 		new_dir = new_dir.rotated(new_dir.cross(Vector3.UP).normalized(), rand_range(-deg2rad(spread), deg2rad(spread)))
 		new_dir = new_dir.rotated(original_dir, rand_range(0, 2 * PI))
 		# Point the bullet towards the final direction
-		bullet.look_at(bullet.transform.origin - new_dir, Vector3.UP)
+		Utils.fixed_look_at(bullet, bullet.transform.origin - new_dir)
 		bullet.init(dmg, muzzle_velocity, [self])
 
 func shoot_timer_timeout():
