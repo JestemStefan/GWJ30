@@ -29,8 +29,9 @@ func damage():
 
 func game_over():
 	$Root/GameOver.visible = true
-	Utils.do_hitstop(0.25)
-	$GameOverTimer.start(2.0)
+	$GameOverTimer.start(0.2)
+	Engine.time_scale = 0.1
 
 func _on_GameOverTimer_timeout():
+	Engine.time_scale = 1.0
 	get_tree().change_scene("res://levels/MainMenu.tscn")
