@@ -2753,7 +2753,7 @@ bones/3/name = "heartbeat"
 bones/3/parent = 2
 bones/3/rest = Transform( 1, -4.18728e-10, 3.34656e-08, 5.2763e-10, 0.999995, -0.00325421, -3.3464e-08, 0.00325421, 0.999995, 2.08721e-08, 0.060612, -0.162213 )
 bones/3/enabled = true
-bones/3/bound_children = [ NodePath("HeartAttach") ]
+bones/3/bound_children = [  ]
 bones/4/name = "spine_3"
 bones/4/parent = 2
 bones/4/rest = Transform( 1, -4.18728e-10, 3.34656e-08, 5.27631e-10, 0.999995, -0.00325425, -3.3464e-08, 0.00325425, 0.999995, 3.53884e-16, 0.247374, 2.79397e-09 )
@@ -2778,7 +2778,7 @@ bones/8/name = "hand_r"
 bones/8/parent = 7
 bones/8/rest = Transform( 0.998753, 0.0491725, -0.00858782, -0.0497289, 0.995071, -0.0857957, 0.0043267, 0.0861158, 0.996276, -1.06992e-07, 0.604836, -7.45058e-09 )
 bones/8/enabled = true
-bones/8/bound_children = [ NodePath("Weapon") ]
+bones/8/bound_children = [  ]
 bones/9/name = "spine_4"
 bones/9/parent = 4
 bones/9/rest = Transform( 1, -4.78347e-08, -1.54919e-07, -7.10543e-15, 0.955488, -0.295029, 1.62136e-07, 0.295029, 0.955488, 3.60822e-16, 0.275548, 1.86265e-09 )
@@ -2847,7 +2847,7 @@ material/0 = SubResource( 23 )
 material/1 = SubResource( 23 )
 
 [node name="Weapon" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.999999, -3.82137e-15, -8.74227e-08, -8.74228e-08, 4.37114e-08, 1, 0, 1, -4.37114e-08, -0.209226, 1.69573, 1.07866 )
+transform = Transform( -0.999999, -3.82137e-15, -8.74227e-08, -8.74228e-08, 4.37114e-08, 1, 0, 1, -4.37114e-08, -0.20873, 1.69502, 1.08119 )
 bone_name = "hand_r"
 
 [node name="GunOffset" type="Spatial" parent="Armature/Skeleton/Weapon"]
@@ -2864,7 +2864,7 @@ magnet = Vector3( -3, 0, -5 )
 target_node = NodePath("../../../GunAim")
 
 [node name="HeartAttach" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.777392, 7.55712e-10, 1.18714e-07, 2.83666e-08, 0.753676, -0.190554, -1.15278e-07, 0.190554, 0.753677, 6.83311e-10, 1.70727, -0.112203 )
+transform = Transform( 0.78866, -5.81613e-09, 1.10735e-07, 3.27822e-08, 0.7646, -0.193316, -1.05932e-07, 0.193316, 0.764601, 4.73839e-08, 1.77075, -0.094722 )
 bone_name = "heartbeat"
 
 [node name="Sprite3D" type="Sprite3D" parent="Armature/Skeleton/HeartAttach"]
