@@ -2675,7 +2675,7 @@ radius = 8.0
 [node name="Player" type="KinematicBody" groups=[
 "Player",
 ]]
-collision_layer = 34
+collision_layer = 2
 collision_mask = 3
 script = ExtResource( 1 )
 min_move_speed = 12.0
@@ -2872,7 +2872,7 @@ material/0 = ExtResource( 7 )
 material/1 = ExtResource( 7 )
 
 [node name="Weapon" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.942425, -0.321954, 0.0904456, 0.314595, -0.945254, -0.0867446, 0.113422, -0.0532953, 0.992117, -0.610819, 1.13924, -0.207533 )
+transform = Transform( -0.940033, -0.259189, 0.221717, 0.33784, -0.618125, 0.709778, -0.0469169, 0.742121, 0.668623, -0.57786, 1.17409, 0.637962 )
 bone_name = "hand_r"
 
 [node name="GunOffset" type="Spatial" parent="Armature/Skeleton/Weapon"]
@@ -2899,7 +2899,7 @@ magnet = Vector3( 2, 2, -4 )
 target_node = NodePath("../../../SiphonAim")
 
 [node name="HeartAttach" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.750295, 3.64092e-10, 1.18119e-07, 2.86004e-08, 0.727406, -0.183912, -1.14605e-07, 0.183912, 0.727407, -3.90511e-09, 1.77137, -0.0998745 )
+transform = Transform( 1.08901, -3.43322e-09, 1.71204e-07, 4.52942e-08, 1.05578, -0.266936, -1.65141e-07, 0.266936, 1.05578, -7.73554e-09, 1.7118, -0.112203 )
 bone_name = "heartbeat"
 
 [node name="Sprite3D" type="Sprite3D" parent="Armature/Skeleton/HeartAttach"]

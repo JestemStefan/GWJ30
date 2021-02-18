@@ -19,7 +19,7 @@ var dist2player: float
 var nav: Navigation
 
 # Melee
-onready var melee_shape: Area = $MeleeShape
+onready var melee_shape = $MeleeShape
 onready var space_state = get_world().get_direct_space_state()
 
 # Other
@@ -59,13 +59,19 @@ func get_new_path(target_pos):
 	path_node = 0
 
 func melee_do_hit():
-	var bodies_in_range = melee_shape.get_overlapping_bodies()
-	for body in bodies_in_range:
-		if body is Player:
-			body.impact_velocity = Utils.get_flat_direction(self.global_transform.origin, body.global_transform.origin) * melee_knockback
-			body.take_damage(self.global_transform.origin, self.global_transform.basis.z, melee_damage)
-			break
-		
+	var query = PhysicsShapeQueryParameters.new()
+	#query.set_collision_mask()
+	query.set_collide_with_areas(false)
+	query.exclude = [self]
+	query.set_shape(melee_shape.get_shape())
+	query.set_transform(melee_shape.get_global_transform())
+	var hits = space_state.intersect_shape(query)
+	for hit in hits:
+		var target = hit["collider"]
+		if is_instance_valid(target) and target.is_in_group("Player"):
+				target.impact_velocity = Utils.get_flat_direction(self.global_transform.origin, target.global_transform.origin) * melee_knockback
+				target.take_damage(self.global_transform.origin, self.global_transform.basis.z, melee_damage)
+
 func die():
 	.die()
 	player.increase_heart_rate(kill_hr_reward)

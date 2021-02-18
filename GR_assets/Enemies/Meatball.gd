@@ -3,7 +3,7 @@ class_name Meatball
 
 onready var leech = preload("res://GR_assets/Enemies/Leech.tscn")
 
-var direction: Vector3
+var direction: Vector3 = Vector3.ZERO
 var velocity: int = 30
 
 func _ready():
@@ -16,6 +16,6 @@ func _on_Meatball_body_entered(body):
 	if body.is_in_group("Floor"):
 		var spawn = leech.instance()
 		get_parent().add_child(spawn)
-		spawn.global_transform.origin = global_transform.origin
+		spawn.set_global_transform(global_transform)
 		
 		call_deferred("free")

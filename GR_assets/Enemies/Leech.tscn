@@ -5,7 +5,7 @@
 [ext_resource path="res://raw_assets/3D/enemies/leech/Leech_Normal.png" type="Texture" id=3]
 [ext_resource path="res://src/Enemy/Leech.gd" type="Script" id=4]
 
-[sub_resource type="ArrayMesh" id=9]
+[sub_resource type="ArrayMesh" id=1]
 resource_name = "Leech"
 surfaces/0 = {
 "aabb": AABB( -0.250067, -0.017507, -0.946254, 0.500134, 0.41975, 1.95028 ),
@@ -19,7 +19,7 @@ surfaces/0 = {
 "vertex_count": 1990
 }
 
-[sub_resource type="Skin" id=10]
+[sub_resource type="Skin" id=2]
 resource_name = "Skin"
 bind_count = 8
 bind/0/name = "bone_2"
@@ -47,14 +47,14 @@ bind/7/name = "bone_7"
 bind/7/bone = -1
 bind/7/pose = Transform( 1, 8.92372e-05, -5.7501e-07, 1.49539e-09, 0.00642672, 0.999979, 8.94131e-05, -1.00193, 0.00645605, -8.52853e-06, 1.02542, 0.0957558 )
 
-[sub_resource type="SpatialMaterial" id=11]
+[sub_resource type="SpatialMaterial" id=3]
 albedo_texture = ExtResource( 1 )
 roughness_texture = ExtResource( 2 )
 normal_enabled = true
 normal_scale = 1.0
 normal_texture = ExtResource( 3 )
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=4]
 length = 0.5
 step = 0.01
 tracks/0/type = "transform"
@@ -128,7 +128,7 @@ tracks/8/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=5]
 length = 2.0
 loop = true
 tracks/0/type = "transform"
@@ -188,7 +188,7 @@ tracks/7/imported = true
 tracks/7/enabled = true
 tracks/7/keys = PoolRealArray( 0, 1, 0, 0, 0, -0.258628, 6.09683e-17, -3.77473e-18, 0.965977, 1, 1, 1, 2, 1, 0, 0, 0, -0.258628, 6.09683e-17, -3.77473e-18, 0.965977, 1, 1, 1 )
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=6]
 loop = true
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature001/Skeleton:bone")
@@ -247,11 +247,13 @@ tracks/7/imported = true
 tracks/7/enabled = true
 tracks/7/keys = PoolRealArray( 0, 1, 0, 0, 0, -0.258628, 6.09683e-17, -3.77473e-18, 0.965977, 1, 1, 1, 0.0666667, 1, 0, 0, 0, -0.156459, 3.68834e-17, -2.28357e-18, 0.987684, 1, 1, 1, 0.133333, 1, 0, 0, 0, -0.0520095, 1.22606e-17, -7.59098e-19, 0.998647, 1, 1, 1, 0.2, 1, 1.65762e-18, 0.00775331, 0.0116566, 0.0056062, -1.32159e-18, 8.1817e-20, 0.999984, 1, 1, 1, 0.333333, 1, 8.28811e-18, 0.0387666, 0.0582833, 0.0282658, -6.66336e-18, 4.1255e-19, 0.9996, 1, 1, 1, 0.4, 1, 2.81312e-17, 0.13158, 0.197823, -0.0881034, 2.07693e-17, -1.2859e-18, 0.996111, 1, 1, 1, 0.466667, 1, 4.79742e-17, 0.224394, 0.337362, -0.203081, 4.78738e-17, -2.96401e-18, 0.979162, 1, 1, 1, 0.533333, 1, 5.07236e-17, 0.288693, 0.400881, -0.288323, 6.79688e-17, -4.20815e-18, 0.957533, 1, 1, 1, 0.666667, 1, 2.20351e-17, 0.360261, 0.375877, -0.404351, 9.53208e-17, -5.90159e-18, 0.914604, 1, 1, 1, 0.8, 1, 4.06417e-18, 0.173327, 0.161134, -0.501578, 1.18241e-16, -7.32064e-18, 0.865113, 1, 1, 1, 0.866667, 1, -3.4281e-19, 0.101274, 0.0859582, -0.474829, 1.11935e-16, -6.93023e-18, 0.880078, 1, 1, 1, 0.933333, 1, -1.71418e-19, 0.0506372, 0.0429791, -0.368735, 8.69248e-17, -5.38177e-18, 0.929535, 1, 1, 1, 1, 1, 0, 0, 0, -0.258628, 6.09683e-17, -3.77473e-18, 0.965977, 1, 1, 1 )
 
-[sub_resource type="CapsuleShape" id=15]
+[sub_resource type="CapsuleShape" id=7]
 radius = 0.925962
 height = 0.75
 
-[sub_resource type="SphereShape" id=16]
+[sub_resource type="CapsuleShape" id=8]
+radius = 0.933559
+height = 0.714141
 
 [node name="Leech" type="KinematicBody"]
 collision_layer = 2
@@ -306,30 +308,25 @@ bones/7/enabled = true
 bones/7/bound_children = [  ]
 
 [node name="Leech" type="MeshInstance" parent="Armature001/Skeleton"]
-mesh = SubResource( 9 )
-skin = SubResource( 10 )
-material/0 = SubResource( 11 )
+mesh = SubResource( 1 )
+skin = SubResource( 2 )
+material/0 = SubResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Attack = SubResource( 12 )
-anims/Idle = SubResource( 13 )
-anims/Walk = SubResource( 14 )
+anims/Attack = SubResource( 4 )
+anims/Idle = SubResource( 5 )
+anims/Walk = SubResource( 6 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.947701, 0.416057 )
-shape = SubResource( 15 )
+shape = SubResource( 7 )
+
+[node name="MeleeShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.739266, -1.47484 )
+shape = SubResource( 8 )
+disabled = true
 
 [node name="PathTimer" type="Timer" parent="."]
 autostart = true
-
-[node name="MeleeShape" type="Area" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.959565, -1.91913 )
-input_ray_pickable = false
-monitorable = false
-collision_layer = 0
-collision_mask = 32
-
-[node name="CollisionShape" type="CollisionShape" parent="MeleeShape"]
-shape = SubResource( 16 )
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="PathTimer" to="." method="_on_PathTimer_timeout"]

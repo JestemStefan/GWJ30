@@ -28,18 +28,12 @@ _global_script_classes=[ {
 "class": "Meatball",
 "language": "GDScript",
 "path": "res://GR_assets/Enemies/Meatball.gd"
-}, {
-"base": "Entity",
-"class": "Player",
-"language": "GDScript",
-"path": "res://src/Player/Player.gd"
 } ]
 _global_script_class_icons={
 "EnemyClass": "",
 "Entity": "",
 "Flying_Nav": "",
-"Meatball": "",
-"Player": ""
+"Meatball": ""
 }
 
 [application]
@@ -122,7 +116,6 @@ dodge={
 3d_physics/layer_2="movement_colliders"
 3d_physics/layer_3="items"
 3d_physics/layer_5="bloodpickup"
-3d_physics/layer_6="player"
 
 [rendering]
 
