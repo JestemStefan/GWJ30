@@ -38,7 +38,7 @@ func process_movement(direction):
 			pass
 			
 		State.WALK:
-			Utils.fixed_look_at(self, path[path_node])
+			look_at(path[path_node], Vector3.UP)
 			move_and_slide(direction.normalized() * speed * speed_modifier, Vector3.UP)
 			
 			if dist2player < 10:
