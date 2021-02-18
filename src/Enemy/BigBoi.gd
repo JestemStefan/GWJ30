@@ -48,14 +48,14 @@ func process_movement(direction):
 			pass
 			
 		State.WALK:
-			Utils.fixed_look_at(self, path[path_node])
+			look_at(path[path_node], Vector3.UP)
 			move_and_slide(direction.normalized() * speed * speed_modifier, Vector3.UP)
 			
 			if dist2player < 20:
 				enter_state(State.ATTACK)
-			
-			elif dist2player > 400 and canShoot:
-				enter_state(State.SHOOT)
+			if is_on_floor():
+				if dist2player > 400 and canShoot:
+					enter_state(State.SHOOT)
 			
 		State.ATTACK:
 			look_at(player_position, Vector3.UP)
