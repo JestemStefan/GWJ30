@@ -562,7 +562,7 @@ tracks/30/keys = {
 [sub_resource type="SphereShape" id=6]
 radius = 1.5
 
-[sub_resource type="SphereShape" id=8]
+[sub_resource type="SphereShape" id=7]
 radius = 0.34
 
 [node name="Watcher" type="KinematicBody"]
@@ -739,7 +739,7 @@ shape = SubResource( 6 )
 
 [node name="MeleeShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.15702, 0.452854 )
-shape = SubResource( 8 )
+shape = SubResource( 7 )
 
 [node name="TravelTimer" type="Timer" parent="."]
 wait_time = 0.5
