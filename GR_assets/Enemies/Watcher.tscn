@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://raw_assets/3D/enemies/watcher/Watcher_Roughness.jpg" type="Texture" id=1]
 [ext_resource path="res://raw_assets/3D/enemies/watcher/Watcher_Normal.jpg" type="Texture" id=2]
@@ -113,17 +113,15 @@ bind/29/name = "leg_2_pole_target_r"
 bind/29/bone = -1
 bind/29/pose = Transform( 0.432808, -0.895028, -0.107709, 0.900266, 0.435341, 1.2666e-07, 0.04689, -0.0969666, 0.994183, -0.576666, -3.18273, 0.304213 )
 
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="SpatialMaterial" id=3]
 albedo_texture = ExtResource( 3 )
 roughness_texture = ExtResource( 1 )
 normal_enabled = true
 normal_scale = 1.0
 normal_texture = ExtResource( 2 )
 
-[sub_resource type="Animation" id=3]
-resource_name = "Attack"
+[sub_resource type="Animation" id=4]
 length = 2.0
-loop = true
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature/Skeleton:eyeball_tail")
 tracks/0/interp = 1
@@ -335,9 +333,9 @@ tracks/29/imported = true
 tracks/29/enabled = true
 tracks/29/keys = PoolRealArray( 0, 1, 0, 0, 0, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 0.0666667, 1, 0.0967063, -0.184524, 0.0104771, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 0.266667, 1, 0.833165, -1.58975, 0.0902647, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 0.333333, 1, 0.929872, -1.77427, 0.100742, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 1.33333, 1, 0.929872, -1.77427, 0.100742, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 1.4, 1, 0.903835, -1.72459, 0.0979211, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 1.46667, 1, 0.833165, -1.58974, 0.0902646, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 1.6, 1, 0.602556, -1.14973, 0.0652806, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 1.86667, 1, 0.0967054, -0.184523, 0.010477, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 1.93333, 1, 0.0260354, -0.0496788, 0.00282073, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 2, 1, 0, 0, 0, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=4]
-resource_name = "Flying"
+[sub_resource type="Animation" id=5]
 loop = true
+step = 0.01
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature/Skeleton:eyeball_tail")
 tracks/0/interp = 1
@@ -548,12 +546,29 @@ tracks/29/loop_wrap = true
 tracks/29/imported = true
 tracks/29/enabled = true
 tracks/29/keys = PoolRealArray( 0, 1, 0, 0, 0, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 0.333333, 1, 0, 0, 0, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 0.4, 1, 0.114115, -0.0343614, -0.393609, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 0.6, 1, 0.983148, -0.296031, -3.39109, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 0.666667, 1, 1.09726, -0.330392, -3.7847, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 0.733333, 1, 0.983148, -0.296031, -3.39109, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 0.933333, 1, 0.114115, -0.0343614, -0.393609, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1 )
+tracks/30/type = "value"
+tracks/30/path = NodePath(".:speed_modifier")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/keys = {
+"times": PoolRealArray( 0, 0.2, 0.24, 0.53, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0, 0.0 ]
+}
 
 [sub_resource type="SphereShape" id=6]
 radius = 1.5
 
+[sub_resource type="SphereShape" id=8]
+radius = 0.34
+
 [node name="Watcher" type="KinematicBody"]
 script = ExtResource( 4 )
+health = 100
+speed_modifier = 0.0
 
 [node name="Armature" type="Spatial" parent="."]
 
@@ -712,12 +727,21 @@ bones/29/bound_children = [  ]
 [node name="Watcher" type="MeshInstance" parent="Armature/Skeleton"]
 mesh = SubResource( 1 )
 skin = SubResource( 2 )
-material/0 = SubResource( 5 )
+material/0 = SubResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Attack = SubResource( 3 )
-anims/Flying = SubResource( 4 )
+anims/Attack = SubResource( 4 )
+anims/Flying = SubResource( 5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.934875, 0.467438 )
 shape = SubResource( 6 )
+
+[node name="MeleeShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.15702, 0.452854 )
+shape = SubResource( 8 )
+
+[node name="TravelTimer" type="Timer" parent="."]
+wait_time = 0.5
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="timeout" from="TravelTimer" to="." method="_on_TravelTimer_timeout"]

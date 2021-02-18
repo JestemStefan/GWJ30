@@ -9,6 +9,8 @@ var current_state: int
 var speed: int = 10
 
 var projectile_speed: int = 30
+var shoot_rate: int = 2
+var canShoot: bool = true
 
 func _ready():
 	._ready()
@@ -30,12 +32,8 @@ func enter_state(new_state):
 			
 			# TODO: Deal damage
 		State.SHOOT:
-			var angle = calculate_shooting_angle(sqrt(dist2player * 0.6))
-			var projectile: Meatball = meatball.instance()
-			var shoot_dir: Vector3 = -global_transform.basis.z
-			projectile.direction = shoot_dir.rotated(Vector3.RIGHT, angle)
-			self.get_parent().add_child(projectile)
-			projectile.global_transform.origin = projectile_origin.global_transform.origin
+			# AnimationPlayer calls the shooting method at right time
+			# calls shoot_meatball()
 			play_animation("Shoot")
 
 		State.DIE:
@@ -44,7 +42,6 @@ func enter_state(new_state):
 func process_movement(direction):
 	
 	dist2player = global_transform.origin.distance_squared_to(player_position)
-	
 	
 	match current_state:
 		State.IDLE:
@@ -57,7 +54,7 @@ func process_movement(direction):
 			if dist2player < 20:
 				enter_state(State.ATTACK)
 			
-			elif dist2player > 300 and dist2player < 500:
+			elif dist2player > 400 and canShoot:
 				enter_state(State.SHOOT)
 			
 		State.ATTACK:
@@ -66,7 +63,7 @@ func process_movement(direction):
 		State.SHOOT:
 			look_at(player_position, Vector3.UP)
 			
-			if dist2player < 300 or dist2player > 500:
+			if dist2player < 300:
 				enter_state(State.WALK)
 		
 		State.DIE:
@@ -99,6 +96,15 @@ func die():
 func calculate_shooting_angle(distance_to_target):
 	return 0.5 * asin((9.8 * distance_to_target)/pow(projectile_speed, 2))
 
+func shoot_meatball():
+	var angle = calculate_shooting_angle(sqrt(dist2player))
+	var projectile: Meatball = meatball.instance()
+	var shoot_dir: Vector3 = -global_transform.basis.z
+	projectile.direction = shoot_dir.rotated(Vector3.RIGHT, angle)
+	self.get_parent().add_child(projectile)
+	projectile.global_transform.origin = projectile_origin.global_transform.origin
+
+
 func _on_PathTimer_timeout():
 	get_new_path(player_position) #put target in parameter
 
@@ -111,7 +117,13 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 				enter_state(State.ATTACK)
 		
 		"Shoot":
-			enter_state(State.SHOOT)
+			enter_state(State.WALK)
+			canShoot = false
+			$ProjectileTimer.start(shoot_rate)
 
 func melee_do_hit():
 	.melee_do_hit()
+
+
+func _on_ProjectileTimer_timeout():
+	canShoot = true
