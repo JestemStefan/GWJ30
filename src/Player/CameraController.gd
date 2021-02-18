@@ -86,9 +86,9 @@ func _unhandled_input(event):
 	# Mouse look
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		# Horizontal look
-		var rotation_y = deg2rad((-event.relative.x * ((adjusted_mouse_sensitivity.x / default_fov) * camera.fov)))
+		var rotation_y = deg2rad((-event.relative.x * Globals.MOUSE_SENSITIVITY * ((adjusted_mouse_sensitivity.x / default_fov) * camera.fov)))
 		# Vertical look
-		var rotation_x = deg2rad((event.relative.y * ((adjusted_mouse_sensitivity.y / default_fov) * camera.fov)))
+		var rotation_x = deg2rad((event.relative.y * Globals.MOUSE_SENSITIVITY * ((adjusted_mouse_sensitivity.y / default_fov) * camera.fov)))
 		# Apply rotations, clamp occurs in _process
 		player.rotate_y(rotation_y)
 		camera_pitch.rotate_x(rotation_x)
