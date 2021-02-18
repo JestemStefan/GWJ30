@@ -1,4 +1,5 @@
 extends Entity
+class_name Player
 
 # Config
 export(float) var min_move_speed = 8.0

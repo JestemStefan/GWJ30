@@ -921,7 +921,7 @@ radius = 1.30019
 height = 1.0977
 
 [sub_resource type="SphereShape" id=8]
-radius = 2.10173
+radius = 1.5
 
 [node name="BigBoi" type="KinematicBody"]
 collision_layer = 2
@@ -1095,10 +1095,16 @@ autostart = true
 [node name="ProjectileSpawn" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.00461, -2.01373 )
 
-[node name="MeleeShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2.5897 )
+[node name="MeleeShape" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.00797, -2.59363 )
+input_ray_pickable = false
+monitorable = false
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape" type="CollisionShape" parent="MeleeShape"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.284707 )
 shape = SubResource( 8 )
-disabled = true
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="PathTimer" to="." method="_on_PathTimer_timeout"]
 [connection signal="timeout" from="ProjectileTimer" to="." method="_on_ProjectileTimer_timeout"]

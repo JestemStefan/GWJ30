@@ -5,7 +5,7 @@
 [ext_resource path="res://raw_assets/3D/enemies/watcher/Watcher_Albedo.jpg" type="Texture" id=3]
 [ext_resource path="res://src/Enemy/Watcher.gd" type="Script" id=4]
 
-[sub_resource type="ArrayMesh" id=1]
+[sub_resource type="ArrayMesh" id=9]
 resource_name = "Watcher"
 surfaces/0 = {
 "aabb": AABB( -2.30114, -1.66417, -0.92897, 4.60229, 3.58966, 2.96066 ),
@@ -19,7 +19,7 @@ surfaces/0 = {
 "vertex_count": 5263
 }
 
-[sub_resource type="Skin" id=2]
+[sub_resource type="Skin" id=10]
 resource_name = "Skin"
 bind_count = 30
 bind/0/name = "eyeball_front"
@@ -113,14 +113,14 @@ bind/29/name = "leg_2_pole_target_r"
 bind/29/bone = -1
 bind/29/pose = Transform( 0.432808, -0.895028, -0.107709, 0.900266, 0.435341, 1.2666e-07, 0.04689, -0.0969666, 0.994183, -0.576666, -3.18273, 0.304213 )
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="SpatialMaterial" id=11]
 albedo_texture = ExtResource( 3 )
 roughness_texture = ExtResource( 1 )
 normal_enabled = true
 normal_scale = 1.0
 normal_texture = ExtResource( 2 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=12]
 length = 2.0
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature/Skeleton:eyeball_tail")
@@ -333,7 +333,7 @@ tracks/29/imported = true
 tracks/29/enabled = true
 tracks/29/keys = PoolRealArray( 0, 1, 0, 0, 0, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 0.0666667, 1, 0.0967063, -0.184524, 0.0104771, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 0.266667, 1, 0.833165, -1.58975, 0.0902647, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 0.333333, 1, 0.929872, -1.77427, 0.100742, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 1.33333, 1, 0.929872, -1.77427, 0.100742, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 1.4, 1, 0.903835, -1.72459, 0.0979211, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 1.46667, 1, 0.833165, -1.58974, 0.0902646, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 1.6, 1, 0.602556, -1.14973, 0.0652806, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 1.86667, 1, 0.0967054, -0.184523, 0.010477, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 1.93333, 1, 0.0260354, -0.0496788, 0.00282073, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 2, 1, 0, 0, 0, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=13]
 loop = true
 step = 0.01
 tracks/0/type = "transform"
@@ -559,11 +559,10 @@ tracks/30/keys = {
 "values": [ 0.0, 0.0, 1.0, 1.0, 0.0 ]
 }
 
-[sub_resource type="SphereShape" id=6]
+[sub_resource type="SphereShape" id=14]
 radius = 1.5
 
-[sub_resource type="SphereShape" id=7]
-radius = 0.34
+[sub_resource type="SphereShape" id=15]
 
 [node name="Watcher" type="KinematicBody"]
 script = ExtResource( 4 )
@@ -725,23 +724,29 @@ bones/29/enabled = true
 bones/29/bound_children = [  ]
 
 [node name="Watcher" type="MeshInstance" parent="Armature/Skeleton"]
-mesh = SubResource( 1 )
-skin = SubResource( 2 )
-material/0 = SubResource( 3 )
+mesh = SubResource( 9 )
+skin = SubResource( 10 )
+material/0 = SubResource( 11 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Attack = SubResource( 4 )
-anims/Flying = SubResource( 5 )
+anims/Attack = SubResource( 12 )
+anims/Flying = SubResource( 13 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.934875, 0.467438 )
-shape = SubResource( 6 )
-
-[node name="MeleeShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.15702, 0.452854 )
-shape = SubResource( 7 )
+shape = SubResource( 14 )
 
 [node name="TravelTimer" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="MeleeShape" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.917386, -2.14057 )
+input_ray_pickable = false
+monitorable = false
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape" type="CollisionShape" parent="MeleeShape"]
+shape = SubResource( 15 )
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="TravelTimer" to="." method="_on_TravelTimer_timeout"]
