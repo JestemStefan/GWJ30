@@ -1,11 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://GR_assets/Enemies/Leech.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://GR_assets/Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://levels/Sandbox2.gd" type="Script" id=4]
 [ext_resource path="res://GR_assets/Interface/HUD.tscn" type="PackedScene" id=5]
-[ext_resource path="res://GR_assets/Enemies/BigBoi.tscn" type="PackedScene" id=6]
+[ext_resource path="res://GR_assets/Enemies/Watcher.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Flying_Area.gd" type="Script" id=8]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 200, 1, 200 )
@@ -29,10 +29,15 @@ agent/max_slope = 30.0
 [sub_resource type="CubeMesh" id=5]
 size = Vector3( 400, 2, 400 )
 
+[sub_resource type="CubeMesh" id=6]
+size = Vector3( 170, 25, 170 )
+
 [node name="Sandbox2" type="Spatial"]
 script = ExtResource( 4 )
 
-[node name="Floor" type="StaticBody" parent="."]
+[node name="Floor" type="StaticBody" parent="." groups=[
+"Floor",
+]]
 
 [node name="CollisionShape" type="CollisionShape" parent="Floor"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
@@ -60,9 +65,14 @@ material/0 = null
 
 [node name="HUD" parent="Player" instance=ExtResource( 5 )]
 
-[node name="Leech" parent="." instance=ExtResource( 1 )]
-transform = Transform( -0.608013, 0, -0.793927, 0, 1, 0, 0.793927, 0, -0.608013, 0, 0, 25.7811 )
+[node name="Watcher" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.4669, 19.6087 )
 
-[node name="BigBoi" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.7958 )
-health = 1000
+[node name="Flying_Area" type="MeshInstance" parent="." groups=[
+"Flying_Nav",
+]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.9424, 0 )
+visible = false
+mesh = SubResource( 6 )
+material/0 = null
+script = ExtResource( 8 )
