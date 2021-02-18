@@ -18,7 +18,7 @@ surfaces/0 = {
 }
 
 [sub_resource type="SphereShape" id=2]
-radius = 0.371602
+radius = 0.522371
 
 [node name="Meatball" type="RigidBody"]
 script = ExtResource( 2 )

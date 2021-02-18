@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://raw_assets/fonts/Inconsolata-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://raw_assets/2D/interface/crosshair118.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://levels/PauseMenu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://raw_assets/2D/interface/vignette.png" type="Texture" id=7]
 [ext_resource path="res://raw_assets/fonts/AnotherDanger120.tres" type="DynamicFont" id=8]
+[ext_resource path="res://raw_assets/2D/effects/blad.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -15,7 +16,7 @@ outline_size = 2
 outline_color = Color( 1, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "Damage"
 tracks/0/type = "value"
 tracks/0/path = NodePath("VignetteCenter/Vignette:self_modulate")
@@ -42,8 +43,7 @@ tracks/1/keys = {
 "values": [ Vector2( 3600, 2600 ), Vector2( 2800, 2000 ), Vector2( 3600, 2600 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "Heartbeat"
+[sub_resource type="Animation" id=3]
 length = 0.2
 step = 0.05
 tracks/0/type = "value"
@@ -201,9 +201,9 @@ __meta__ = {
 
 [node name="Vignette" type="TextureRect" parent="Root/VignetteCenter"]
 self_modulate = Color( 0, 0, 0, 0.25098 )
-margin_left = 699.0
+margin_left = 700.0
 margin_top = 700.0
-margin_right = 4299.0
+margin_right = 4300.0
 margin_bottom = 3300.0
 rect_min_size = Vector2( 3600, 2600 )
 mouse_filter = 2
@@ -255,7 +255,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HeartRateContainer" type="VBoxContainer" parent="Root"]
+[node name="ComboContainer" type="VBoxContainer" parent="Root"]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -267,8 +267,73 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HeartRate" type="Label" parent="Root/HeartRateContainer"]
-margin_right = 464.0
+[node name="ResourcesContainer" type="VBoxContainer" parent="Root"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -342.0
+margin_right = 772.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BloodContainer" type="HBoxContainer" parent="Root/ResourcesContainer"]
+margin_right = 772.0
+margin_bottom = 169.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BloodLabel" type="Label" parent="Root/ResourcesContainer/BloodContainer"]
+margin_right = 384.0
+margin_bottom = 169.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+text = "BLOOD:"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Root/ResourcesContainer/BloodContainer/BloodLabel"]
+show_behind_parent = true
+margin_left = 35.3596
+margin_top = 16.2544
+margin_right = 460.36
+margin_bottom = 141.254
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 9 )
+expand = true
+flip_h = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BloodCount" type="Label" parent="Root/ResourcesContainer/BloodContainer"]
+margin_left = 388.0
+margin_right = 772.0
+margin_bottom = 169.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+text = "0"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HeartRateContainer" type="HBoxContainer" parent="Root/ResourcesContainer"]
+margin_top = 173.0
+margin_right = 772.0
+margin_bottom = 342.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="HeartRate" type="Label" parent="Root/ResourcesContainer/HeartRateContainer"]
+margin_right = 384.0
 margin_bottom = 169.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -277,17 +342,17 @@ text = "100 BPM"
 align = 1
 valign = 1
 
-[node name="BarContainer" type="CenterContainer" parent="Root/HeartRateContainer"]
-margin_top = 173.0
-margin_right = 464.0
-margin_bottom = 342.0
+[node name="BarContainer" type="CenterContainer" parent="Root/ResourcesContainer/HeartRateContainer"]
+margin_left = 388.0
+margin_right = 772.0
+margin_bottom = 169.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HeartRateBar" type="TextureProgress" parent="Root/HeartRateContainer/BarContainer"]
-margin_left = 72.0
+[node name="HeartRateBar" type="TextureProgress" parent="Root/ResourcesContainer/HeartRateContainer/BarContainer"]
+margin_left = 32.0
 margin_top = 68.0
-margin_right = 392.0
+margin_right = 352.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 320, 32 )
 size_flags_horizontal = 3
@@ -303,8 +368,8 @@ __meta__ = {
 }
 
 [node name="CrosshairAnimation" type="AnimationPlayer" parent="Root"]
-anims/Damage = SubResource( 3 )
-anims/Heartbeat = SubResource( 2 )
+anims/Damage = SubResource( 2 )
+anims/Heartbeat = SubResource( 3 )
 
 [node name="VignetteAnimation" type="AnimationPlayer" parent="Root"]
 anims/Damage = SubResource( 4 )
