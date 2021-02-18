@@ -28,7 +28,7 @@ var wep_cont_node = null
 
 # Gameplay
 var heart_rate: float = 20.0
-var blood: int = 0
+var blood: int = 20
 var heartbeat_buff: bool = false
 
 # Node assignments
@@ -49,6 +49,7 @@ onready var normal_material = preload("res://GR_assets/Player/Player_spatialmate
 onready var invis_material = preload("res://GR_assets/Player/Invisible_spatialmaterial.tres")
 onready var space_state = get_world().get_direct_space_state()
 var new_ik_interp: float
+var dead: bool = false
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -66,7 +67,7 @@ func _ready():
 	#left_hand_ik.start()
 
 func _physics_process(delta):
-	heart_rate -= delta
+	decrease_heart_rate(delta)
 	# Handle the basic movement key input here since many states use it
 	input_vector = Vector3.ZERO
 	if Input.is_action_pressed("move_forward"):
@@ -100,7 +101,8 @@ func _physics_process(delta):
 	# Update ground status
 	is_grounded = is_on_floor()
 	# Do all the player stuff that isn't walking
-	action_inputs()
+	if not dead:
+		action_inputs()
 	# Do animation stuff
 	if is_grounded:
 		anim_tree.set("parameters/run_blend/blend_position", convert_movement_to_anim(desired_velocity))
@@ -117,20 +119,22 @@ func _physics_process(delta):
 	hud.set_heart_rate(heart_rate)
 	update_movement_vars()
 	# Finalize the IK interp so its always smooth
-	if camera_controller.third_person:
-		right_hand_ik.interpolation = lerp(right_hand_ik.interpolation, new_ik_interp, 3.0 * delta)
-		left_hand_ik.interpolation = lerp(left_hand_ik.interpolation, new_ik_interp, 3.0 * delta)
-	else:
-		right_hand_ik.interpolation = 1.0
-		left_hand_ik.interpolation = 1.0
+	#if camera_controller.third_person:
+	right_hand_ik.interpolation = lerp(right_hand_ik.interpolation, new_ik_interp, 3.0 * delta)
+	left_hand_ik.interpolation = lerp(left_hand_ik.interpolation, new_ik_interp, 3.0 * delta)
+	#else:
+		#right_hand_ik.interpolation = 1.0
+		#left_hand_ik.interpolation = 1.0
 		
 
 func action_inputs():
 	if Input.is_action_just_pressed("jump") and floor_check.is_colliding():
 		vertical_velocity = jump_speed
 	if Input.is_action_pressed("left_click"):
-		if current_weapon != null:
+		if current_weapon != null and blood > 0:
 			if current_weapon.fire(camera_controller.aim_position, heartbeat_buff):
+				blood -= 1
+				hud.set_blood(blood)
 				camera_controller.recoil += current_weapon.recoil
 				if heartbeat_buff:
 					#Utils.do_hitstop(0.02)
@@ -230,6 +234,11 @@ func increase_heart_rate(val):
 	if heart_rate > 100.0:
 		heart_rate = 100.0
 
+func decrease_heart_rate(val):
+	heart_rate -= val
+	if heart_rate <= 0:
+		die()
+
 func set_heartbeat_buff():
 	heartbeat_buff = true
 	$HeartbeatTimer.start(0.2)
@@ -243,7 +252,6 @@ func take_damage(point, normal, damage):
 	camera_controller.add_shake(0.3)
 	hud.damage()
 	Utils.instantiate(load("res://GR_assets/Effects/bloodhit/BloodHit.tscn"), self.global_transform.origin, self.global_transform.basis.z, 6.0)
-	heart_rate -= damage
 	if camera_controller.third_person:
 		do_damage_flash(true, 0)
 	do_damage_flash(true, 1)
@@ -251,9 +259,8 @@ func take_damage(point, normal, damage):
 	yield(get_tree().create_timer(0.01), "timeout")
 	do_damage_flash(false, 0)
 	do_damage_flash(false, 1)
-	camera_controller.desired_fov = camera_controller.default_fov
-	if heart_rate <= 0:
-		die()
+	decrease_heart_rate(damage)
 
 func die():
+	dead = true
 	hud.game_over()

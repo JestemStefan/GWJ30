@@ -33,7 +33,6 @@ emission_texture = SubResource( 5 )
 [node name="BaseProjectile" type="Spatial"]
 script = ExtResource( 3 )
 gravity = -64.0
-leave_projectile = true
 impact_effects = [ ExtResource( 1 ) ]
 
 [node name="MeshInstance" type="MeshInstance" parent="."]

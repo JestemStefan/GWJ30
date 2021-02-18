@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 func _ready():
-	OS.set_window_position(Vector2(OS.window_position.x + 440, OS.window_position.y))
+	#OS.set_window_position(Vector2(OS.window_position.x + 440, OS.window_position.y))
 	pass
 
 func _process(_delta):
@@ -14,7 +14,10 @@ func _process(_delta):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 func set_heart_rate(val: float):
-	$Root/HeartRateContainer/BarContainer/HeartRateBar.value = val
+	$Root/ResourcesContainer/HeartRateContainer/BarContainer/HeartRateBar.value = val
+
+func set_blood(val: int):
+	$Root/ResourcesContainer/BloodContainer/BloodCount.text = str(val)
 
 func heartbeat():
 	$Root/CrosshairAnimation.stop(true)

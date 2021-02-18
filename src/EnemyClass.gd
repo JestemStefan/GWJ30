@@ -5,6 +5,8 @@ class_name EnemyClass
 export var melee_damage: float = 5.0
 export var melee_knockback: float = 0.0
 export var speed_modifier: float = 1
+export var kill_hr_reward: float = 10.0
+export var kill_blood_reward: int = 2
 
 
 var path = []
@@ -19,6 +21,9 @@ var nav: Navigation
 # Melee
 onready var melee_shape = $MeleeShape
 onready var space_state = get_world().get_direct_space_state()
+
+# Other
+var blood_pickup = preload("res://GR_assets/Gameplay/BloodPickup.tscn")
 
 func _ready():
 	._ready()
@@ -66,3 +71,9 @@ func melee_do_hit():
 		if is_instance_valid(target) and target.is_in_group("Player"):
 				target.impact_velocity = Utils.get_flat_direction(self.global_transform.origin, target.global_transform.origin) * melee_knockback
 				target.take_damage(self.global_transform.origin, self.global_transform.basis.z, melee_damage)
+
+func die():
+	.die()
+	player.increase_heart_rate(kill_hr_reward)
+	for n in range(kill_blood_reward):
+		Utils.instantiate(blood_pickup, self.global_transform.origin + Vector3.UP, Vector3.UP)

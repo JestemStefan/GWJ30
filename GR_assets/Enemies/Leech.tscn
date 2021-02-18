@@ -252,12 +252,15 @@ radius = 0.75
 height = 0.75
 
 [sub_resource type="CapsuleShape" id=8]
-radius = 0.75
-height = 0.0931948
+radius = 0.933559
+height = 0.714141
 
 [node name="Leech" type="KinematicBody"]
 collision_layer = 2
 script = ExtResource( 4 )
+melee_damage = 10.0
+kill_hr_reward = 5.0
+kill_blood_reward = 1
 
 [node name="Armature001" type="Spatial" parent="."]
 
@@ -318,7 +321,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.739266, 0.112089 )
 shape = SubResource( 7 )
 
 [node name="MeleeShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.739266, -1.34925 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.739266, -1.47484 )
 shape = SubResource( 8 )
 disabled = true
 

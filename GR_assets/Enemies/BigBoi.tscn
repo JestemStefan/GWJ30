@@ -907,13 +907,15 @@ radius = 1.30019
 height = 1.0977
 
 [sub_resource type="SphereShape" id=8]
-radius = 1.80652
+radius = 2.10173
 
 [node name="BigBoi" type="KinematicBody"]
 collision_layer = 2
 script = ExtResource( 2 )
 health = 300
+melee_damage = 25.0
 melee_knockback = 24.0
+kill_blood_reward = 4
 
 [node name="Armature" type="Spatial" parent="."]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
@@ -1078,7 +1080,7 @@ autostart = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.01455, -1.21215 )
 
 [node name="MeleeShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2.5897 )
 shape = SubResource( 8 )
 disabled = true
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
