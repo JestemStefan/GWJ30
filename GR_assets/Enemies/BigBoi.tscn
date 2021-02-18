@@ -707,6 +707,20 @@ tracks/26/loop_wrap = true
 tracks/26/imported = true
 tracks/26/enabled = true
 tracks/26/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.0666667, 1, -0.000949383, 0, -0.0272122, 0, 0, 0, 1, 1, 1, 1, 0.2, 1, -0.0111349, 0, -0.169552, 1.70339e-09, 0, 0, 1, 1, 1, 1, 0.266667, 1, -0.0220971, 0, -0.234442, 0, 0, 0, 1, 1, 1, 1, 0.333333, 1, -0.0381231, 0, -0.261654, 0, 0, 0, 1, 1, 1, 1, 0.4, 1, -0.0581372, 0.015689, -0.136992, 0, 0, 0, 1, 1, 1, 1, 0.466667, 1, -0.0733058, 0.0399357, 0.0556656, 0, 0, 0, 1, 1, 1, 1, 0.533333, 1, -0.0747422, 0.0440033, 0.0913187, 0, 0, 0, 1, 1, 1, 1, 0.6, 1, -0.0678333, 0.0399357, 0.0828775, 0, 0, 0, 1, 1, 1, 1, 0.666667, 1, -0.0560791, 0.0330156, 0.0685163, 0, 0, 0, 1, 1, 1, 1, 0.866667, 1, -0.0132797, 0.0078181, 0.0162247, 0, 0, 0, 1, 1, 1, 1, 0.933333, 1, -0.00367874, 0.00216582, 0.00449446, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
+tracks/27/type = "method"
+tracks/27/path = NodePath(".")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "shoot_meatball"
+} ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "Walk"
@@ -1076,8 +1090,10 @@ shape = SubResource( 7 )
 wait_time = 0.3
 autostart = true
 
+[node name="ProjectileTimer" type="Timer" parent="."]
+
 [node name="ProjectileSpawn" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.01455, -1.21215 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.00461, -2.01373 )
 
 [node name="MeleeShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2.5897 )
@@ -1085,3 +1101,4 @@ shape = SubResource( 8 )
 disabled = true
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="PathTimer" to="." method="_on_PathTimer_timeout"]
+[connection signal="timeout" from="ProjectileTimer" to="." method="_on_ProjectileTimer_timeout"]
