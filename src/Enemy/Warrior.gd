@@ -21,7 +21,7 @@ var wep_cont_node = null
 
 # Gameplay
 var aim_position = Vector3.ZERO
-enum FIGHT_MODE { CHARGE, RANGED }
+var charging: bool = true
 
 # Node assignments
 onready var right_hand_ik = $Armature/Skeleton/RightHandIK
@@ -34,6 +34,7 @@ var input_amount = 1.0
 var new_ik_interp: float
 
 func _ready():
+	._ready()
 	var wep_cont = get_node_or_null(weapon_container)
 	if wep_cont:
 		if wep_cont.get_child_count() > 0:
@@ -74,7 +75,11 @@ func sliding_logic(delta):
 	impact_velocity = lerp(impact_velocity, Vector3.ZERO, 1.0 - pow(0.2, delta))
 
 func update_animation(delta):
-	Utils.fixed_look_at_y(self, self.global_transform.origin + Utils.get_flat_direction(player_position, self.global_transform.origin))
+	if anim_tree.get("parameters/melee/active") == false:
+		if charging:
+			Utils.fixed_look_at_y(self, self.global_transform.origin + Utils.get_flat_direction(player_position, self.global_transform.origin))
+		else:
+			Utils.fixed_look_at_y(self, self.global_transform.origin + Utils.get_flat_direction(path[path_node], self.global_transform.origin))
 	if is_sliding:
 		anim_tree.set("parameters/dodge_blend/blend_amount", impact_velocity.length() / dodge_speed)
 	else:
@@ -94,11 +99,21 @@ func update_animation(delta):
 	
 
 func get_move_vector() -> Vector3:
-	return Utils.get_flat_direction(self.global_transform.origin, player_position)
+	if charging:
+		return Utils.get_flat_direction(self.global_transform.origin, player_position)
+	else:
+		return Utils.get_flat_direction(self.global_transform.origin, path[path_node])
 	#return input_vector.rotated(Vector3.UP, camera_controller.global_transform.basis.get_euler().y + PI)
 
 func action_ai():
 	aim_position = player_position
+	if $FrontCast.is_colliding():
+		var body = $FrontCast.get_collider()
+		if body.get_collision_layer_bit(0) == true:
+			if floor_check.is_colliding():
+				vertical_velocity = jump_speed
+		if body.is_in_group("Player"):
+			do_melee_attack()
 	#if Input.is_action_just_pressed("jump") and floor_check.is_colliding():
 	#	vertical_velocity = jump_speed
 	#if Input.is_action_pressed("left_click"):
@@ -191,19 +206,24 @@ func take_damage(point, normal, damage):
 
 func die():
 	.die()
-	queue_free()
-
-func _on_JumpTrigger_body_entered(body):
-	if body.get_collision_layer_bit(0) == true:
-		if floor_check.is_colliding():
-			vertical_velocity = jump_speed
-	if body.is_in_group("Player"):
-		do_melee_attack()
-
+	call_deferred("free")
 
 func _on_DodgeTimer_timeout():
-	pass # Replace with function body.
-
+	var dir = randi() % 4
+	match dir:
+		0:
+			dodge(self.global_transform.basis.z)
+		1:
+			dodge(-self.global_transform.basis.z)
+		2:
+			dodge(self.global_transform.basis.x)
+		3:
+			dodge(-self.global_transform.basis.x)
+	$DodgeTimer.wait_time = rand_range(3.0, 10.0)
 
 func _on_AITimer_timeout():
-	pass # Replace with function body.
+	#charging = !charging
+	$AITimer.wait_time = rand_range(3.0, 10.0)
+
+func _on_PathTimer_timeout():
+	get_new_path(player_position) #put target in parameter

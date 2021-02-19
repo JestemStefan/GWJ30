@@ -1,12 +1,19 @@
 extends Spatial
 
-export(PackedScene) var creature_1
-export(PackedScene) var creature_2
-func _ready():
-	pass
+onready var leech = preload("res://GR_assets/Enemies/Leech.tscn")
+onready var bigboi = preload("res://GR_assets/Enemies/BigBoi.tscn")
+onready var warrior = preload("res://GR_assets/Enemies/Warrior.tscn")
+onready var watcher = preload("res://GR_assets/Enemies/Watcher.tscn")
 
 func _on_Timer_timeout():
-	if randi() % 3 == 0:
-		Utils.instantiate(creature_2, self.global_transform.origin, Vector3.FORWARD)
+	var chance = randi() % 6
+	if chance <= 1:
+		Utils.instantiate(leech, self.global_transform.origin, Vector3.FORWARD)
+	elif chance <= 2:
+		Utils.instantiate(bigboi, self.global_transform.origin, Vector3.FORWARD)
+	elif chance <= 4:
+		Utils.instantiate(warrior, self.global_transform.origin, Vector3.FORWARD)
 	else:
-		Utils.instantiate(creature_1, self.global_transform.origin, Vector3.FORWARD)
+		Utils.instantiate(watcher, self.global_transform.origin, Vector3.FORWARD)
+	if $Timer.wait_time > 3.0:
+		$Timer.wait_time -= 0.5

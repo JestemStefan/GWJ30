@@ -39,7 +39,7 @@ func enter_state(new_state):
 		State.DIE:
 			pass
 
-func process_movement(direction):
+func process_movement(direction, delta):
 	
 	dist2player = global_transform.origin.distance_squared_to(player_position)
 	
@@ -58,7 +58,8 @@ func process_movement(direction):
 				enter_state(State.SHOOT)
 			
 		State.ATTACK:
-			look_at(player_position, Vector3.UP)
+			#look_at(player_position, Vector3.UP)
+			pass
 		
 		State.SHOOT:
 			look_at(player_position, Vector3.UP)

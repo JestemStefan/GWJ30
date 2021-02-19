@@ -4,9 +4,6 @@
 [ext_resource path="res://src/Effects/SelfDestruct.gd" type="Script" id=2]
 [ext_resource path="res://raw_assets/2D/effects/blad_stretch.png" type="Texture" id=4]
 
-
-
-
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.100756, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
@@ -24,7 +21,7 @@ curve = SubResource( 3 )
 lifetime_randomness = 0.5
 direction = Vector3( 0, 0, -1 )
 spread = 10.0
-gravity = Vector3( 0, -5, 0 )
+gravity = Vector3( 0, -3, 0 )
 initial_velocity = 5.0
 initial_velocity_random = 1.0
 angle = 180.0

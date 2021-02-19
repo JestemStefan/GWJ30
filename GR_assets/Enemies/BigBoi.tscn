@@ -918,21 +918,21 @@ tracks/26/keys = PoolRealArray( 0, 1, -0.356599, -0.5591, -0.108577, 0, 0, 0, 1,
 
 [sub_resource type="CapsuleShape" id=7]
 radius = 1.30019
-height = 1.0977
+height = 0.926434
 
 [sub_resource type="SphereShape" id=8]
-radius = 2.10173
+radius = 3.29395
 
 [node name="BigBoi" type="KinematicBody"]
 collision_layer = 2
 script = ExtResource( 2 )
-health = 300
+health = 600
 melee_damage = 25.0
 melee_knockback = 24.0
 kill_blood_reward = 4
 
 [node name="Armature" type="Spatial" parent="."]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+transform = Transform( 2.307, 0, 0, 0, 2.307, 0, 0, 0, 2.307, 0, 0, 0 )
 
 [node name="Skeleton" type="Skeleton" parent="Armature"]
 bones/0/name = "hip"
@@ -1083,7 +1083,7 @@ anims/Shoot = SubResource( 5 )
 anims/Walk = SubResource( 6 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 1.84217, 0 )
+transform = Transform( 1.18852, 0, 0, 0, -1.93635e-07, 1.18852, 0, -1.18852, -1.93635e-07, 0, 2.0937, 0 )
 shape = SubResource( 7 )
 
 [node name="PathTimer" type="Timer" parent="."]
@@ -1096,7 +1096,7 @@ autostart = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.00461, -2.01373 )
 
 [node name="MeleeShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2.5897 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2.57916 )
 shape = SubResource( 8 )
 disabled = true
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

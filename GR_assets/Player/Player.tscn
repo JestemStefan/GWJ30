@@ -2662,6 +2662,7 @@ bind/20/pose = Transform( -0.994491, 0.104819, 5.12227e-08, -0.0089658, -0.08506
 [sub_resource type="SpatialMaterial" id=22]
 flags_transparent = true
 params_cull_mode = 2
+albedo_color = Color( 1, 1, 1, 0.560784 )
 albedo_texture = ExtResource( 18 )
 emission_enabled = true
 emission = Color( 1, 0, 0, 1 )
@@ -2678,12 +2679,12 @@ radius = 8.0
 collision_layer = 2
 collision_mask = 3
 script = ExtResource( 1 )
-min_move_speed = 12.0
+min_move_speed = 14.0
 min_jump_speed = 20.0
 min_dodge_speed = 24.0
-max_move_speed = 16.0
+max_move_speed = 20.0
 max_jump_speed = 16.0
-max_dodge_speed = 32.0
+max_dodge_speed = 48.0
 gravity = -32.0
 weapon_container = NodePath("Armature/Skeleton/Weapon/GunOffset")
 
@@ -2727,7 +2728,7 @@ parameters/jump_blend/blend_amount = 0.0
 parameters/jump_up_down/blend_position = -0.037071
 parameters/melee/active = false
 parameters/melee_choice/blend_amount = 0.0
-parameters/melee_speed/scale = 1.5
+parameters/melee_speed/scale = 1.25
 parameters/run_blend/blend_position = Vector2( 0, 0.33 )
 parameters/run_speed/scale = 1.0
 
@@ -2872,7 +2873,7 @@ material/0 = ExtResource( 7 )
 material/1 = ExtResource( 7 )
 
 [node name="Weapon" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.941853, -0.327461, 0.0753783, 0.310848, -0.934276, -0.174649, 0.127615, -0.141061, 0.981742, -0.613823, 1.16754, -0.297079 )
+transform = Transform( -0.923863, -0.35647, 0.139307, 0.377451, -0.908841, 0.17759, 0.0633021, 0.216652, 0.974195, -0.650791, 1.04079, 0.0329115 )
 bone_name = "hand_r"
 
 [node name="GunOffset" type="Spatial" parent="Armature/Skeleton/Weapon"]
@@ -2899,7 +2900,7 @@ magnet = Vector3( 2, 2, -4 )
 target_node = NodePath("../../../SiphonAim")
 
 [node name="HeartAttach" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.740067, -7.06758e-09, 8.46965e-08, 2.76129e-08, 0.717489, -0.181405, -8.03807e-08, 0.181405, 0.71749, -8.07927e-09, 1.76858, -0.107153 )
+transform = Transform( 1.08394, -3.66178e-09, 1.70277e-07, 4.52884e-08, 1.05087, -0.265694, -1.64185e-07, 0.265694, 1.05087, 6.09944e-10, 1.69988, -0.10576 )
 bone_name = "heartbeat"
 
 [node name="Sprite3D" type="Sprite3D" parent="Armature/Skeleton/HeartAttach"]
@@ -2914,7 +2915,7 @@ texture = ExtResource( 14 )
 transform = Transform( -0.739855, 0.772263, -2.80289, -0.244274, 2.86549, 0.853987, 2.89705, 0.438835, -0.643802, 0.418728, 1.8871, 1.38098 )
 visible = false
 material_override = SubResource( 22 )
-modulate = Color( 1, 0.678431, 0.678431, 1 )
+modulate = Color( 1, 0.678431, 0.678431, 0.686275 )
 texture = ExtResource( 18 )
 
 [node name="BloodAbsorb" type="Area" parent="."]

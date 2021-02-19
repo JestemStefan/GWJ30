@@ -46,10 +46,10 @@ func _physics_process(delta):
 			
 		# move to point
 		else:
-			process_movement(dir)
+			process_movement(dir, delta)
 			
 			
-func process_movement(direction):
+func process_movement(direction, delta):
 	# put enemy movement script here
 	pass
 
@@ -76,3 +76,4 @@ func die():
 	player.increase_heart_rate(kill_hr_reward)
 	for n in range(kill_blood_reward):
 		Utils.instantiate(blood_pickup, self.global_transform.origin + Vector3.UP, Vector3.UP)
+	

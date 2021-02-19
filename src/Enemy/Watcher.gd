@@ -65,5 +65,9 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			enter_state(State.WALK)
 
 
+func die():
+	.die()
+	call_deferred("free")
+
 func _on_TravelTimer_timeout():
 	enter_state(State.ATTACK)

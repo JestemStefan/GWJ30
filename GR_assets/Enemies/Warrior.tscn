@@ -1,6 +1,6 @@
 [gd_scene load_steps=62 format=2]
 
-[ext_resource path="res://raw_assets/3D/characters/ArmLegMat.png" type="Texture" id=1]
+[ext_resource path="res://GR_assets/Player/Player_spatialmaterial.tres" type="Material" id=1]
 [ext_resource path="res://src/Enemy/Warrior.gd" type="Script" id=2]
 [ext_resource path="res://raw_assets/2D/character/slash.png" type="Texture" id=4]
 [ext_resource path="res://GR_assets/Weapons/SpikeGun/SpikeGun.tscn" type="PackedScene" id=6]
@@ -13,133 +13,133 @@
 radius = 0.75
 height = 1.8
 
-[sub_resource type="AnimationNodeAnimation" id=27]
+[sub_resource type="AnimationNodeAnimation" id=2]
 animation = "Attack2"
 
-[sub_resource type="AnimationNodeAnimation" id=2]
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "Heartbeat"
 
-[sub_resource type="AnimationNodeBlend2" id=3]
-
-[sub_resource type="AnimationNodeAnimation" id=4]
-animation = "DodgeFWD"
+[sub_resource type="AnimationNodeBlend2" id=4]
 
 [sub_resource type="AnimationNodeAnimation" id=5]
-animation = "DodgeBACK"
+animation = "DodgeFWD"
 
 [sub_resource type="AnimationNodeAnimation" id=6]
-animation = "DodgeLEFT"
+animation = "DodgeBACK"
 
 [sub_resource type="AnimationNodeAnimation" id=7]
+animation = "DodgeLEFT"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "DodgeRIGHT"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=8]
-blend_point_0/node = SubResource( 4 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=9]
+blend_point_0/node = SubResource( 5 )
 blend_point_0/pos = Vector2( 0, 1 )
-blend_point_1/node = SubResource( 5 )
+blend_point_1/node = SubResource( 6 )
 blend_point_1/pos = Vector2( 0, -1 )
-blend_point_2/node = SubResource( 6 )
+blend_point_2/node = SubResource( 7 )
 blend_point_2/pos = Vector2( -1, 0 )
-blend_point_3/node = SubResource( 7 )
+blend_point_3/node = SubResource( 8 )
 blend_point_3/pos = Vector2( 1, 0 )
 
-[sub_resource type="AnimationNodeBlend2" id=9]
+[sub_resource type="AnimationNodeBlend2" id=10]
 filter_enabled = true
 filters = [ ".", "Armature/Skeleton:heartbeat" ]
 
-[sub_resource type="AnimationNodeTimeScale" id=10]
+[sub_resource type="AnimationNodeTimeScale" id=11]
 
-[sub_resource type="AnimationNodeBlend2" id=11]
-
-[sub_resource type="AnimationNodeAnimation" id=12]
-animation = "FallDown"
+[sub_resource type="AnimationNodeBlend2" id=12]
 
 [sub_resource type="AnimationNodeAnimation" id=13]
-animation = "JumpUP"
+animation = "FallDown"
 
 [sub_resource type="AnimationNodeAnimation" id=14]
+animation = "JumpUP"
+
+[sub_resource type="AnimationNodeAnimation" id=15]
 animation = "MidJump"
 
-[sub_resource type="AnimationNodeBlendSpace1D" id=15]
-blend_point_0/node = SubResource( 12 )
+[sub_resource type="AnimationNodeBlendSpace1D" id=16]
+blend_point_0/node = SubResource( 13 )
 blend_point_0/pos = -1.0
-blend_point_1/node = SubResource( 13 )
+blend_point_1/node = SubResource( 14 )
 blend_point_1/pos = 1.0
-blend_point_2/node = SubResource( 14 )
+blend_point_2/node = SubResource( 15 )
 blend_point_2/pos = 0.0
 
-[sub_resource type="AnimationNodeOneShot" id=16]
+[sub_resource type="AnimationNodeOneShot" id=17]
 filter_enabled = true
 filters = [ ".", "Armature/Skeleton:forearm_l", "Armature/Skeleton:forearm_r", "Armature/Skeleton:hand_l", "Armature/Skeleton:hand_r", "Armature/Skeleton:shoulder_l", "Armature/Skeleton:shoulder_r", "Armature/Skeleton:spine_1", "Armature/Skeleton:spine_2", "Armature/Skeleton:spine_3", "Armature/Skeleton:spine_4", "Armature/Skeleton:spine_5", "Armature/Skeleton:upper_arm_l", "Armature/Skeleton:upper_arm_r", "SlashEffect:rotation_degrees", "SlashEffect:translation", "SlashEffect:visible" ]
 
-[sub_resource type="AnimationNodeAnimation" id=17]
+[sub_resource type="AnimationNodeAnimation" id=18]
 animation = "Attack1"
 
-[sub_resource type="AnimationNodeBlend2" id=18]
+[sub_resource type="AnimationNodeBlend2" id=19]
 
-[sub_resource type="AnimationNodeTimeScale" id=19]
-
-[sub_resource type="AnimationNodeAnimation" id=20]
-animation = "Idle"
+[sub_resource type="AnimationNodeTimeScale" id=20]
 
 [sub_resource type="AnimationNodeAnimation" id=21]
-animation = "charactersRunFWD"
+animation = "Idle"
 
 [sub_resource type="AnimationNodeAnimation" id=22]
-animation = "RunBACK"
+animation = "charactersRunFWD"
 
 [sub_resource type="AnimationNodeAnimation" id=23]
-animation = "RunRIGHT"
+animation = "RunBACK"
 
 [sub_resource type="AnimationNodeAnimation" id=24]
+animation = "RunRIGHT"
+
+[sub_resource type="AnimationNodeAnimation" id=25]
 animation = "RunLEFT"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=25]
-blend_point_0/node = SubResource( 20 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=26]
+blend_point_0/node = SubResource( 21 )
 blend_point_0/pos = Vector2( 0, 0 )
-blend_point_1/node = SubResource( 21 )
+blend_point_1/node = SubResource( 22 )
 blend_point_1/pos = Vector2( 0, 1 )
-blend_point_2/node = SubResource( 22 )
+blend_point_2/node = SubResource( 23 )
 blend_point_2/pos = Vector2( 0, -1 )
-blend_point_3/node = SubResource( 23 )
+blend_point_3/node = SubResource( 24 )
 blend_point_3/pos = Vector2( 1, 0 )
-blend_point_4/node = SubResource( 24 )
+blend_point_4/node = SubResource( 25 )
 blend_point_4/pos = Vector2( -1, 0 )
 
-[sub_resource type="AnimationNodeTimeScale" id=26]
+[sub_resource type="AnimationNodeTimeScale" id=27]
 
 [sub_resource type="AnimationNodeBlendTree" id=28]
 graph_offset = Vector2( 106.4, 380.2 )
-nodes/Animation/node = SubResource( 2 )
+nodes/Animation/node = SubResource( 3 )
 nodes/Animation/position = Vector2( 432, 368 )
-"nodes/Animation 2/node" = SubResource( 27 )
+"nodes/Animation 2/node" = SubResource( 2 )
 "nodes/Animation 2/position" = Vector2( 624, 608 )
-nodes/dodge_blend/node = SubResource( 3 )
+nodes/dodge_blend/node = SubResource( 4 )
 nodes/dodge_blend/position = Vector2( 448, 176 )
-nodes/dodge_dir/node = SubResource( 8 )
+nodes/dodge_dir/node = SubResource( 9 )
 nodes/dodge_dir/position = Vector2( 192, 384 )
-nodes/heart_blend/node = SubResource( 9 )
+nodes/heart_blend/node = SubResource( 10 )
 nodes/heart_blend/position = Vector2( 720, 64 )
-nodes/heart_rate/node = SubResource( 10 )
+nodes/heart_rate/node = SubResource( 11 )
 nodes/heart_rate/position = Vector2( 656, 256 )
-nodes/jump_blend/node = SubResource( 11 )
+nodes/jump_blend/node = SubResource( 12 )
 nodes/jump_blend/position = Vector2( 240, 128 )
-nodes/jump_up_down/node = SubResource( 15 )
+nodes/jump_up_down/node = SubResource( 16 )
 nodes/jump_up_down/position = Vector2( 16, 272 )
-nodes/melee/node = SubResource( 16 )
+nodes/melee/node = SubResource( 17 )
 nodes/melee/position = Vector2( 912, 192 )
-nodes/melee_1_anim/node = SubResource( 17 )
+nodes/melee_1_anim/node = SubResource( 18 )
 nodes/melee_1_anim/position = Vector2( 592, 480 )
-nodes/melee_choice/node = SubResource( 18 )
+nodes/melee_choice/node = SubResource( 19 )
 nodes/melee_choice/position = Vector2( 800, 416 )
-nodes/melee_speed/node = SubResource( 19 )
+nodes/melee_speed/node = SubResource( 20 )
 nodes/melee_speed/position = Vector2( 992, 400 )
 nodes/output/position = Vector2( 1248, 192 )
-nodes/run_blend/node = SubResource( 25 )
+nodes/run_blend/node = SubResource( 26 )
 nodes/run_blend/position = Vector2( -176, 96 )
-nodes/run_speed/node = SubResource( 26 )
+nodes/run_speed/node = SubResource( 27 )
 nodes/run_speed/position = Vector2( 32, 144 )
-node_connections = [ "output", 0, "melee", "melee_choice", 0, "melee_1_anim", "melee_choice", 1, "Animation 2", "heart_blend", 0, "dodge_blend", "heart_blend", 1, "heart_rate", "jump_blend", 0, "run_speed", "jump_blend", 1, "jump_up_down", "run_speed", 0, "run_blend", "melee_speed", 0, "melee_choice", "melee", 0, "heart_blend", "melee", 1, "melee_speed", "dodge_blend", 0, "jump_blend", "dodge_blend", 1, "dodge_dir", "heart_rate", 0, "Animation" ]
+node_connections = [ "output", 0, "melee", "heart_rate", 0, "Animation", "melee_choice", 0, "melee_1_anim", "melee_choice", 1, "Animation 2", "melee", 0, "heart_blend", "melee", 1, "melee_speed", "melee_speed", 0, "melee_choice", "dodge_blend", 0, "jump_blend", "dodge_blend", 1, "dodge_dir", "heart_blend", 0, "dodge_blend", "heart_blend", 1, "heart_rate", "jump_blend", 0, "run_speed", "jump_blend", 1, "jump_up_down", "run_speed", 0, "run_blend" ]
 
 [sub_resource type="Animation" id=29]
 length = 0.416667
@@ -2767,17 +2767,21 @@ bind/20/name = "foot_l"
 bind/20/bone = -1
 bind/20/pose = Transform( -0.994491, 0.104819, 5.12227e-08, -0.0089658, -0.0850659, 0.996334, 0.104435, 0.990846, 0.0855368, 0.218311, 0.0208656, 0.0291465 )
 
-[sub_resource type="SpatialMaterial" id=49]
-albedo_color = Color( 0.380392, 0.380392, 0.380392, 1 )
-albedo_texture = ExtResource( 1 )
-
-[sub_resource type="PrismMesh" id=52]
+[sub_resource type="PrismMesh" id=55]
 size = Vector3( 0.5, 0.5, 0.5 )
 
-[sub_resource type="SpatialMaterial" id=53]
+[sub_resource type="SpatialMaterial" id=56]
 albedo_color = Color( 0.411765, 0.0156863, 0.0156863, 1 )
 
-[sub_resource type="SpatialMaterial" id=50]
+[sub_resource type="SpatialMaterial" id=54]
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="SphereMesh" id=57]
+material = SubResource( 54 )
+radius = 0.3
+height = 0.5
+
+[sub_resource type="SpatialMaterial" id=52]
 flags_transparent = true
 params_cull_mode = 2
 albedo_texture = ExtResource( 4 )
@@ -2787,16 +2791,13 @@ emission_energy = 2.0
 emission_operator = 0
 emission_on_uv2 = false
 
-[sub_resource type="CylinderShape" id=51]
-radius = 4.06516
-height = 0.5
-
 [node name="Warrior" type="KinematicBody"]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource( 2 )
 health = 300
 melee_knockback = 20.0
+move_speed = 10.0
 jump_speed = 20.0
 dodge_speed = 32.0
 gravity = -32.0
@@ -2876,7 +2877,7 @@ bones/3/name = "heartbeat"
 bones/3/parent = 2
 bones/3/rest = Transform( 1, -4.18728e-10, 3.34656e-08, 5.2763e-10, 0.999995, -0.00325421, -3.3464e-08, 0.00325421, 0.999995, 2.08721e-08, 0.060612, -0.162213 )
 bones/3/enabled = true
-bones/3/bound_children = [ NodePath("HeartAttach") ]
+bones/3/bound_children = [  ]
 bones/4/name = "spine_3"
 bones/4/parent = 2
 bones/4/rest = Transform( 1, -4.18728e-10, 3.34656e-08, 5.27631e-10, 0.999995, -0.00325425, -3.3464e-08, 0.00325425, 0.999995, 3.53884e-16, 0.247374, 2.79397e-09 )
@@ -2886,7 +2887,7 @@ bones/5/name = "shoulder_r"
 bones/5/parent = 4
 bones/5/rest = Transform( -0.000663757, -0.86189, -0.507095, 0.999592, 0.0139105, -0.0249514, 0.0285593, -0.506904, 0.861529, -0.0261843, 0.196341, 0.111964 )
 bones/5/enabled = true
-bones/5/bound_children = [ NodePath("ShoulderR") ]
+bones/5/bound_children = [  ]
 bones/6/name = "upper_arm_r"
 bones/6/parent = 5
 bones/6/rest = Transform( 0.391155, -0.919965, 0.0257158, 0.793219, 0.322832, -0.516317, 0.466692, 0.222359, 0.856011, 0.0133821, 0.274557, 0.00365939 )
@@ -2901,7 +2902,7 @@ bones/8/name = "hand_r"
 bones/8/parent = 7
 bones/8/rest = Transform( 0.998753, 0.0491725, -0.00858782, -0.0497289, 0.995071, -0.0857957, 0.0043267, 0.0861158, 0.996276, -1.06992e-07, 0.604836, -7.45058e-09 )
 bones/8/enabled = true
-bones/8/bound_children = [ NodePath("Weapon") ]
+bones/8/bound_children = [  ]
 bones/9/name = "spine_4"
 bones/9/parent = 4
 bones/9/rest = Transform( 1, -4.78347e-08, -1.54919e-07, -7.10543e-15, 0.955488, -0.295029, 1.62136e-07, 0.295029, 0.955488, 3.60822e-16, 0.275548, 1.86265e-09 )
@@ -2916,7 +2917,7 @@ bones/11/name = "shoulder_l"
 bones/11/parent = 4
 bones/11/rest = Transform( -0.000663519, 0.86189, 0.507095, -0.999592, 0.0139107, -0.0249514, -0.0285593, -0.506904, 0.861529, 0.0261843, 0.196341, 0.111964 )
 bones/11/enabled = true
-bones/11/bound_children = [ NodePath("ShoulderL") ]
+bones/11/bound_children = [  ]
 bones/12/name = "upper_arm_l"
 bones/12/parent = 11
 bones/12/rest = Transform( 0.321496, 0.946541, -0.0264589, -0.816133, 0.262817, -0.514639, -0.480173, 0.187048, 0.856999, -0.0133824, 0.274557, 0.00365938 )
@@ -2966,11 +2967,11 @@ bones/20/bound_children = [  ]
 [node name="CharacterMesh" type="MeshInstance" parent="Armature/Skeleton"]
 mesh = SubResource( 47 )
 skin = SubResource( 48 )
-material/0 = SubResource( 49 )
-material/1 = SubResource( 49 )
+material/0 = ExtResource( 1 )
+material/1 = ExtResource( 1 )
 
 [node name="Weapon" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.936947, -0.265614, 0.227108, 0.34507, -0.60039, 0.721428, -0.0552678, 0.75431, 0.65419, -0.584962, 1.20465, 0.65182 )
+transform = Transform( -0.92215, -0.316355, 0.222618, 0.381369, -0.647127, 0.660139, -0.0647753, 0.693648, 0.717397, -0.630201, 1.18918, 0.568779 )
 bone_name = "hand_r"
 
 [node name="GunOffset" type="Spatial" parent="Armature/Skeleton/Weapon"]
@@ -2987,7 +2988,7 @@ magnet = Vector3( -3, 0, -5 )
 target_node = NodePath("../../../GunAim")
 
 [node name="HeartAttach" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.778949, 7.79015e-10, 1.18741e-07, 2.83505e-08, 0.755186, -0.190936, -1.1531e-07, 0.190935, 0.755186, 2.19957e-09, 1.73042, -0.111163 )
+transform = Transform( 0.779645, 7.89462e-10, 1.18752e-07, 2.83432e-08, 0.755861, -0.191106, -1.15323e-07, 0.191106, 0.755861, 6.87916e-09, 1.74414, -0.105719 )
 bone_name = "heartbeat"
 
 [node name="Sprite3D" type="Sprite3D" parent="Armature/Skeleton/HeartAttach"]
@@ -2999,43 +3000,55 @@ billboard = 1
 texture = ExtResource( 7 )
 
 [node name="ShoulderR" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.000663714, -0.86189, -0.507095, 0.962097, 0.137738, -0.235368, 0.272707, -0.488031, 0.829131, -0.0261843, 2.03529, 0.248094 )
+transform = Transform( -0.000663714, -0.86189, -0.507095, 0.962097, 0.137738, -0.235368, 0.272707, -0.488031, 0.829131, -0.0261843, 2.04901, 0.253539 )
 bone_name = "shoulder_r"
 
 [node name="MeshInstance" type="MeshInstance" parent="Armature/Skeleton/ShoulderR"]
 transform = Transform( 1, 1.49012e-08, 1.49012e-08, 1.49012e-08, 1, 0, 0, 2.98023e-08, 1, -0.0405103, 0.597441, 0.0378299 )
-mesh = SubResource( 52 )
-material/0 = SubResource( 53 )
+mesh = SubResource( 55 )
+material/0 = SubResource( 56 )
+
+[node name="Head" type="BoneAttachment" parent="Armature/Skeleton"]
+transform = Transform( 1, 2.48724e-13, 1.76667e-07, 1.32976e-08, 0.997164, -0.0752685, -1.76166e-07, 0.0752681, 0.997165, 6.87913e-09, 2.27746, 0.204283 )
+bone_name = "spine_5"
+
+[node name="MeshInstance" type="MeshInstance" parent="Armature/Skeleton/Head"]
+transform = Transform( 1, 1.49012e-08, 1.49012e-08, 1.49012e-08, 1, -7.45058e-09, -1.42109e-14, 8.9407e-08, 1, -0.00570595, 0.313653, 0.0083681 )
+mesh = SubResource( 57 )
+material/0 = null
 
 [node name="ShoulderL" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.000663522, 0.86189, 0.507095, -0.962097, 0.137738, -0.235368, -0.272707, -0.488031, 0.829131, 0.0261843, 2.03529, 0.248094 )
+transform = Transform( -0.000663522, 0.86189, 0.507095, -0.962097, 0.137738, -0.235368, -0.272707, -0.488031, 0.829131, 0.0261843, 2.04901, 0.253539 )
 bone_name = "shoulder_l"
 
 [node name="MeshInstance2" type="MeshInstance" parent="Armature/Skeleton/ShoulderL"]
 transform = Transform( 1, -2.98023e-08, 0, -1.49012e-08, 1, 2.38419e-07, -1.49012e-08, 5.96046e-08, 1, 0.0442088, 0.512178, -0.00380921 )
-mesh = SubResource( 52 )
-material/0 = SubResource( 53 )
+mesh = SubResource( 55 )
+material/0 = SubResource( 56 )
 
 [node name="SlashEffect" type="Sprite3D" parent="."]
 transform = Transform( -0.739855, 0.772263, -2.80289, -0.244274, 2.86549, 0.853987, 2.89705, 0.438835, -0.643802, 0.418728, 1.8871, 1.38098 )
 visible = false
-material_override = SubResource( 50 )
+material_override = SubResource( 52 )
 modulate = Color( 1, 0.678431, 0.678431, 1 )
 texture = ExtResource( 4 )
-
-[node name="JumpTrigger" type="Area" parent="."]
-collision_layer = 0
-collision_mask = 3
-
-[node name="CollisionShape" type="CollisionShape" parent="JumpTrigger"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
-shape = SubResource( 51 )
 
 [node name="DodgeTimer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
 
 [node name="AITimer" type="Timer" parent="."]
-[connection signal="body_entered" from="JumpTrigger" to="." method="_on_JumpTrigger_body_entered"]
+autostart = true
+
+[node name="PathTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="FrontCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60715, 0.730763 )
+enabled = true
+cast_to = Vector3( 0, 0, 3 )
+collision_mask = 3
 [connection signal="timeout" from="DodgeTimer" to="." method="_on_DodgeTimer_timeout"]
 [connection signal="timeout" from="AITimer" to="." method="_on_AITimer_timeout"]
+[connection signal="timeout" from="PathTimer" to="." method="_on_PathTimer_timeout"]

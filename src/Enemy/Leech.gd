@@ -29,7 +29,7 @@ func enter_state(new_state):
 		State.DIE:
 			pass
 
-func process_movement(direction):
+func process_movement(direction, delta):
 	
 	dist2player = global_transform.origin.distance_squared_to(player_position)
 	

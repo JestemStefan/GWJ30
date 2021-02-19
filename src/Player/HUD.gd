@@ -29,8 +29,9 @@ func damage():
 
 func game_over():
 	$Root/GameOver.visible = true
-	$GameOverTimer.start(0.2)
+	#$GameOverTimer.start(0.2)
 	Engine.time_scale = 0.1
+	$GameOverTimer.start(1)
 
 func _on_GameOverTimer_timeout():
 	Engine.time_scale = 1.0
