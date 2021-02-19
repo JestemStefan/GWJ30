@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://raw_assets/3D/enemies/watcher/Watcher_Roughness.jpg" type="Texture" id=1]
 [ext_resource path="res://raw_assets/3D/enemies/watcher/Watcher_Normal.jpg" type="Texture" id=2]
 [ext_resource path="res://raw_assets/3D/enemies/watcher/Watcher_Albedo.jpg" type="Texture" id=3]
 [ext_resource path="res://src/Enemy/Watcher.gd" type="Script" id=4]
+[ext_resource path="res://GR_assets/Weapons/SpikeGun/WarriorGunProjectile.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Watcher"
@@ -332,6 +333,20 @@ tracks/29/loop_wrap = true
 tracks/29/imported = true
 tracks/29/enabled = true
 tracks/29/keys = PoolRealArray( 0, 1, 0, 0, 0, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 0.0666667, 1, 0.0967063, -0.184524, 0.0104771, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 0.266667, 1, 0.833165, -1.58975, 0.0902647, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 0.333333, 1, 0.929872, -1.77427, 0.100742, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 1.33333, 1, 0.929872, -1.77427, 0.100742, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 1.4, 1, 0.903835, -1.72459, 0.0979211, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 1.46667, 1, 0.833165, -1.58974, 0.0902646, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 1.6, 1, 0.602556, -1.14973, 0.0652806, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 1.86667, 1, 0.0967054, -0.184523, 0.010477, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 1.93333, 1, 0.0260354, -0.0496788, 0.00282073, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1, 2, 1, 0, 0, 0, 1.55923e-09, -3.72529e-09, 9.68496e-09, 1, 1, 1, 1 )
+tracks/30/type = "method"
+tracks/30/path = NodePath(".")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "shoot_attack"
+} ]
+}
 
 [sub_resource type="Animation" id=5]
 loop = true
@@ -569,6 +584,9 @@ radius = 0.34
 script = ExtResource( 4 )
 health = 100
 speed_modifier = 0.0
+projectile = ExtResource( 5 )
+muzzle_velocity = 75.0
+damage = 15.0
 
 [node name="Armature" type="Spatial" parent="."]
 

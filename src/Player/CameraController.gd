@@ -74,15 +74,6 @@ func _unhandled_input(event):
 	if Input.is_action_pressed("toggle_3p") and (event.is_pressed() and not event.is_echo()):
 		toggle_third_person(!third_person)
 		player.toggle_third_person(third_person)
-	# Mouse zoom
-	if event is InputEventMouseButton:
-		if event.is_pressed():
-			# Zoom in
-			if event.button_index == BUTTON_WHEEL_UP and camera.fov > default_fov / 3:
-				camera.fov -= default_fov / 9
-			# Zoom out
-			if event.button_index == BUTTON_WHEEL_DOWN and camera.fov < default_fov:
-				camera.fov += default_fov / 9
 	# Mouse look
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		# Horizontal look

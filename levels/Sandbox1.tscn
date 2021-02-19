@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://GR_assets/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://GR_assets/Interface/HUD.tscn" type="PackedScene" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://raw_assets/2D/environment/dirtfloor1.png" type="Texture" id=4]
 [ext_resource path="res://raw_assets/3D/environment/terrain1.obj" type="ArrayMesh" id=5]
 [ext_resource path="res://src/SceneRoot.gd" type="Script" id=6]
-[ext_resource path="res://GR_assets/Enemies/Warrior.tscn" type="PackedScene" id=7]
 [ext_resource path="res://GR_assets/Gameplay/SpawnEgg.tscn" type="PackedScene" id=8]
 [ext_resource path="res://raw_assets/audio/transfusion_bloodshed.ogg" type="AudioStream" id=9]
 [ext_resource path="res://src/Flying_Area.gd" type="Script" id=10]
@@ -184,14 +183,6 @@ visible = false
 mesh = SubResource( 5 )
 material/0 = null
 script = ExtResource( 10 )
-
-[node name="Warrior" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -38.6281, 14.1167, -2.60655 )
-weapon_container = NodePath("../../Warrior/Armature/Skeleton/Weapon/GunOffset")
-
-[node name="Warrior2" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -38.6281, 14.1167, 5.93811 )
-weapon_container = NodePath("../../Warrior/Armature/Skeleton/Weapon/GunOffset")
 
 [node name="SpawnEgg" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.86672, 14.1167, -2.60655 )

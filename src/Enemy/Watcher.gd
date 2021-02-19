@@ -1,5 +1,10 @@
 extends EnemyClass
 
+export(PackedScene) var projectile
+export(float) var spread
+export(float) var muzzle_velocity
+export(float) var damage
+
 onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 onready var flying_nav: Flying_Nav = get_tree().get_nodes_in_group("Flying_Nav")[0]
 
@@ -64,6 +69,19 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			nav_point = flying_nav.generate_nav_point()
 			enter_state(State.WALK)
 
+func shoot_attack():
+	var bullet = projectile.instance()
+	Globals.scene_root.add_child(bullet)
+	bullet.global_transform.origin = self.global_transform.origin
+	# Direction is usually normalized but, just to be sure
+	var new_dir = self.global_transform.origin.direction_to(player_position + Vector3.UP)
+	# Apply random spread on local axes
+	var original_dir = new_dir
+	new_dir = new_dir.rotated(new_dir.cross(Vector3.UP).normalized(), rand_range(-deg2rad(spread), deg2rad(spread)))
+	new_dir = new_dir.rotated(original_dir, rand_range(0, 2 * PI))
+	# Point the bullet towards the final direction
+	Utils.fixed_look_at(bullet, bullet.transform.origin - new_dir)
+	bullet.init(damage, muzzle_velocity, [self])
 
 func die():
 	.die()

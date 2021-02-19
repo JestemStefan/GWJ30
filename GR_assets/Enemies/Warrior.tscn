@@ -2,8 +2,8 @@
 
 [ext_resource path="res://GR_assets/Player/Player_spatialmaterial.tres" type="Material" id=1]
 [ext_resource path="res://src/Enemy/Warrior.gd" type="Script" id=2]
+[ext_resource path="res://GR_assets/Weapons/SpikeGun/WarriorGun.tscn" type="PackedScene" id=3]
 [ext_resource path="res://raw_assets/2D/character/slash.png" type="Texture" id=4]
-[ext_resource path="res://GR_assets/Weapons/SpikeGun/SpikeGun.tscn" type="PackedScene" id=6]
 [ext_resource path="res://raw_assets/2D/effects/spikegun_particle.png" type="Texture" id=7]
 [ext_resource path="res://raw_assets/3D/characters/ArmLegMat.material" type="Material" id=9]
 [ext_resource path="res://raw_assets/3D/characters/TorsoMat.material" type="Material" id=10]
@@ -109,7 +109,7 @@ blend_point_4/pos = Vector2( -1, 0 )
 [sub_resource type="AnimationNodeTimeScale" id=27]
 
 [sub_resource type="AnimationNodeBlendTree" id=28]
-graph_offset = Vector2( 106.4, 380.2 )
+graph_offset = Vector2( 106.4, 413 )
 nodes/Animation/node = SubResource( 3 )
 nodes/Animation/position = Vector2( 432, 368 )
 "nodes/Animation 2/node" = SubResource( 2 )
@@ -139,7 +139,7 @@ nodes/run_blend/node = SubResource( 26 )
 nodes/run_blend/position = Vector2( -176, 96 )
 nodes/run_speed/node = SubResource( 27 )
 nodes/run_speed/position = Vector2( 32, 144 )
-node_connections = [ "output", 0, "melee", "heart_rate", 0, "Animation", "melee_choice", 0, "melee_1_anim", "melee_choice", 1, "Animation 2", "melee", 0, "heart_blend", "melee", 1, "melee_speed", "melee_speed", 0, "melee_choice", "dodge_blend", 0, "jump_blend", "dodge_blend", 1, "dodge_dir", "heart_blend", 0, "dodge_blend", "heart_blend", 1, "heart_rate", "jump_blend", 0, "run_speed", "jump_blend", 1, "jump_up_down", "run_speed", 0, "run_blend" ]
+node_connections = [ "output", 0, "melee", "heart_rate", 0, "Animation", "jump_blend", 0, "run_speed", "jump_blend", 1, "jump_up_down", "run_speed", 0, "run_blend", "dodge_blend", 0, "jump_blend", "dodge_blend", 1, "dodge_dir", "melee_choice", 0, "melee_1_anim", "melee_choice", 1, "Animation 2", "melee", 0, "heart_blend", "melee", 1, "melee_speed", "heart_blend", 0, "dodge_blend", "heart_blend", 1, "heart_rate", "melee_speed", 0, "melee_choice" ]
 
 [sub_resource type="Animation" id=29]
 length = 0.416667
@@ -2673,7 +2673,7 @@ tracks/20/keys = PoolRealArray( 0, 1, -7.10543e-15, 1.19209e-07, 0, 0, 0, -1.776
 
 [sub_resource type="CapsuleShape" id=46]
 radius = 1.97643
-height = 1.4482
+height = 0.43772
 
 [sub_resource type="ArrayMesh" id=47]
 surfaces/0 = {
@@ -2767,21 +2767,21 @@ bind/20/name = "foot_l"
 bind/20/bone = -1
 bind/20/pose = Transform( -0.994491, 0.104819, 5.12227e-08, -0.0089658, -0.0850659, 0.996334, 0.104435, 0.990846, 0.0855368, 0.218311, 0.0208656, 0.0291465 )
 
-[sub_resource type="PrismMesh" id=55]
+[sub_resource type="PrismMesh" id=49]
 size = Vector3( 0.5, 0.5, 0.5 )
 
-[sub_resource type="SpatialMaterial" id=56]
+[sub_resource type="SpatialMaterial" id=50]
 albedo_color = Color( 0.411765, 0.0156863, 0.0156863, 1 )
 
-[sub_resource type="SpatialMaterial" id=54]
+[sub_resource type="SpatialMaterial" id=51]
 albedo_color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="SphereMesh" id=57]
-material = SubResource( 54 )
+[sub_resource type="SphereMesh" id=52]
+material = SubResource( 51 )
 radius = 0.3
 height = 0.5
 
-[sub_resource type="SpatialMaterial" id=52]
+[sub_resource type="SpatialMaterial" id=53]
 flags_transparent = true
 params_cull_mode = 2
 albedo_texture = ExtResource( 4 )
@@ -2795,9 +2795,8 @@ emission_on_uv2 = false
 collision_layer = 2
 collision_mask = 3
 script = ExtResource( 2 )
-health = 300
+health = 250
 melee_knockback = 20.0
-move_speed = 10.0
 jump_speed = 20.0
 dodge_speed = 32.0
 gravity = -32.0
@@ -2823,7 +2822,7 @@ parameters/jump_blend/blend_amount = 0.0
 parameters/jump_up_down/blend_position = -0.037071
 parameters/melee/active = false
 parameters/melee_choice/blend_amount = 0.0
-parameters/melee_speed/scale = 1.0
+parameters/melee_speed/scale = 0.9
 parameters/run_blend/blend_position = Vector2( 0, 0.33 )
 parameters/run_speed/scale = 1.0
 
@@ -2848,7 +2847,7 @@ anims/Siphon = SubResource( 45 )
 anims/charactersRunFWD = ExtResource( 11 )
 
 [node name="MeleeShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60736, 2.85935 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.192148, 1.60736, 2.37106 )
 shape = SubResource( 46 )
 disabled = true
 
@@ -2971,13 +2970,13 @@ material/0 = ExtResource( 1 )
 material/1 = ExtResource( 1 )
 
 [node name="Weapon" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.92215, -0.316355, 0.222618, 0.381369, -0.647127, 0.660139, -0.0647753, 0.693648, 0.717397, -0.630201, 1.18918, 0.568779 )
+transform = Transform( -0.927274, -0.349651, 0.133813, 0.367927, -0.917173, 0.153042, 0.0692186, 0.191147, 0.979119, -0.643481, 1.03371, 0.00934178 )
 bone_name = "hand_r"
 
 [node name="GunOffset" type="Spatial" parent="Armature/Skeleton/Weapon"]
 transform = Transform( -1, 3.27826e-07, 1.49012e-08, -9.68575e-08, -8.9407e-08, 1, 3.42727e-07, 1, 1.78814e-07, -0.0361408, 0.107592, 0.19281 )
 
-[node name="SpikeGun" parent="Armature/Skeleton/Weapon/GunOffset" instance=ExtResource( 6 )]
+[node name="WarriorGun" parent="Armature/Skeleton/Weapon/GunOffset" instance=ExtResource( 3 )]
 
 [node name="RightHandIK" type="SkeletonIK" parent="Armature/Skeleton"]
 process_priority = 1
@@ -2988,7 +2987,7 @@ magnet = Vector3( -3, 0, -5 )
 target_node = NodePath("../../../GunAim")
 
 [node name="HeartAttach" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.779645, 7.89462e-10, 1.18752e-07, 2.83432e-08, 0.755861, -0.191106, -1.15323e-07, 0.191106, 0.755861, 6.87916e-09, 1.74414, -0.105719 )
+transform = Transform( 1.10432, -2.72855e-09, 1.74016e-07, 4.53002e-08, 1.07064, -0.270691, -1.68039e-07, 0.270691, 1.07064, 1.03262e-09, 1.69485, -0.106879 )
 bone_name = "heartbeat"
 
 [node name="Sprite3D" type="Sprite3D" parent="Armature/Skeleton/HeartAttach"]
@@ -3000,36 +2999,36 @@ billboard = 1
 texture = ExtResource( 7 )
 
 [node name="ShoulderR" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.000663714, -0.86189, -0.507095, 0.962097, 0.137738, -0.235368, 0.272707, -0.488031, 0.829131, -0.0261843, 2.04901, 0.253539 )
+transform = Transform( -0.000663714, -0.86189, -0.507095, 0.962097, 0.137738, -0.235368, 0.272707, -0.488031, 0.829131, -0.0261843, 1.99972, 0.252379 )
 bone_name = "shoulder_r"
 
 [node name="MeshInstance" type="MeshInstance" parent="Armature/Skeleton/ShoulderR"]
 transform = Transform( 1, 1.49012e-08, 1.49012e-08, 1.49012e-08, 1, 0, 0, 2.98023e-08, 1, -0.0405103, 0.597441, 0.0378299 )
-mesh = SubResource( 55 )
-material/0 = SubResource( 56 )
+mesh = SubResource( 49 )
+material/0 = SubResource( 50 )
 
 [node name="Head" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 1, 2.48724e-13, 1.76667e-07, 1.32976e-08, 0.997164, -0.0752685, -1.76166e-07, 0.0752681, 0.997165, 6.87913e-09, 2.27746, 0.204283 )
+transform = Transform( 1, 2.51426e-13, 1.76667e-07, 1.32976e-08, 0.997164, -0.0752685, -1.76166e-07, 0.0752682, 0.997165, 8.98512e-09, 2.22816, 0.203122 )
 bone_name = "spine_5"
 
 [node name="MeshInstance" type="MeshInstance" parent="Armature/Skeleton/Head"]
 transform = Transform( 1, 1.49012e-08, 1.49012e-08, 1.49012e-08, 1, -7.45058e-09, -1.42109e-14, 8.9407e-08, 1, -0.00570595, 0.313653, 0.0083681 )
-mesh = SubResource( 57 )
+mesh = SubResource( 52 )
 material/0 = null
 
 [node name="ShoulderL" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.000663522, 0.86189, 0.507095, -0.962097, 0.137738, -0.235368, -0.272707, -0.488031, 0.829131, 0.0261843, 2.04901, 0.253539 )
+transform = Transform( -0.000663522, 0.86189, 0.507095, -0.962097, 0.137738, -0.235368, -0.272707, -0.488031, 0.829131, 0.0261843, 1.99972, 0.252379 )
 bone_name = "shoulder_l"
 
 [node name="MeshInstance2" type="MeshInstance" parent="Armature/Skeleton/ShoulderL"]
 transform = Transform( 1, -2.98023e-08, 0, -1.49012e-08, 1, 2.38419e-07, -1.49012e-08, 5.96046e-08, 1, 0.0442088, 0.512178, -0.00380921 )
-mesh = SubResource( 55 )
-material/0 = SubResource( 56 )
+mesh = SubResource( 49 )
+material/0 = SubResource( 50 )
 
 [node name="SlashEffect" type="Sprite3D" parent="."]
 transform = Transform( -0.739855, 0.772263, -2.80289, -0.244274, 2.86549, 0.853987, 2.89705, 0.438835, -0.643802, 0.418728, 1.8871, 1.38098 )
 visible = false
-material_override = SubResource( 52 )
+material_override = SubResource( 53 )
 modulate = Color( 1, 0.678431, 0.678431, 1 )
 texture = ExtResource( 4 )
 
@@ -3045,7 +3044,7 @@ wait_time = 2.0
 autostart = true
 
 [node name="FrontCast" type="RayCast" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60715, 0.730763 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.939608, 0.730763 )
 enabled = true
 cast_to = Vector3( 0, 0, 3 )
 collision_mask = 3

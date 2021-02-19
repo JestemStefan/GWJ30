@@ -13,7 +13,6 @@ export var audio_one_shot: bool
 export (PackedScene) var projectile
 export (PackedScene) var buffed_projectile
 
-
 var current_ammo = 128
 var can_shoot: bool = true
 

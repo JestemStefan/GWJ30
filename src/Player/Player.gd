@@ -40,6 +40,8 @@ onready var floor_check = $FloorCast
 onready var anim_tree = $AnimationTree
 onready var melee_shape = $MeleeShape
 onready var hud = $HUD
+var wep_cont = null
+var wep_switchto: int = 0
 
 # Utils
 var input_amount = 1.0
@@ -55,12 +57,10 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	first_person_offset = self.transform.origin
 	third_person_offset = camera_controller.transform.origin
-	var wep_cont = get_node_or_null(weapon_container)
+	wep_cont = get_node_or_null(weapon_container)
 	if wep_cont:
 		if wep_cont.get_child_count() > 0:
-			print(current_weapon)
 			current_weapon = wep_cont.get_child(0)
-			print(current_weapon)
 	anim_tree.active = true
 	# Set up IK
 	right_hand_ik.start()
@@ -143,6 +143,26 @@ func action_inputs():
 		do_melee_attack()
 	if Input.is_action_just_pressed("dodge") and not is_sliding:
 		dodge(rotated_input_vector)
+	if Input.is_action_just_pressed("wep1"):
+		wep_switchto = 0
+		anim_tree.set("parameters/switchgun/active", true)
+	if Input.is_action_just_pressed("wep2"):
+		wep_switchto = 1
+		anim_tree.set("parameters/switchgun/active", true)
+	if Input.is_action_just_pressed("wep3"):
+		wep_switchto = 2
+		anim_tree.set("parameters/switchgun/active", true)
+		
+
+func switch_weapon():
+	for n in range(3):
+		var wep = wep_cont.get_child(n)
+		if n == wep_switchto:
+			current_weapon = wep
+			wep.visible = true
+		else:
+			wep.visible = false
+	hud.set_crosshair(wep_switchto)
 
 func dodge(direction: Vector3):
 	var relative_dodge_dir = direction.rotated(Vector3(0,1.0,0), -self.global_transform.basis.get_euler().y)

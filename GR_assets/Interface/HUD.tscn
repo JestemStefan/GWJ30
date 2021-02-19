@@ -1,7 +1,7 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://raw_assets/fonts/Inconsolata-Regular.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://raw_assets/2D/interface/crosshair118.png" type="Texture" id=2]
+[ext_resource path="res://raw_assets/2D/interface/crosshair121.png" type="Texture" id=2]
 [ext_resource path="res://src/Player/HUD.gd" type="Script" id=3]
 [ext_resource path="res://GR_assets/Interface/HUDfONT.tres" type="DynamicFont" id=4]
 [ext_resource path="res://raw_assets/2D/environment/dirtfloor1.png" type="Texture" id=5]
@@ -9,6 +9,8 @@
 [ext_resource path="res://raw_assets/2D/interface/vignette.png" type="Texture" id=7]
 [ext_resource path="res://raw_assets/fonts/AnotherDanger120.tres" type="DynamicFont" id=8]
 [ext_resource path="res://raw_assets/2D/effects/blad.png" type="Texture" id=9]
+[ext_resource path="res://raw_assets/2D/interface/crosshair102.png" type="Texture" id=10]
+[ext_resource path="res://raw_assets/2D/interface/crosshair151.png" type="Texture" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -47,7 +49,7 @@ tracks/1/keys = {
 length = 0.2
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("CenterContainer/Crosshair:rect_min_size")
+tracks/0/path = NodePath("CenterContainer/CrosshairContainer:rect_min_size")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -56,43 +58,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.15, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 64, 64 ), Vector2( 128, 128 ), Vector2( 64, 64 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("CenterContainer/Crosshair:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.15, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("VignetteCenter/Vignette:self_modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.15, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 0.25098 ), Color( 0, 0, 0, 0.537255 ), Color( 0, 0, 0, 0.25098 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("VignetteCenter/Vignette:rect_min_size")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = false
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.15, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 3600, 2600 ), Vector2( 2400, 1800 ), Vector2( 3600, 2600 ) ]
+"values": [ Vector2( 64, 64 ), Vector2( 96, 96 ), Vector2( 64, 64 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -127,7 +93,7 @@ resource_name = "Heartbeat"
 length = 0.2
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("CenterContainer/Crosshair:rect_min_size")
+tracks/0/path = NodePath("CenterContainer/CrosshairContainer/Crosshair1:rect_min_size")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -139,7 +105,7 @@ tracks/0/keys = {
 "values": [ Vector2( 64, 64 ), Vector2( 128, 128 ), Vector2( 64, 64 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("CenterContainer/Crosshair:self_modulate")
+tracks/1/path = NodePath("CenterContainer/CrosshairContainer/Crosshair1:self_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -242,14 +208,50 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Crosshair" type="TextureRect" parent="Root/CenterContainer"]
+[node name="CrosshairContainer" type="Control" parent="Root/CenterContainer"]
 margin_left = 32.0
 margin_top = 32.0
 margin_right = 96.0
 margin_bottom = 96.0
 rect_min_size = Vector2( 64, 64 )
 mouse_filter = 2
+
+[node name="Crosshair1" type="TextureRect" parent="Root/CenterContainer/CrosshairContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 64, 64 )
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 10 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Crosshair2" type="TextureRect" parent="Root/CenterContainer/CrosshairContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 64, 64 )
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Crosshair3" type="TextureRect" parent="Root/CenterContainer/CrosshairContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 64, 64 )
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 11 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false

@@ -1,7 +1,8 @@
 extends EnemyClass
 
 # Config
-export var move_speed = 8.0
+export var move_speed = 10.0
+export var charge_speed = 12.0
 export var jump_speed = 12.0
 export var dodge_speed = 64.0
 export(float) var gravity = -9.8
@@ -38,9 +39,7 @@ func _ready():
 	var wep_cont = get_node_or_null(weapon_container)
 	if wep_cont:
 		if wep_cont.get_child_count() > 0:
-			print(current_weapon)
 			current_weapon = wep_cont.get_child(0)
-			print(current_weapon)
 	anim_tree.active = true
 	# Set up IK
 	right_hand_ik.start()
@@ -76,10 +75,7 @@ func sliding_logic(delta):
 
 func update_animation(delta):
 	if anim_tree.get("parameters/melee/active") == false:
-		if charging:
-			Utils.fixed_look_at_y(self, self.global_transform.origin + Utils.get_flat_direction(player_position, self.global_transform.origin))
-		else:
-			Utils.fixed_look_at_y(self, self.global_transform.origin + Utils.get_flat_direction(path[path_node], self.global_transform.origin))
+		Utils.fixed_look_at_y(self, self.global_transform.origin + Utils.get_flat_direction(player_position, self.global_transform.origin)*2)
 	if is_sliding:
 		anim_tree.set("parameters/dodge_blend/blend_amount", impact_velocity.length() / dodge_speed)
 	else:
@@ -102,17 +98,22 @@ func get_move_vector() -> Vector3:
 	if charging:
 		return Utils.get_flat_direction(self.global_transform.origin, player_position)
 	else:
-		return Utils.get_flat_direction(self.global_transform.origin, path[path_node])
+		return self.global_transform.basis.x
 	#return input_vector.rotated(Vector3.UP, camera_controller.global_transform.basis.get_euler().y + PI)
 
 func action_ai():
-	aim_position = player_position
+	aim_position = player_position + Vector3.UP
 	if $FrontCast.is_colliding():
 		var body = $FrontCast.get_collider()
 		if body.get_collision_layer_bit(0) == true:
 			if floor_check.is_colliding():
 				vertical_velocity = jump_speed
-		if body.is_in_group("Player"):
+		if body.is_in_group("Player") and anim_tree.get("parameters/melee/active") == false:
+			do_melee_attack()
+	if anim_tree.get("parameters/melee/active") == false:
+		if not charging:
+			current_weapon.fire(aim_position, false)
+		elif player_position.distance_to(self.global_transform.origin) < 8.0:
 			do_melee_attack()
 	#if Input.is_action_just_pressed("jump") and floor_check.is_colliding():
 	#	vertical_velocity = jump_speed
@@ -131,6 +132,7 @@ func dodge(direction: Vector3):
 	self.vertical_velocity = 4.0
 
 func do_melee_attack():
+	Utils.fixed_look_at_y(self, self.global_transform.origin + Utils.get_flat_direction(player_position, self.global_transform.origin)*2)
 	right_hand_ik.interpolation = 0.02
 	#right_hand_ik.stop()
 	#left_hand_ik.stop()
@@ -157,8 +159,10 @@ func melee_do_hit():
 			pass
 	for hit in hits:
 		if is_instance_valid(hit["collider"]):
-			if hit["collider"].has_method("take_damage"):
-				hit["collider"].take_damage(self.global_transform.origin, self.global_transform.basis.z, 20.0)
+			var target = hit["collider"]
+			if target.is_in_group("Player"):
+				target.impact_velocity = Utils.get_flat_direction(self.global_transform.origin, target.global_transform.origin) * melee_knockback
+				target.take_damage(self.global_transform.origin, self.global_transform.basis.z, melee_damage)
 
 func vertical_velocity_logic(delta):
 	# If our head hit something, end jump
@@ -195,7 +199,7 @@ func convert_movement_to_anim(move_vector) -> Vector2:
 func take_damage(point, normal, damage):
 	do_damage_flash(true, 0)
 	do_damage_flash(true, 1)
-	self.impact_velocity += Utils.get_flat_direction(point, self.global_transform.origin) * 15.0
+	self.impact_velocity = Utils.get_flat_direction(point, self.global_transform.origin) * 20.0
 	Utils.instantiate(load("res://GR_assets/Effects/bloodhit/BloodHit.tscn"), self.global_transform.origin, self.global_transform.basis.z, 6.0)
 	health -= damage
 	yield(get_tree().create_timer(0.1), "timeout")
@@ -222,7 +226,7 @@ func _on_DodgeTimer_timeout():
 	$DodgeTimer.wait_time = rand_range(3.0, 10.0)
 
 func _on_AITimer_timeout():
-	#charging = !charging
+	charging = !charging
 	$AITimer.wait_time = rand_range(3.0, 10.0)
 
 func _on_PathTimer_timeout():
