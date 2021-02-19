@@ -2872,7 +2872,7 @@ material/0 = ExtResource( 7 )
 material/1 = ExtResource( 7 )
 
 [node name="Weapon" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.940033, -0.259189, 0.221717, 0.33784, -0.618125, 0.709778, -0.0469169, 0.742121, 0.668623, -0.57786, 1.17409, 0.637962 )
+transform = Transform( -0.941853, -0.327461, 0.0753783, 0.310848, -0.934276, -0.174649, 0.127615, -0.141061, 0.981742, -0.613823, 1.16754, -0.297079 )
 bone_name = "hand_r"
 
 [node name="GunOffset" type="Spatial" parent="Armature/Skeleton/Weapon"]
@@ -2899,7 +2899,7 @@ magnet = Vector3( 2, 2, -4 )
 target_node = NodePath("../../../SiphonAim")
 
 [node name="HeartAttach" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 1.08901, -3.43322e-09, 1.71204e-07, 4.52942e-08, 1.05578, -0.266936, -1.65141e-07, 0.266936, 1.05578, -7.73554e-09, 1.7118, -0.112203 )
+transform = Transform( 0.740067, -7.06758e-09, 8.46965e-08, 2.76129e-08, 0.717489, -0.181405, -8.03807e-08, 0.181405, 0.71749, -8.07927e-09, 1.76858, -0.107153 )
 bone_name = "heartbeat"
 
 [node name="Sprite3D" type="Sprite3D" parent="Armature/Skeleton/HeartAttach"]

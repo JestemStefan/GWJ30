@@ -46,7 +46,6 @@ func _physics_process(delta):
 			
 		# move to point
 		else:
-			
 			process_movement(dir)
 			
 			

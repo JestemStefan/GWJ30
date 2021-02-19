@@ -130,7 +130,7 @@ func _physics_process(delta):
 func action_inputs():
 	if Input.is_action_just_pressed("jump") and floor_check.is_colliding():
 		vertical_velocity = jump_speed
-	if Input.is_action_pressed("left_click"):
+	if Input.is_action_just_pressed("left_click"):
 		if current_weapon != null and blood > 0:
 			if current_weapon.fire(camera_controller.aim_position, heartbeat_buff):
 				blood -= 1

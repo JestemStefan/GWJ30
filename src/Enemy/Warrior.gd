@@ -1,14 +1,13 @@
 extends EnemyClass
 
 # Config
-
+export var move_speed = 8.0
+export var jump_speed = 12.0
+export var dodge_speed = 64.0
 export(float) var gravity = -9.8
 export(NodePath) var weapon_container
 
 # Functional
-var move_speed = 8.0
-var jump_speed = 12.0
-var dodge_speed = 64.0
 var input_vector: Vector3 = Vector3.ZERO
 var rotated_input_vector: Vector3 = Vector3.ZERO
 var desired_velocity: Vector3 = Vector3.ZERO
@@ -22,6 +21,7 @@ var wep_cont_node = null
 
 # Gameplay
 var aim_position = Vector3.ZERO
+enum FIGHT_MODE { CHARGE, RANGED }
 
 # Node assignments
 onready var right_hand_ik = $Armature/Skeleton/RightHandIK
@@ -46,19 +46,8 @@ func _ready():
 
 func _physics_process(delta):
 	rotated_input_vector = get_move_vector()
-	# Handle sliding
-	if impact_velocity.length() > 16.0:
-		is_sliding = true
-		desired_velocity = impact_velocity
-		anim_tree.set("parameters/dodge_blend/blend_amount", impact_velocity.length() / dodge_speed)
-		if floor_check.is_colliding():
-			Utils.instantiate(load("res://GR_assets/Effects/DustEffect.tscn"),  self.global_transform.origin, Vector3.UP)
-	else:
-		is_sliding = false
-		desired_velocity = lerp(desired_velocity, rotated_input_vector * move_speed, 1.0 - pow(0.01, delta))
-		anim_tree.set("parameters/dodge_blend/blend_amount", 0.0)
-	# Slow sliding speed down
-	impact_velocity = lerp(impact_velocity, Vector3.ZERO, 1.0 - pow(0.2, delta))
+	# Dodging/knockback
+	sliding_logic(delta)
 	# Add up/down logic
 	vertical_velocity_logic(delta)
 	# Add everything together and move
@@ -66,9 +55,30 @@ func _physics_process(delta):
 	current_velocity = move_and_slide(final_move, Vector3.UP, false, 4, 0.8, false)
 	# Update ground status
 	is_grounded = is_on_floor()
-	# Do all the player stuff that isn't walking
+	# Make decisions like where to walk and shoot
 	action_ai()
-	# Do animation stuff
+	# Update the animation tree
+	update_animation(delta)
+
+func sliding_logic(delta):
+	# Handle sliding
+	if impact_velocity.length() > 16.0:
+		is_sliding = true
+		desired_velocity = impact_velocity
+		if floor_check.is_colliding():
+			Utils.instantiate(load("res://GR_assets/Effects/DustEffect.tscn"),  self.global_transform.origin, Vector3.UP, 0.5)
+	else:
+		is_sliding = false
+		desired_velocity = lerp(desired_velocity, rotated_input_vector * move_speed, 1.0 - pow(0.01, delta))
+	# Slow sliding speed down
+	impact_velocity = lerp(impact_velocity, Vector3.ZERO, 1.0 - pow(0.2, delta))
+
+func update_animation(delta):
+	Utils.fixed_look_at_y(self, self.global_transform.origin + Utils.get_flat_direction(player_position, self.global_transform.origin))
+	if is_sliding:
+		anim_tree.set("parameters/dodge_blend/blend_amount", impact_velocity.length() / dodge_speed)
+	else:
+		anim_tree.set("parameters/dodge_blend/blend_amount", 0.0)
 	if is_grounded:
 		anim_tree.set("parameters/run_blend/blend_position", convert_movement_to_anim(desired_velocity))
 		anim_tree.set("parameters/run_speed/scale", current_velocity.length() / move_speed)
@@ -81,6 +91,7 @@ func _physics_process(delta):
 		new_ik_interp = 0.9 - anim_tree.get("parameters/dodge_blend/blend_amount")
 	# Finalize the IK interp so its always smooth
 	right_hand_ik.interpolation = lerp(right_hand_ik.interpolation, new_ik_interp, 3.0 * delta)
+	
 
 func get_move_vector() -> Vector3:
 	return Utils.get_flat_direction(self.global_transform.origin, player_position)
@@ -169,10 +180,30 @@ func convert_movement_to_anim(move_vector) -> Vector2:
 func take_damage(point, normal, damage):
 	do_damage_flash(true, 0)
 	do_damage_flash(true, 1)
+	self.impact_velocity += Utils.get_flat_direction(point, self.global_transform.origin) * 15.0
+	Utils.instantiate(load("res://GR_assets/Effects/bloodhit/BloodHit.tscn"), self.global_transform.origin, self.global_transform.basis.z, 6.0)
+	health -= damage
+	yield(get_tree().create_timer(0.1), "timeout")
 	do_damage_flash(false, 0)
 	do_damage_flash(false, 1)
-	self.impact_velocity += Utils.get_flat_direction(point, self.global_transform.origin) * 15.0
+	if health <= 0:
+		die()
 
 func die():
 	.die()
 	queue_free()
+
+func _on_JumpTrigger_body_entered(body):
+	if body.get_collision_layer_bit(0) == true:
+		if floor_check.is_colliding():
+			vertical_velocity = jump_speed
+	if body.is_in_group("Player"):
+		do_melee_attack()
+
+
+func _on_DodgeTimer_timeout():
+	pass # Replace with function body.
+
+
+func _on_AITimer_timeout():
+	pass # Replace with function body.

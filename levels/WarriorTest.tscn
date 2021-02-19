@@ -150,7 +150,10 @@ shape = SubResource( 4 )
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 pitch_scale = 0.85
-autoplay = true
+
+[node name="Warrior" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.4464, 0 )
+gravity = -24.0
 
 [node name="FlyingNav" type="MeshInstance" parent="." groups=[
 "Flying_Nav",
@@ -169,6 +172,3 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 35.1462, -36.9136 )
 
 [node name="Watcher3" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 35.1462, 32.5426 )
-
-[node name="Warrior" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.4464, 0 )
