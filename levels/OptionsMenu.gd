@@ -9,6 +9,8 @@ func _ready():
 	for item in Globals.SCREEN_SETTINGS:
 		screen_settings_option_button.add_item(item)
 	
+	screen_settings_option_button.select(Globals.SCREEN_SETTINGS.find(Globals.SCREEN_SETTING))
+	
 	#OS.window_borderless = true
 	#OS.window_fullscreen = true
 	
@@ -22,6 +24,7 @@ func _on_CloseButton_pressed():
 
 
 func _on_ScreenSettingsOptionButton_item_selected(index):
+	Globals.SCREEN_SETTING = Globals.SCREEN_SETTINGS[index]
 	match Globals.SCREEN_SETTINGS[index]:
 		"Full Screen Windowed":
 			OS.window_fullscreen = true
