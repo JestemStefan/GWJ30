@@ -17,6 +17,7 @@ var dead: bool = false
 var player: KinematicBody
 
 func _ready():
+	$AnimationPlayer.play("Heartbeat")
 	boss = get_tree().get_nodes_in_group("Boss")[0]
 	player = get_tree().get_nodes_in_group("Player")[0]
 	# Save a copy of all the materials used for this entity

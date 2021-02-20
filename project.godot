@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Enemy/Boss.gd"
 }, {
+"base": "RigidBody",
+"class": "Egg",
+"language": "GDScript",
+"path": "res://src/Gameplay/SpawnEgg.gd"
+}, {
 "base": "Entity",
 "class": "EnemyClass",
 "language": "GDScript",
@@ -41,6 +46,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Boss": "",
+"Egg": "",
 "EnemyClass": "",
 "Entity": "",
 "Flying_Nav": "",
