@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://raw_assets/3D/environment/Heart/HeartMaterial.material" type="Material" id=1]
 [ext_resource path="res://GR_assets/Enemies/heart.material" type="Material" id=2]
 [ext_resource path="res://GR_assets/Enemies/Heart.gd" type="Script" id=3]
+[ext_resource path="res://raw_assets/audio/transfusion_heartbeat_fx.wav" type="AudioStream" id=4]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Heart"
@@ -66,6 +67,20 @@ tracks/3/loop_wrap = true
 tracks/3/imported = true
 tracks/3/enabled = true
 tracks/3/keys = PoolRealArray( 0, 1, 0, 0, 0, 4.77049e-18, -9.31323e-10, 3.25963e-09, 1, 1, 1, 1, 0.0666667, 1, 0, 0, 0, -3.11188e-17, -3.71895e-09, 1.53407e-08, 1, 1.0017, 1.0017, 1.0017, 0.133333, 1, 0, 0, 0, 2.78731e-17, -1.83809e-09, 5.05473e-09, 1, 1.01336, 1.01336, 1.01336, 0.333333, 1, 0, 0, 0, -1.3968e-08, 1.746e-09, -2.1825e-09, 1, 1.06681, 1.06681, 1.06681, 0.4, 1, 0, 0, 0, 4.51856e-18, -1.73562e-09, 3.03734e-09, 1, 1.07319, 1.07319, 1.07319, 0.466667, 1, 0, 0, 0, 1.50925e-08, -9.43282e-10, 9.43282e-09, 1, 0.987321, 0.987321, 0.987321, 0.533333, 1, 0, 0, 0, -2.73138e-17, -2.1795e-09, -1.117e-08, 1, 0.854619, 0.854619, 0.854619, 0.6, 1, 0, 0, 0, 8.95368e-09, 1.11921e-09, 6.15565e-09, 1, 0.832125, 0.832125, 0.832125, 0.666667, 1, 0, 0, 0, 0, -5.73091e-17, 6.55605e-09, 1, 0.852332, 0.852332, 0.852332, 0.933333, 1, 0, 0, 0, 0, 1.41848e-16, -9.41568e-09, 1, 0.989119, 0.989119, 0.989119, 1, 1, 0, 0, 0, 4.77049e-18, -9.31323e-10, 3.25963e-09, 1, 1, 1, 1 )
+tracks/4/type = "audio"
+tracks/4/path = NodePath("Heartbeat_Sound")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 4 )
+} ],
+"times": PoolRealArray( 0.1 )
+}
 
 [sub_resource type="SphereShape" id=4]
 radius = 3.85284
@@ -110,3 +125,6 @@ anims/Heartbeat = SubResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 4 )
+
+[node name="Heartbeat_Sound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 4 )

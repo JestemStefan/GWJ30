@@ -872,7 +872,7 @@ bone_name = "heart_2"
 [node name="Heart" parent="Armature/Skeleton/BoneAttachment2" instance=ExtResource( 2 )]
 transform = Transform( 0.966883, -0.00113751, -0.255219, 0.0216242, 0.996761, 0.0774792, 0.254303, -0.0804322, 0.963774, -1.88755, -1.22188, -8.85467 )
 
-[node name="Hear2" parent="Armature/Skeleton/BoneAttachment2" instance=ExtResource( 2 )]
+[node name="Heart2" parent="Armature/Skeleton/BoneAttachment2" instance=ExtResource( 2 )]
 transform = Transform( -0.139414, 0.0692828, 0.987809, 0.0419312, 0.997069, -0.0640144, -0.989347, 0.0324955, -0.14191, -7.16881, 9.47314, 4.32301 )
 
 [node name="Heartplate3" parent="Armature/Skeleton/BoneAttachment2" instance=ExtResource( 5 )]
