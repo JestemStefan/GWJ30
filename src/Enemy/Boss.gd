@@ -50,6 +50,14 @@ func enter_state(new_state):
 		
 		State.DIE:
 			play_animation("Dead")
+			$SpawnTimer.stop()
+			$LeechTimer.stop()
+			var all_enemies = get_tree().get_nodes_in_group("Enemy")
+			for enemy in all_enemies:
+				if enemy is Meatball or enemy is Egg:
+					enemy.call_deferred("free")
+				else:
+					enemy.die()
 
 
 func _process(delta):
@@ -130,7 +138,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 
 func heart_destoyed():
-	print("heart destroyed")
+	#print("heart destroyed")
 	enter_state(State.DAMAGED)
 	
 
@@ -147,3 +155,7 @@ func spawn_eggs():
 
 func _on_SpawnTimer_timeout():
 	enter_state(State.SPAWNING)
+
+
+func _on_LeechTimer_timeout():
+	spawn_eggs()

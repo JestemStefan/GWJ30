@@ -12,6 +12,7 @@ rings = 8
 
 [node name="SpawnEgg" type="RigidBody" groups=[
 "Egg",
+"Enemy",
 ]]
 contacts_reported = 1
 contact_monitor = true
