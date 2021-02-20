@@ -95,10 +95,13 @@ func update_animation(delta):
 	
 
 func get_move_vector() -> Vector3:
-	if charging:
-		return Utils.get_flat_direction(self.global_transform.origin, player_position)
+	if $FloorCast.is_colliding():
+		if charging:
+			return Utils.get_flat_direction(self.global_transform.origin, player_position)
+		else:
+			return self.global_transform.basis.x
 	else:
-		return self.global_transform.basis.x
+		return rotated_input_vector
 	#return input_vector.rotated(Vector3.UP, camera_controller.global_transform.basis.get_euler().y + PI)
 
 func action_ai():
@@ -115,6 +118,10 @@ func action_ai():
 			current_weapon.fire(aim_position, false)
 		elif player_position.distance_to(self.global_transform.origin) < 8.0:
 			do_melee_attack()
+			if player_position.y > self.global_transform.origin.y + 3.0:
+				if floor_check.is_colliding():
+					vertical_velocity = jump_speed
+				
 	#if Input.is_action_just_pressed("jump") and floor_check.is_colliding():
 	#	vertical_velocity = jump_speed
 	#if Input.is_action_pressed("left_click"):
@@ -197,6 +204,8 @@ func convert_movement_to_anim(move_vector) -> Vector2:
 
 # OVERRIDE
 func take_damage(point, normal, damage):
+	if not is_grounded and 10.0 > vertical_velocity:
+		vertical_velocity = 10.0
 	do_damage_flash(true, 0)
 	do_damage_flash(true, 1)
 	self.impact_velocity = Utils.get_flat_direction(point, self.global_transform.origin) * 20.0
@@ -223,7 +232,7 @@ func _on_DodgeTimer_timeout():
 			dodge(self.global_transform.basis.x)
 		3:
 			dodge(-self.global_transform.basis.x)
-	$DodgeTimer.wait_time = rand_range(3.0, 10.0)
+	$DodgeTimer.wait_time = rand_range(2.0, 9.0)
 
 func _on_AITimer_timeout():
 	charging = !charging

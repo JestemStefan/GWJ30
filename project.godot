@@ -39,7 +39,7 @@ _global_script_class_icons={
 [application]
 
 config/name="GWJ30"
-run/main_scene="res://levels/GameTest.tscn"
+run/main_scene="res://levels/Arena.tscn"
 config/icon="res://icon.png"
 
 [autoload]

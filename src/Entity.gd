@@ -8,6 +8,8 @@ var mesh_mats: Array = []
 var meshes: Array = []
 onready var damage_flash_mat: SpatialMaterial = preload("res://GR_assets/Enemies/HitFlash.material")
 
+var dead: bool = false
+
 func _ready():
 	# Save a copy of all the materials used for this entity
 	recursive_mesh_find(self)
@@ -35,8 +37,9 @@ func take_damage(point, normal, damage):
 	do_damage_flash(true)
 	yield(get_tree().create_timer(0.075), "timeout")
 	do_damage_flash(false)
-	if health <= 0:
+	if health <= 0 and not dead:
 		die()
 
 func die():
+	dead = true
 	pass

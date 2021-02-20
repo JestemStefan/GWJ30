@@ -25,6 +25,7 @@ var is_grounded: bool = false
 var is_sliding: bool = false
 var current_weapon = null
 var wep_cont_node = null
+var parrying: bool = false
 
 # Gameplay
 var heart_rate: float = 20.0
@@ -38,7 +39,7 @@ onready var left_hand_ik = $Armature/Skeleton/LeftHandIK
 onready var player_mesh = $Armature/Skeleton/CharacterMesh
 onready var floor_check = $FloorCast
 onready var anim_tree = $AnimationTree
-onready var melee_shape = $MeleeShape
+onready var melee_shape = $CameraYaw/CameraPitch/GunAimPivot/MeleeShape
 onready var hud = $HUD
 var wep_cont = null
 var wep_switchto: int = 0
@@ -49,11 +50,13 @@ var first_person_offset
 var third_person_offset
 onready var normal_material = preload("res://GR_assets/Player/Player_spatialmaterial.tres")
 onready var invis_material = preload("res://GR_assets/Player/Invisible_spatialmaterial.tres")
+onready var parry_effect = preload("res://GR_assets/Effects/bloodhit/ParryHit.tscn")
 onready var space_state = get_world().get_direct_space_state()
 var new_ik_interp: float
-var dead: bool = false
+
 
 func _ready():
+	print(sqrt(-1))
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	first_person_offset = self.transform.origin
 	third_person_offset = camera_controller.transform.origin
@@ -273,18 +276,30 @@ func _on_HeartbeatTimer_timeout():
 
 # OVERRIDE
 func take_damage(point, normal, damage):
-	camera_controller.add_shake(0.3)
-	hud.damage()
-	Utils.instantiate(load("res://GR_assets/Effects/bloodhit/BloodHit.tscn"), self.global_transform.origin, self.global_transform.basis.z, 6.0)
-	if camera_controller.third_person:
-		do_damage_flash(true, 0)
-	do_damage_flash(true, 1)
-	camera_controller.camera.fov = 70
-	yield(get_tree().create_timer(0.01), "timeout")
-	do_damage_flash(false, 0)
-	do_damage_flash(false, 1)
-	decrease_heart_rate(damage)
+	if not parrying:
+		camera_controller.add_shake(0.5)
+		hud.damage()
+		Utils.instantiate(load("res://GR_assets/Effects/bloodhit/BloodHit.tscn"), self.global_transform.origin, self.global_transform.basis.z, 6.0)
+		if camera_controller.third_person:
+			do_damage_flash(true, 0)
+		do_damage_flash(true, 1)
+		camera_controller.camera.fov = 70
+		yield(get_tree().create_timer(0.01), "timeout")
+		do_damage_flash(false, 0)
+		do_damage_flash(false, 1)
+		decrease_heart_rate(damage)
+	else:
+		camera_controller.add_shake(0.5)
+		increase_heart_rate(10.0)
+		Utils.instantiate(parry_effect, point, normal, 3.0)
+		Engine.time_scale = 0.1
+		yield(get_tree().create_timer(0.02), "timeout")
+		Engine.time_scale = 1.0
+		
 
 func die():
 	dead = true
 	hud.game_over()
+
+func set_parry(val):
+	parrying = val
