@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://GR_assets/Enemies/Heartplates/Heartplate4.material" type="Material" id=1]
 [ext_resource path="res://raw_assets/3D/environment/Heartplates/2.material" type="Material" id=2]
@@ -18,8 +18,16 @@ surfaces/0 = {
 "vertex_count": 874
 }
 
-[node name="Heartplate4" type="Spatial"]
+[sub_resource type="SphereShape" id=2]
+radius = 7.8363
+
+[node name="Heartplate4" type="StaticBody"]
+input_ray_pickable = false
 
 [node name="Heartplate4" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
 material/0 = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.02207, 0, -1.61646 )
+shape = SubResource( 2 )
