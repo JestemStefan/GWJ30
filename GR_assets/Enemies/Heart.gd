@@ -13,7 +13,7 @@ var mesh_mats: Array = []
 var meshes: Array = []
 onready var damage_flash_mat: SpatialMaterial = preload("res://GR_assets/Enemies/HitFlash.material")
 
-var dead: bool = false
+var enabled: bool = false
 var player: KinematicBody
 
 func _ready():
@@ -44,16 +44,18 @@ func do_damage_flash(flashing: bool, mat_index = 0):
 
 
 func take_damage(point, normal, damage):
-	Utils.instantiate(load("res://GR_assets/Effects/bloodhit/BloodHit.tscn"), point, normal, 6.0)
-	health -= damage
-	do_damage_flash(true)
-	yield(get_tree().create_timer(0.075), "timeout")
-	do_damage_flash(false)
-	
-	Utils.instantiate(blood_pickup, self.global_transform.origin + Vector3.UP, Vector3.UP)
-	
-	if health <=0:
-		die()
+	if enabled:
+		
+		Utils.instantiate(load("res://GR_assets/Effects/bloodhit/BloodHit.tscn"), point, normal, 6.0)
+		health -= damage
+		do_damage_flash(true)
+		yield(get_tree().create_timer(0.075), "timeout")
+		do_damage_flash(false)
+		
+		Utils.instantiate(blood_pickup, self.global_transform.origin + Vector3.UP, Vector3.UP)
+		
+		if health <=0:
+			die()
 	
 func die():
 	player.increase_heart_rate(kill_hr_reward)

@@ -724,7 +724,7 @@ tracks/21/keys = {
 } ]
 }
 
-[sub_resource type="CylinderShape" id=8]
+[sub_resource type="CylinderShape" id=7]
 radius = 21.414
 height = 10.3669
 
@@ -870,10 +870,10 @@ transform = Transform( 0.998725, -0.048559, 0.0138293, 0.0487499, 0.998716, -0.0
 bone_name = "heart_2"
 
 [node name="Heart" parent="Armature/Skeleton/BoneAttachment2" instance=ExtResource( 2 )]
-transform = Transform( -0.139414, 0.0692828, 0.987809, 0.0419312, 0.997069, -0.0640144, -0.989347, 0.0324955, -0.14191, -7.16881, 9.47314, 4.32301 )
+transform = Transform( 0.966883, -0.00113751, -0.255219, 0.0216242, 0.996761, 0.0774792, 0.254303, -0.0804322, 0.963774, -1.88755, -1.22188, -8.85467 )
 
-[node name="Heart2" parent="Armature/Skeleton/BoneAttachment2" instance=ExtResource( 2 )]
-transform = Transform( 0.966883, -0.00113752, -0.255219, 0.0216242, 0.996761, 0.0774792, 0.254303, -0.0804322, 0.963774, -1.88755, -1.22188, -8.85467 )
+[node name="Hear2" parent="Armature/Skeleton/BoneAttachment2" instance=ExtResource( 2 )]
+transform = Transform( -0.139414, 0.0692828, 0.987809, 0.0419312, 0.997069, -0.0640144, -0.989347, 0.0324955, -0.14191, -7.16881, 9.47314, 4.32301 )
 
 [node name="Heartplate3" parent="Armature/Skeleton/BoneAttachment2" instance=ExtResource( 5 )]
 transform = Transform( 1, 9.45874e-10, 0, 8.87667e-10, 1, 0, 7.45058e-09, 0, 1, -1.14348, -1.73228, -8.6461 )
@@ -889,7 +889,7 @@ anims/Spawn = SubResource( 6 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.57557, 5.18718, -1.52073 )
-shape = SubResource( 8 )
+shape = SubResource( 7 )
 
 [node name="SpawnTimer" type="Timer" parent="."]
 one_shot = true

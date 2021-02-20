@@ -29,6 +29,7 @@ onready var heartplate_4: StaticBody = $Armature/Skeleton/BoneAttachment2/Heartp
 func _ready():
 	spawn_timer.start(10)
 	current_wave = 1
+	heart1.enabled = true
 	enter_state(State.IDLE)
 
 func enter_state(new_state):
@@ -110,7 +111,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		"Damage":
 			
 			current_wave += 1
-			
+			print(current_wave)
 			if current_wave > 4:
 				enter_state(State.DIE)
 				#Trigger endgame
@@ -118,6 +119,16 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			else:
 				spawn_timer.start(10)
 				enter_state(State.IDLE)
+				match current_wave:
+					1: 
+						heart1.enabled = true
+					2: 
+						heart2.enabled = true
+					3: 
+						heart3.enabled = true
+					4: 
+						heart4.enabled = true
+						
 			
 		"Dead":
 			pass
