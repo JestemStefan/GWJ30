@@ -99,11 +99,11 @@ func calculate_shooting_angle(distance_to_target):
 	return 0.5 * asin((9.8 * distance_to_target)/pow(projectile_speed, 2))
 
 func shoot_meatball():
-	#var angle = calculate_shooting_angle(sqrt(dist2player))
+	var angle = calculate_shooting_angle(sqrt(dist2player))
 	var projectile: Meatball = meatball.instance()
 	var shoot_dir: Vector3 = -global_transform.basis.z
-	#projectile.direction = shoot_dir.rotated(Vector3.RIGHT, angle)
-	projectile.direction = self.global_transform.origin.direction_to(player_position + Vector3.UP)
+	projectile.direction = shoot_dir.rotated(Vector3.RIGHT, angle)
+	#projectile.direction = self.global_transform.origin.direction_to(player_position + Vector3.UP)
 	self.get_parent().add_child(projectile)
 	projectile.global_transform.origin = projectile_origin.global_transform.origin
 

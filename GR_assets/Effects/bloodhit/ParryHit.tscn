@@ -10,43 +10,44 @@ colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
 
-[sub_resource type="ParticlesMaterial" id=5]
+[sub_resource type="ParticlesMaterial" id=3]
 lifetime_randomness = 0.5
 direction = Vector3( 0, 0, 1 )
 gravity = Vector3( 0, -3, 0 )
 initial_velocity = 10.0
 initial_velocity_random = 1.0
-scale = 0.05
+scale = 0.08
 color_ramp = SubResource( 2 )
 
-[sub_resource type="SpatialMaterial" id=13]
+[sub_resource type="SpatialMaterial" id=4]
 emission_enabled = true
 emission = Color( 1, 0.768627, 0, 1 )
 emission_energy = 8.0
 emission_operator = 0
 emission_on_uv2 = false
 
-[sub_resource type="SphereMesh" id=14]
-material = SubResource( 13 )
+[sub_resource type="SphereMesh" id=5]
+material = SubResource( 4 )
 
-[sub_resource type="Curve" id=7]
+[sub_resource type="Curve" id=6]
 _data = [ Vector2( 0, 0.536364 ), 0.0, 0.0, 0, 0, Vector2( 0.522152, 0.927273 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.172727 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=8]
-curve = SubResource( 7 )
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
 
-[sub_resource type="ParticlesMaterial" id=12]
+[sub_resource type="ParticlesMaterial" id=8]
 direction = Vector3( 1, 1, 1 )
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity_random = 0.5
 angle = 70.5
 angle_random = 1.0
-scale = 4.0
+scale = 5.0
 scale_random = 1.0
-scale_curve = SubResource( 8 )
+scale_curve = SubResource( 7 )
+color = Color( 1, 0.972549, 0.576471, 1 )
 
-[sub_resource type="SpatialMaterial" id=10]
+[sub_resource type="SpatialMaterial" id=9]
 flags_transparent = true
 flags_unshaded = true
 vertex_color_use_as_albedo = true
@@ -56,20 +57,20 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 albedo_texture = ExtResource( 1 )
 
-[sub_resource type="QuadMesh" id=11]
-material = SubResource( 10 )
+[sub_resource type="QuadMesh" id=10]
+material = SubResource( 9 )
 
 [node name="ParryHit" type="Spatial"]
 script = ExtResource( 3 )
 
 [node name="Particles" type="Particles" parent="."]
 emitting = false
-amount = 12
+amount = 16
 one_shot = true
 explosiveness = 1.0
 local_coords = false
-process_material = SubResource( 5 )
-draw_pass_1 = SubResource( 14 )
+process_material = SubResource( 3 )
+draw_pass_1 = SubResource( 5 )
 
 [node name="Timer" type="Timer" parent="."]
 
@@ -79,6 +80,6 @@ amount = 2
 lifetime = 0.15
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource( 12 )
-draw_pass_1 = SubResource( 11 )
+process_material = SubResource( 8 )
+draw_pass_1 = SubResource( 10 )
 [connection signal="timeout" from="Timer" to="." method="on_timeout"]

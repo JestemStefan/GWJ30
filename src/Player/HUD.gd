@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 func _ready():
-	#OS.set_window_position(Vector2(OS.window_position.x + 440, OS.window_position.y))
+	OS.set_window_position(Vector2(OS.window_position.x + 440, OS.window_position.y))
 	pass
 
 func _process(_delta):
@@ -30,8 +30,10 @@ func damage():
 func game_over():
 	$Root/GameOver.visible = true
 	#$GameOverTimer.start(0.2)
-	Engine.time_scale = 0.1
-	$GameOverTimer.start(1)
+	if $GameOverTimer.is_stopped():
+		Engine.time_scale = 0.1
+		$GameOverTimer.paused = false
+		$GameOverTimer.start(0.75)
 
 func set_crosshair(num: int):
 	for n in range(3):

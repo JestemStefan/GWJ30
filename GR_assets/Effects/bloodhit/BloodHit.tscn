@@ -2,7 +2,7 @@
 
 [ext_resource path="res://raw_assets/2D/effects/bloodsplat.tres" type="Material" id=1]
 [ext_resource path="res://src/Effects/SelfDestruct.gd" type="Script" id=2]
-[ext_resource path="res://raw_assets/2D/effects/strike.png" type="Texture" id=3]
+[ext_resource path="res://raw_assets/2D/effects/blad_stretch.png" type="Texture" id=3]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.100756, 1 )
@@ -20,9 +20,9 @@ curve = SubResource( 3 )
 [sub_resource type="ParticlesMaterial" id=5]
 lifetime_randomness = 0.5
 direction = Vector3( 0, 0, -1 )
-spread = 10.0
-gravity = Vector3( 0, -3, 0 )
-initial_velocity = 5.0
+spread = 20.0
+gravity = Vector3( 0, -1, 0 )
+initial_velocity = 3.0
 initial_velocity_random = 1.0
 angle = 180.0
 angle_random = 1.0
@@ -51,7 +51,7 @@ scale_random = 1.0
 scale_curve = SubResource( 8 )
 color = Color( 1, 0, 0, 1 )
 
-[sub_resource type="SpatialMaterial" id=12]
+[sub_resource type="SpatialMaterial" id=10]
 flags_transparent = true
 flags_unshaded = true
 vertex_color_use_as_albedo = true
@@ -62,16 +62,16 @@ particles_anim_loop = false
 albedo_texture = ExtResource( 3 )
 
 [sub_resource type="QuadMesh" id=11]
-material = SubResource( 12 )
+material = SubResource( 10 )
 
 [node name="BloodHit" type="Spatial"]
 script = ExtResource( 2 )
 
 [node name="Particles" type="Particles" parent="."]
 emitting = false
-amount = 10
+amount = 6
 one_shot = true
-explosiveness = 1.0
+explosiveness = 0.88
 process_material = SubResource( 5 )
 draw_pass_1 = SubResource( 6 )
 

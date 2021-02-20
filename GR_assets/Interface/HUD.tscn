@@ -406,4 +406,5 @@ margin_right = 1918.0
 margin_bottom = 1084.0
 
 [node name="GameOverTimer" type="Timer" parent="."]
+pause_mode = 2
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_GameOverTimer_timeout"]

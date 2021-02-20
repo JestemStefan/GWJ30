@@ -116,9 +116,9 @@ func action_ai():
 	if anim_tree.get("parameters/melee/active") == false:
 		if not charging:
 			current_weapon.fire(aim_position, false)
-		elif player_position.distance_to(self.global_transform.origin) < 8.0:
+		elif player_position.distance_to(self.global_transform.origin) < 9.0:
 			do_melee_attack()
-			if player_position.y > self.global_transform.origin.y + 3.0:
+			if player_position.y > self.global_transform.origin.y + 2.0:
 				if floor_check.is_colliding():
 					vertical_velocity = jump_speed
 				
@@ -209,13 +209,12 @@ func take_damage(point, normal, damage):
 	do_damage_flash(true, 0)
 	do_damage_flash(true, 1)
 	self.impact_velocity = Utils.get_flat_direction(point, self.global_transform.origin) * 20.0
-	Utils.instantiate(load("res://GR_assets/Effects/bloodhit/BloodHit.tscn"), point, normal, 6.0)
-	health -= damage
-	yield(get_tree().create_timer(0.1), "timeout")
+	.take_damage(point, normal, damage)
+
+func hit_timer_timeout():
 	do_damage_flash(false, 0)
 	do_damage_flash(false, 1)
-	if health <= 0:
-		die()
+	.hit_timer_timeout()
 
 func die():
 	.die()

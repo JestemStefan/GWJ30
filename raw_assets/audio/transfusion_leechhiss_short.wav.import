@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/transfusion_leechhiss_short.wav-caed50fd42a6bd4b8cb14c93324009fa.sample"
+
+[deps]
+
+source_file="res://raw_assets/audio/transfusion_leechhiss_short.wav"
+dest_files=[ "res://.import/transfusion_leechhiss_short.wav-caed50fd42a6bd4b8cb14c93324009fa.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

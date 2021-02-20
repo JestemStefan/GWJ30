@@ -294,7 +294,6 @@ func take_damage(point, normal, damage):
 		Engine.time_scale = 0.1
 		yield(get_tree().create_timer(0.02), "timeout")
 		Engine.time_scale = 1.0
-		
 
 func die():
 	dead = true

@@ -70,7 +70,7 @@ func melee_do_hit():
 		if is_instance_valid(target) and target.is_in_group("Player"):
 				var midpoint = self.global_transform.origin - (self.global_transform.origin - target.global_transform.origin)/2
 				target.impact_velocity = Utils.get_flat_direction(self.global_transform.origin, target.global_transform.origin) * melee_knockback
-				target.take_damage(midpoint, self.global_transform.basis.z, melee_damage)
+				target.take_damage(midpoint + Vector3.UP, self.global_transform.basis.z, melee_damage)
 
 func die():
 	.die()

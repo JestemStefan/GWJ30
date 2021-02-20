@@ -2916,7 +2916,7 @@ material/0 = ExtResource( 7 )
 material/1 = ExtResource( 7 )
 
 [node name="Weapon" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.48673, -0.297321, 0.821397, 0.869094, -0.259689, 0.420995, 0.0881361, 0.918784, 0.384799, -0.768096, 1.58302, 0.756952 )
+transform = Transform( -0.923649, -0.377523, 0.065936, 0.383237, -0.909876, 0.158914, 7.72998e-08, 0.172051, 0.985089, -0.668639, 1.12123, 0.0285191 )
 bone_name = "hand_r"
 
 [node name="GunOffset" type="Spatial" parent="Armature/Skeleton/Weapon"]
@@ -2948,7 +2948,7 @@ magnet = Vector3( 2, 2, -4 )
 target_node = NodePath("../../../SiphonAim")
 
 [node name="HeartAttach" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.999959, 0.00661852, 0.00625327, -0.00145348, 0.793985, -0.607936, -0.00898864, 0.607901, 0.793963, 0.00115488, 1.63841, 0.0821675 )
+transform = Transform( 1, 1.92013e-13, 1.62136e-07, -4.63053e-09, 0.999592, 0.0285601, -1.6207e-07, -0.0285603, 0.999593, -7.27223e-11, 1.75813, -0.164734 )
 bone_name = "heartbeat"
 
 [node name="Sprite3D" type="Sprite3D" parent="Armature/Skeleton/HeartAttach"]
@@ -2961,6 +2961,7 @@ texture = ExtResource( 14 )
 
 [node name="SlashEffect" type="Sprite3D" parent="."]
 transform = Transform( 1.45423, -2.61159, 0.254573, 0.904769, 0.225863, -2.85138, 2.46304, 1.45897, 0.897114, -0.218378, 1.3888, 1.59335 )
+visible = false
 material_override = SubResource( 23 )
 modulate = Color( 1, 0.678431, 0.678431, 1 )
 texture = ExtResource( 18 )
