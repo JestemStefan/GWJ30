@@ -5,6 +5,9 @@ class_name Boss
 enum State{IDLE, SPAWNING, DAMAGED, DIE}
 var current_state: int
 
+var current_wave: int
+
+
 onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 # Spawning
@@ -24,6 +27,8 @@ onready var heartplate_4: StaticBody = $Armature/Skeleton/BoneAttachment2/Heartp
 
 
 func _ready():
+	spawn_timer.start(10)
+	current_wave = 1
 	enter_state(State.IDLE)
 
 func enter_state(new_state):
@@ -33,7 +38,7 @@ func enter_state(new_state):
 		
 		State.IDLE:
 			play_animation("Idle")
-			spawn_timer.start(3)
+			
 		
 		State.SPAWNING:
 			play_animation("Spawn")
@@ -43,11 +48,11 @@ func enter_state(new_state):
 			play_animation("Damage")
 		
 		State.DIE:
-			pass
+			play_animation("Dead")
 
 
 func _process(delta):
-	
+
 	match current_state:
 		
 		State.IDLE:
@@ -77,22 +82,43 @@ func play_animation(anim_name: String):
 			anim_player.play("Damage")
 		
 		"Dead":
-			pass
+			anim_player.play("Dead")
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	
 	match anim_name:
 		
-		"Idle":
+		"Idle": 
 			pass
 			
 		"Spawn":
+			var heartplate_to_delete
+			match current_wave:
+				1:
+					heartplate_to_delete = heartplate_1
+				2:
+					heartplate_to_delete = heartplate_2
+				3:
+					heartplate_to_delete = heartplate_3
+				4:
+					heartplate_to_delete = heartplate_4
+					
+			heartplate_to_delete.call_deferred("free")
 			enter_state(State.IDLE)
 			
 		"Damage":
-			enter_state(State.IDLE)
-		
+			
+			current_wave += 1
+			
+			if current_wave > 4:
+				enter_state(State.DIE)
+				#Trigger endgame
+				
+			else:
+				spawn_timer.start(10)
+				enter_state(State.IDLE)
+			
 		"Dead":
 			pass
 
@@ -100,10 +126,16 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 func heart_destoyed():
 	print("heart destroyed")
 	enter_state(State.DAMAGED)
+	
 
 
 func spawn_eggs():
-	pass
+	var egg:Egg = spawn_egg.instance()
+	var shoot_dir: Vector3 = Vector3(0,1,-1)
+	egg.direction = shoot_dir.rotated(Vector3.UP, rand_range(-PI, PI))
+	#projectile.direction = self.global_transform.origin.direction_to(player_position + Vector3.UP)
+	self.get_parent().add_child(egg)
+	egg.global_transform.origin = $Spawn_Position.global_transform.origin
 
 
 func _on_SpawnTimer_timeout():

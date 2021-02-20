@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://GR_assets/Enemies/Boss_material.material" type="Material" id=1]
 [ext_resource path="res://GR_assets/Enemies/Heart.tscn" type="PackedScene" id=2]
@@ -546,6 +546,7 @@ tracks/20/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, -2.53495e-42, 6.67762e-15, 1, 
 [sub_resource type="Animation" id=6]
 resource_name = "Spawn"
 length = 4.0
+step = 0.01
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature/Skeleton:bone_5")
 tracks/0/interp = 1
@@ -693,10 +694,35 @@ tracks/20/loop_wrap = true
 tracks/20/imported = true
 tracks/20/enabled = true
 tracks/20/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, -2.53495e-42, 6.67762e-15, 1, 1, 1, 1, 4, 1, 0, 0, 0, 0, -2.53495e-42, 6.67762e-15, 1, 1, 1, 1 )
-
-[sub_resource type="CapsuleShape" id=7]
-radius = 12.6489
-height = 38.2747
+tracks/21/type = "method"
+tracks/21/path = NodePath(".")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"times": PoolRealArray( 0.4, 1, 1.6, 2.2, 2.8, 3.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "spawn_eggs"
+}, {
+"args": [  ],
+"method": "spawn_eggs"
+}, {
+"args": [  ],
+"method": "spawn_eggs"
+}, {
+"args": [  ],
+"method": "spawn_eggs"
+}, {
+"args": [  ],
+"method": "spawn_eggs"
+}, {
+"args": [  ],
+"method": "spawn_eggs"
+} ]
+}
 
 [sub_resource type="CylinderShape" id=8]
 radius = 21.414
@@ -861,14 +887,14 @@ anims/Dead = SubResource( 4 )
 anims/Idle = SubResource( 5 )
 anims/Spawn = SubResource( 6 )
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 31.3998, 0 )
-shape = SubResource( 7 )
-
 [node name="CollisionShape2" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.57557, 5.18718, -1.52073 )
 shape = SubResource( 8 )
 
 [node name="SpawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Spawn_Position" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 62.7017, 0 )
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]

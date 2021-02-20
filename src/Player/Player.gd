@@ -28,7 +28,7 @@ var wep_cont_node = null
 var parrying: bool = false
 
 # Gameplay
-var heart_rate: float = 20.0
+var heart_rate: float = 100.0
 var blood: int = 20
 var heartbeat_buff: bool = false
 

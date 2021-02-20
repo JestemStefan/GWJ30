@@ -42,7 +42,7 @@ func enter_state(new_state):
 
 func process_movement(direction, delta):
 	
-	dist2player = global_transform.origin.distance_squared_to(player_position)
+	dist2player = global_transform.origin.distance_to(player_position)
 	
 	match current_state:
 		State.IDLE:
@@ -52,10 +52,10 @@ func process_movement(direction, delta):
 			Utils.fixed_look_at(self, path[path_node])
 			move_and_slide(direction.normalized() * speed * speed_modifier, Vector3.UP)
 			
-			if dist2player < 20:
+			if dist2player < 4:
 				enter_state(State.ATTACK)
 			
-			elif dist2player > 400 and canShoot:
+			elif dist2player > 20 and canShoot:
 				enter_state(State.SHOOT)
 			
 		State.ATTACK:
@@ -65,7 +65,7 @@ func process_movement(direction, delta):
 		State.SHOOT:
 			look_at(player_position, Vector3.UP)
 			
-			if dist2player < 300:
+			if dist2player < 15:
 				enter_state(State.WALK)
 		
 		State.DIE:
@@ -95,7 +95,12 @@ func die():
 	call_deferred("free")
 
 func shoot_meatball():
-	var angle = calculate_shooting_angle(sqrt(dist2player),projectile_speed)
+	var angle: float
+	if dist2player > 0:
+		angle = calculate_shooting_angle(sqrt(dist2player),projectile_speed)
+	else:
+		angle = 0
+		
 	var projectile: Meatball = meatball.instance()
 	var shoot_dir: Vector3 = -global_transform.basis.z
 	projectile.direction = shoot_dir.rotated(Vector3.RIGHT, angle)
