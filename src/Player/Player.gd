@@ -173,6 +173,9 @@ func dodge(direction: Vector3):
 	self.vertical_velocity = 4.0
 
 func do_melee_attack():
+	$SwingSound.stop()
+	$SwingSound.pitch_scale = rand_range(0.9, 1.6)
+	$SwingSound.play()
 	right_hand_ik.interpolation = 0.02
 	left_hand_ik.interpolation = 0.2
 	#right_hand_ik.stop()
@@ -193,6 +196,7 @@ func melee_do_hit():
 	query.set_shape(melee_shape.get_shape())
 	query.set_transform(melee_shape.get_global_transform())
 	var hits = space_state.intersect_shape(query)
+	var did_sound = false
 	if not hits.empty():
 		# One-off hit things
 		if not is_grounded:
@@ -202,6 +206,10 @@ func melee_do_hit():
 		if is_instance_valid(hit["collider"]):
 			var target = hit["collider"]
 			if target.has_method("take_damage"):
+				if not did_sound:
+					$HitSound.stop()
+					$HitSound.pitch_scale = rand_range(0.9, 1.6)
+					$HitSound.play()
 				camera_controller.add_shake(0.5)
 				increase_heart_rate(10.0)
 				if not is_grounded and 10.0 > vertical_velocity:
@@ -282,12 +290,14 @@ func take_damage(point, normal, damage):
 		if camera_controller.third_person:
 			do_damage_flash(true, 0)
 		do_damage_flash(true, 1)
-		camera_controller.camera.fov = 70
+		#camera_controller.camera.fov = 70
 		yield(get_tree().create_timer(0.01), "timeout")
 		do_damage_flash(false, 0)
 		do_damage_flash(false, 1)
 		decrease_heart_rate(damage)
 	else:
+		if not $ParrySound.playing:
+			$ParrySound.play()
 		camera_controller.add_shake(0.5)
 		increase_heart_rate(10.0)
 		Utils.instantiate(parry_effect, point, normal, 3.0)

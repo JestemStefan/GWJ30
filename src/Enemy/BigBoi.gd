@@ -94,12 +94,8 @@ func die():
 	.die()
 	call_deferred("free")
 
-
-func calculate_shooting_angle(distance_to_target):
-	return 0.5 * asin((9.8 * distance_to_target)/pow(projectile_speed, 2))
-
 func shoot_meatball():
-	var angle = calculate_shooting_angle(sqrt(dist2player))
+	var angle = calculate_shooting_angle(sqrt(dist2player),projectile_speed)
 	var projectile: Meatball = meatball.instance()
 	var shoot_dir: Vector3 = -global_transform.basis.z
 	projectile.direction = shoot_dir.rotated(Vector3.RIGHT, angle)

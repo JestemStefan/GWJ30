@@ -31,6 +31,9 @@ func _ready():
 	nav = get_tree().get_nodes_in_group("Navigation")[0]
 	player = get_tree().get_nodes_in_group("Player")[0]
 
+func calculate_shooting_angle(distance_to_target, projectile_speed):
+	return 0.5 * asin((9.8 * distance_to_target)/pow(projectile_speed, 2))
+
 func _physics_process(delta):
 	
 	player_position = player.global_transform.origin

@@ -23,6 +23,7 @@ var wep_cont_node = null
 # Gameplay
 var aim_position = Vector3.ZERO
 var charging: bool = true
+var strafe_dir: int = 0
 
 # Node assignments
 onready var right_hand_ik = $Armature/Skeleton/RightHandIK
@@ -99,7 +100,10 @@ func get_move_vector() -> Vector3:
 		if charging:
 			return Utils.get_flat_direction(self.global_transform.origin, player_position)
 		else:
-			return self.global_transform.basis.x
+			if strafe_dir == 0:
+				return self.global_transform.basis.x
+			else:
+				return -self.global_transform.basis.x
 	else:
 		return rotated_input_vector
 	#return input_vector.rotated(Vector3.UP, camera_controller.global_transform.basis.get_euler().y + PI)
@@ -235,6 +239,7 @@ func _on_DodgeTimer_timeout():
 
 func _on_AITimer_timeout():
 	charging = !charging
+	strafe_dir = randi() % 2
 	$AITimer.wait_time = rand_range(3.0, 10.0)
 
 func _on_PathTimer_timeout():

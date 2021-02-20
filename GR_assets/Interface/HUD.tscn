@@ -73,7 +73,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 0, 0, 0, 0.25098 ), Color( 1, 0, 0, 0.25098 ), Color( 0, 0, 0, 0.25098 ) ]
+"values": [ Color( 0, 0, 0, 0.25098 ), Color( 1, 0, 0, 0.533333 ), Color( 0, 0, 0, 0.25098 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("VignetteCenter/Vignette:rect_min_size")
@@ -85,7 +85,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 3600, 2600 ), Vector2( 2800, 2000 ), Vector2( 3600, 2600 ) ]
+"values": [ Vector2( 3600, 2600 ), Vector2( 2400, 1800 ), Vector2( 3600, 2600 ) ]
 }
 
 [sub_resource type="Animation" id=5]

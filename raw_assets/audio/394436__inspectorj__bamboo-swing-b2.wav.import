@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/394436__inspectorj__bamboo-swing-b2.wav-331b4b05f615e9abf46b1329ebdf3683.sample"
+
+[deps]
+
+source_file="res://raw_assets/audio/394436__inspectorj__bamboo-swing-b2.wav"
+dest_files=[ "res://.import/394436__inspectorj__bamboo-swing-b2.wav-331b4b05f615e9abf46b1329ebdf3683.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

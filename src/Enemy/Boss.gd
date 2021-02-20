@@ -14,13 +14,13 @@ onready var spawn_egg = preload("res://GR_assets/Gameplay/SpawnEgg.tscn")
 # Hearts
 onready var heart1: StaticBody = $Armature/Skeleton/BoneAttachment/Heart
 onready var heart2: StaticBody = $Armature/Skeleton/BoneAttachment/Heart2
-onready var heart3: StaticBody = $Armature/Skeleton/BoneAttachment2/Heart3
-onready var heart4: StaticBody = $Armature/Skeleton/BoneAttachment2/Heart4
+onready var heart3: StaticBody = $Armature/Skeleton/BoneAttachment2/Heart
+onready var heart4: StaticBody = $Armature/Skeleton/BoneAttachment2/Heart2
 
 onready var heartplate_1: StaticBody = $Armature/Skeleton/BoneAttachment/Heartplate1
 onready var heartplate_2: StaticBody = $Armature/Skeleton/BoneAttachment/Heartplate2
-onready var heartplate_3: StaticBody = $Armature/Skeleton/BoneAttachment/Heartplate3
-onready var heartplate_4: StaticBody = $Armature/Skeleton/BoneAttachment/Heartplate4
+onready var heartplate_3: StaticBody = $Armature/Skeleton/BoneAttachment2/Heartplate3
+onready var heartplate_4: StaticBody = $Armature/Skeleton/BoneAttachment2/Heartplate4
 
 
 func _ready():

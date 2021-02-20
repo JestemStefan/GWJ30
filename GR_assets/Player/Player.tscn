@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/CameraController.gd" type="Script" id=2]
@@ -10,6 +10,9 @@
 [ext_resource path="res://GR_assets/Player/animations/charactersRunFWD.tres" type="Animation" id=8]
 [ext_resource path="res://src/Player/BloodAbsorber.gd" type="Script" id=9]
 [ext_resource path="res://GR_assets/Weapons/SpikeGun/ShotGun.tscn" type="PackedScene" id=10]
+[ext_resource path="res://raw_assets/audio/370203__nekoninja__shield-guard.wav" type="AudioStream" id=11]
+[ext_resource path="res://raw_assets/audio/370204__nekoninja__samurai-slash.wav" type="AudioStream" id=12]
+[ext_resource path="res://raw_assets/audio/394436__inspectorj__bamboo-swing-b2.wav" type="AudioStream" id=13]
 [ext_resource path="res://raw_assets/2D/effects/spikegun_particle.png" type="Texture" id=14]
 [ext_resource path="res://raw_assets/2D/character/slash.png" type="Texture" id=18]
 
@@ -178,7 +181,7 @@ tracks/21/loop_wrap = true
 tracks/21/imported = false
 tracks/21/enabled = true
 tracks/21/keys = {
-"times": PoolRealArray( 0.22, 0.26, 0.31 ),
+"times": PoolRealArray( 0.2, 0.26, 0.33 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [ true ],
@@ -385,7 +388,7 @@ tracks/21/loop_wrap = true
 tracks/21/imported = false
 tracks/21/enabled = true
 tracks/21/keys = {
-"times": PoolRealArray( 0.22, 0.26, 0.31 ),
+"times": PoolRealArray( 0.2, 0.26, 0.33 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [ true ],
@@ -2766,17 +2769,18 @@ cast_to = Vector3( 0, -0.5, 0 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = ExtResource( 6 )
 anim_player = NodePath("../AnimationPlayer")
+active = true
 parameters/dodge_blend/blend_amount = 0.0
-parameters/dodge_dir/blend_position = Vector2( -0.316386, 0.472902 )
+parameters/dodge_dir/blend_position = Vector2( -0.00158828, -0.00940859 )
 parameters/heart_blend/blend_amount = 1.0
 parameters/heart_rate/scale = 0.5
 parameters/jump_blend/blend_amount = 0.0
-parameters/jump_up_down/blend_position = -0.037071
+parameters/jump_up_down/blend_position = -1.15554
 parameters/melee/active = false
 parameters/melee_choice/blend_amount = 0.0
 parameters/melee_speed/scale = 1.25
-parameters/run_blend/blend_position = Vector2( 0, 0.33 )
-parameters/run_speed/scale = 1.0
+parameters/run_blend/blend_position = Vector2( 0, 0 )
+parameters/run_speed/scale = 0.0
 parameters/switchgun/active = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -2822,7 +2826,7 @@ bones/3/name = "heartbeat"
 bones/3/parent = 2
 bones/3/rest = Transform( 1, -4.18728e-10, 3.34656e-08, 5.2763e-10, 0.999995, -0.00325421, -3.3464e-08, 0.00325421, 0.999995, 2.08721e-08, 0.060612, -0.162213 )
 bones/3/enabled = true
-bones/3/bound_children = [ NodePath("HeartAttach") ]
+bones/3/bound_children = [  ]
 bones/4/name = "spine_3"
 bones/4/parent = 2
 bones/4/rest = Transform( 1, -4.18728e-10, 3.34656e-08, 5.27631e-10, 0.999995, -0.00325425, -3.3464e-08, 0.00325425, 0.999995, 3.53884e-16, 0.247374, 2.79397e-09 )
@@ -2847,7 +2851,7 @@ bones/8/name = "hand_r"
 bones/8/parent = 7
 bones/8/rest = Transform( 0.998753, 0.0491725, -0.00858782, -0.0497289, 0.995071, -0.0857957, 0.0043267, 0.0861158, 0.996276, -1.06992e-07, 0.604836, -7.45058e-09 )
 bones/8/enabled = true
-bones/8/bound_children = [ NodePath("Weapon") ]
+bones/8/bound_children = [  ]
 bones/9/name = "spine_4"
 bones/9/parent = 4
 bones/9/rest = Transform( 1, -4.78347e-08, -1.54919e-07, -7.10543e-15, 0.955488, -0.295029, 1.62136e-07, 0.295029, 0.955488, 3.60822e-16, 0.275548, 1.86265e-09 )
@@ -2916,7 +2920,7 @@ material/0 = ExtResource( 7 )
 material/1 = ExtResource( 7 )
 
 [node name="Weapon" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.923649, -0.377523, 0.065936, 0.383237, -0.909876, 0.158914, 7.72998e-08, 0.172051, 0.985089, -0.668639, 1.12123, 0.0285191 )
+transform = Transform( -0.923649, -0.377523, 0.065936, 0.383237, -0.909876, 0.158914, 1.15484e-07, 0.172051, 0.985089, -0.668639, 1.12123, 0.0285191 )
 bone_name = "hand_r"
 
 [node name="GunOffset" type="Spatial" parent="Armature/Skeleton/Weapon"]
@@ -2948,7 +2952,7 @@ magnet = Vector3( 2, 2, -4 )
 target_node = NodePath("../../../SiphonAim")
 
 [node name="HeartAttach" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 1, 1.92013e-13, 1.62136e-07, -4.63053e-09, 0.999592, 0.0285601, -1.6207e-07, -0.0285603, 0.999593, -7.27223e-11, 1.75813, -0.164734 )
+transform = Transform( 1.10433, -2.72823e-09, 1.74017e-07, -2.24252e-09, 1.10388, 0.0315398, -1.74024e-07, -0.0315399, 1.10388, -8.02518e-09, 1.75813, -0.164734 )
 bone_name = "heartbeat"
 
 [node name="Sprite3D" type="Sprite3D" parent="Armature/Skeleton/HeartAttach"]
@@ -2960,7 +2964,7 @@ billboard = 1
 texture = ExtResource( 14 )
 
 [node name="SlashEffect" type="Sprite3D" parent="."]
-transform = Transform( 1.45423, -2.61159, 0.254573, 0.904769, 0.225863, -2.85138, 2.46304, 1.45897, 0.897114, -0.218378, 1.3888, 1.59335 )
+transform = Transform( 1.45423, -2.61159, 0.254574, 0.904769, 0.225863, -2.85138, 2.46304, 1.45897, 0.897115, -0.218378, 1.3888, 1.59335 )
 visible = false
 material_override = SubResource( 23 )
 modulate = Color( 1, 0.678431, 0.678431, 1 )
@@ -2976,6 +2980,22 @@ script = ExtResource( 9 )
 shape = SubResource( 24 )
 
 [node name="HeartbeatTimer" type="Timer" parent="."]
+
+[node name="SwingSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 13 )
+unit_size = 6.0
+max_db = 3.0
+
+[node name="ParrySound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 11 )
+unit_size = 6.0
+max_db = 6.0
+pitch_scale = 0.85
+
+[node name="HitSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 12 )
+unit_size = 5.0
+max_db = -6.0
 [connection signal="body_entered" from="BloodAbsorb" to="BloodAbsorb" method="_on_BloodAbsorb_body_entered"]
 [connection signal="body_exited" from="BloodAbsorb" to="BloodAbsorb" method="_on_BloodAbsorb_body_exited"]
 [connection signal="timeout" from="HeartbeatTimer" to="." method="_on_HeartbeatTimer_timeout"]
