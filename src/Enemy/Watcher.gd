@@ -12,7 +12,7 @@ var nav_point: Vector3
 
 enum State {WALK, ATTACK}
 var current_state: int
-var speed: int = 10
+var speed: int = 20
 
 func _ready():
 	
@@ -26,7 +26,7 @@ func enter_state(new_state):
 		
 		State.WALK:
 			#If travel takes more then 5 seconds then attack
-			$TravelTimer.start(5) #attack after this
+			$TravelTimer.start(3) #attack after this
 			play_animation("Flying")
 		
 		State.ATTACK:
@@ -55,7 +55,7 @@ func play_animation(anim_name: String):
 			
 		"Flying":
 			animationPlayer.play("Flying")
-			animationPlayer.set_speed_scale(1)
+			animationPlayer.set_speed_scale(2)
 		
 		"Attack":
 			animationPlayer.play("Attack")

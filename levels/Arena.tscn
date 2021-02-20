@@ -109,3 +109,6 @@ light_color = Color( 1, 0.729412, 0.729412, 1 )
 light_energy = 2.0
 spot_range = 150.0
 spot_angle = 60.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -20.0
