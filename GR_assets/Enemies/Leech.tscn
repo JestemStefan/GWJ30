@@ -285,7 +285,9 @@ height = 0.75
 radius = 0.933559
 height = 0.714141
 
-[node name="Leech" type="KinematicBody"]
+[node name="Leech" type="KinematicBody" groups=[
+"Enemy",
+]]
 collision_layer = 2
 script = ExtResource( 4 )
 melee_damage = 10.0

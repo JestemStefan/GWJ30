@@ -923,7 +923,9 @@ height = 0.926434
 [sub_resource type="SphereShape" id=8]
 radius = 3.29395
 
-[node name="BigBoi" type="KinematicBody"]
+[node name="BigBoi" type="KinematicBody" groups=[
+"Enemy",
+]]
 collision_layer = 2
 script = ExtResource( 2 )
 health = 600

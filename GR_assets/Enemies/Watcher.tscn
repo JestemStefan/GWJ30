@@ -580,7 +580,9 @@ radius = 1.5
 [sub_resource type="SphereShape" id=7]
 radius = 0.34
 
-[node name="Watcher" type="KinematicBody"]
+[node name="Watcher" type="KinematicBody" groups=[
+"Enemy",
+]]
 script = ExtResource( 4 )
 health = 100
 speed_modifier = 0.0
