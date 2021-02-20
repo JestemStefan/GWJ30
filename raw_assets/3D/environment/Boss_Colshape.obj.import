@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Boss_Colshape.obj-c2dd3db7cbcdcf423444f6a036b93ea1.mesh"
+
+[deps]
+
+files=[ "res://.import/Boss_Colshape.obj-c2dd3db7cbcdcf423444f6a036b93ea1.mesh" ]
+
+source_file="res://raw_assets/3D/environment/Boss_Colshape.obj"
+dest_files=[ "res://.import/Boss_Colshape.obj-c2dd3db7cbcdcf423444f6a036b93ea1.mesh", "res://.import/Boss_Colshape.obj-c2dd3db7cbcdcf423444f6a036b93ea1.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
