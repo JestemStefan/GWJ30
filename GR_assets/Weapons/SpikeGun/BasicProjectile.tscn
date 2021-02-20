@@ -2,8 +2,6 @@
 
 [ext_resource path="res://src/Gameplay/Projectile.gd" type="Script" id=1]
 
-
-
 [sub_resource type="SphereMesh" id=1]
 
 [sub_resource type="SpatialMaterial" id=2]

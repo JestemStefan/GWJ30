@@ -1,6 +1,5 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://GR_assets/Enemies/Boss.gd" type="Script" id=1]
 [ext_resource path="res://src/Flying_Area.gd" type="Script" id=2]
 [ext_resource path="res://GR_assets/Envionment/Arena/ArenaFloor.tscn" type="PackedScene" id=3]
 [ext_resource path="res://GR_assets/Player/Player.tscn" type="PackedScene" id=4]
@@ -52,12 +51,13 @@ navmesh = SubResource( 1 )
 ]]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 
-[node name="ArenaFloor" parent="Environment" instance=ExtResource( 3 )]
+[node name="ArenaFloor" parent="Environment" groups=[
+"Floor",
+] instance=ExtResource( 3 )]
 transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0 )
 
 [node name="Boss" parent="Environment" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.72839, 0 )
-script = ExtResource( 1 )
 
 [node name="ArenaDome" parent="Environment" instance=ExtResource( 8 )]
 transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0 )

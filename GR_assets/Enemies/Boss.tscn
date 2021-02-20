@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://GR_assets/Enemies/Boss_material.material" type="Material" id=1]
 [ext_resource path="res://GR_assets/Enemies/Heart.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://GR_assets/Enemies/Heartplates/Heartplate2.tscn" type="PackedScene" id=4]
 [ext_resource path="res://GR_assets/Enemies/Heartplates/Heartplate3.tscn" type="PackedScene" id=5]
 [ext_resource path="res://GR_assets/Enemies/Heartplates/Heartplate4.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Enemy/Boss.gd" type="Script" id=7]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Boss"
@@ -701,7 +702,12 @@ height = 38.2747
 radius = 21.414
 height = 10.3669
 
-[node name="Boss" type="StaticBody"]
+[node name="Boss" type="StaticBody" groups=[
+"Boss",
+]]
+input_ray_pickable = false
+collision_mask = 0
+script = ExtResource( 7 )
 
 [node name="Armature" type="Spatial" parent="."]
 
@@ -715,12 +721,12 @@ bones/1/name = "heart_1"
 bones/1/parent = 0
 bones/1/rest = Transform( 0.998966, -0.0454723, 2.04584e-07, 0.0454723, 0.998966, -1.12037e-07, -1.99278e-07, 1.21224e-07, 1, -9.13449e-09, 13.9986, 1.49013e-08 )
 bones/1/enabled = true
-bones/1/bound_children = [  ]
+bones/1/bound_children = [ NodePath("BoneAttachment") ]
 bones/2/name = "heart_2"
 bones/2/parent = 1
 bones/2/rest = Transform( 0.995323, -0.0966039, -2.63712e-08, 0.0966039, 0.995323, -1.11904e-08, 2.73289e-08, 8.59049e-09, 1, 1.22165e-07, 12.5026, 1.49014e-08 )
 bones/2/enabled = true
-bones/2/bound_children = [  ]
+bones/2/bound_children = [ NodePath("BoneAttachment2") ]
 bones/3/name = "bone_3"
 bones/3/parent = 2
 bones/3/rest = Transform( 0.976447, -0.215756, -3.57347e-08, 0.215756, 0.976447, 1.75372e-08, 3.11093e-08, -2.48341e-08, 1, 4.9716e-07, 10.9414, -6.70553e-08 )
@@ -818,7 +824,7 @@ skin = SubResource( 2 )
 material/0 = ExtResource( 1 )
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.995422, 0.074306, -0.0601139, -0.0707005, 0.99569, 0.0600351, 0.0643157, -0.0555102, 0.996385, 1.64938, 20.2091, -0.736896 )
+transform = Transform( 0.998745, 0.0481488, 0.0138293, -0.047958, 0.998754, -0.013816, -0.0144773, 0.0131354, 0.999809, 1.30907, 20.2637, 0.17447 )
 bone_name = "heart_1"
 
 [node name="Heart" parent="Armature/Skeleton/BoneAttachment" instance=ExtResource( 2 )]
@@ -834,7 +840,7 @@ transform = Transform( 0.999999, -9.75415e-08, 3.72529e-09, 1.22236e-07, 1, 4.74
 transform = Transform( 0.999998, -6.69388e-10, 0, 3.64671e-08, 1, 0, 1.86265e-09, -2.42144e-08, 1, 7.26812, -1.85404, 4.6188 )
 
 [node name="BoneAttachment2" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.998081, -0.0148859, -0.0601139, 0.0185009, 0.998025, 0.0600351, 0.0591015, -0.0610321, 0.996385, 2.5784, 32.6578, -1.43092 )
+transform = Transform( 0.998725, -0.048559, 0.0138293, 0.0487499, 0.998716, -0.013816, -0.0131406, 0.0144726, 0.999809, 1.91105, 32.7507, 0.338697 )
 bone_name = "heart_2"
 
 [node name="Heart" parent="Armature/Skeleton/BoneAttachment2" instance=ExtResource( 2 )]
@@ -862,3 +868,7 @@ shape = SubResource( 7 )
 [node name="CollisionShape2" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.57557, 5.18718, -1.52073 )
 shape = SubResource( 8 )
+
+[node name="SpawnTimer" type="Timer" parent="."]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
