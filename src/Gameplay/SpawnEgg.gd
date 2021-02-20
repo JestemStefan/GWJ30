@@ -5,6 +5,10 @@ onready var bigboi = preload("res://GR_assets/Enemies/BigBoi.tscn")
 onready var warrior = preload("res://GR_assets/Enemies/Warrior.tscn")
 onready var watcher = preload("res://GR_assets/Enemies/Watcher.tscn")
 
+func _ready():
+	yield(get_tree().create_timer(0.1), "timeout")
+	_on_Timer_timeout()
+
 func _on_Timer_timeout():
 	var chance = randi() % 6
 	if chance <= 1:

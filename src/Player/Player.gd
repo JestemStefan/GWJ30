@@ -198,10 +198,14 @@ func melee_do_hit():
 			pass
 	for hit in hits:
 		if is_instance_valid(hit["collider"]):
-			if hit["collider"].has_method("take_damage"):
+			var target = hit["collider"]
+			if target.has_method("take_damage"):
 				camera_controller.add_shake(0.5)
 				increase_heart_rate(10.0)
-				hit["collider"].take_damage(self.global_transform.origin, self.global_transform.basis.z, 50.0)
+				if not is_grounded and 10.0 > vertical_velocity:
+					vertical_velocity = 10.0
+				var midpoint = self.global_transform.origin - (self.global_transform.origin - target.global_transform.origin)/2
+				target.take_damage(midpoint, self.global_transform.basis.z, 50.0)
 				Engine.time_scale = 0.1
 				yield(get_tree().create_timer(0.015), "timeout")
 				Engine.time_scale = 1.0

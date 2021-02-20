@@ -10,11 +10,12 @@ var speed: int = 10
 
 var projectile_speed: int = 30
 var shoot_rate: int = 2
-var canShoot: bool = true
+var canShoot: bool = false
 
 func _ready():
 	._ready()
 	enter_state(State.WALK)
+	$ProjectileTimer.start(shoot_rate)
 
 func enter_state(new_state):
 	current_state = new_state

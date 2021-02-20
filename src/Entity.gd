@@ -30,7 +30,7 @@ func do_damage_flash(flashing: bool, mat_index = 0):
 				meshes[index].set_surface_material(mat_index, mesh_mats[index])
 
 func take_damage(point, normal, damage):
-	Utils.instantiate(load("res://GR_assets/Effects/bloodhit/BloodHit.tscn"), self.global_transform.origin, self.global_transform.basis.z, 6.0)
+	Utils.instantiate(load("res://GR_assets/Effects/bloodhit/BloodHit.tscn"), point, normal, 6.0)
 	health -= damage
 	do_damage_flash(true)
 	yield(get_tree().create_timer(0.075), "timeout")
@@ -39,10 +39,4 @@ func take_damage(point, normal, damage):
 		die()
 
 func die():
-	var blood_glob = load("res://GR_assets/Effects/bloodglob/BloodGlob.tscn")
-	var blood_hit = load("res://GR_assets/Effects/bloodhit/BloodHit.tscn")
-	var blood_pickup = load("res://GR_assets/Gameplay/BloodPickup.tscn")
-	Utils.instantiate(blood_glob, self.global_transform.origin + Vector3.UP, Vector3.UP, 3.0)
-	Utils.instantiate(blood_glob, self.global_transform.origin + Vector3.UP, Vector3.UP, 3.0)
-	Utils.instantiate(blood_hit, self.global_transform.origin, self.global_transform.basis.z, 12.0)
 	pass

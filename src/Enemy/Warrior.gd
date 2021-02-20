@@ -200,7 +200,7 @@ func take_damage(point, normal, damage):
 	do_damage_flash(true, 0)
 	do_damage_flash(true, 1)
 	self.impact_velocity = Utils.get_flat_direction(point, self.global_transform.origin) * 20.0
-	Utils.instantiate(load("res://GR_assets/Effects/bloodhit/BloodHit.tscn"), self.global_transform.origin, self.global_transform.basis.z, 6.0)
+	Utils.instantiate(load("res://GR_assets/Effects/bloodhit/BloodHit.tscn"), point, normal, 6.0)
 	health -= damage
 	yield(get_tree().create_timer(0.1), "timeout")
 	do_damage_flash(false, 0)
