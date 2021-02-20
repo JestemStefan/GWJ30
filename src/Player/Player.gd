@@ -174,7 +174,7 @@ func dodge(direction: Vector3):
 
 func do_melee_attack():
 	$SwingSound.stop()
-	$SwingSound.pitch_scale = rand_range(0.9, 1.6)
+	$SwingSound.pitch_scale = rand_range(1.0, 2.0)
 	$SwingSound.play()
 	right_hand_ik.interpolation = 0.02
 	left_hand_ik.interpolation = 0.2
@@ -208,7 +208,7 @@ func melee_do_hit():
 			if target.has_method("take_damage"):
 				if not did_sound:
 					$HitSound.stop()
-					$HitSound.pitch_scale = rand_range(0.9, 1.6)
+					$HitSound.pitch_scale = rand_range(1.0, 2.0)
 					$HitSound.play()
 				camera_controller.add_shake(0.5)
 				increase_heart_rate(10.0)
