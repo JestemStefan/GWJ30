@@ -56,7 +56,6 @@ var new_ik_interp: float
 
 
 func _ready():
-	print(sqrt(-1))
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	first_person_offset = self.transform.origin
 	third_person_offset = camera_controller.transform.origin
