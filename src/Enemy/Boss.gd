@@ -29,7 +29,7 @@ onready var heartplate_4: StaticBody = $Armature/Skeleton/BoneAttachment2/Heartp
 func _ready():
 	spawn_timer.start(10)
 	current_wave = 1
-	heart1.enabled = true
+	
 	enter_state(State.IDLE)
 
 func enter_state(new_state):
@@ -98,12 +98,16 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			match current_wave:
 				1:
 					heartplate_to_delete = heartplate_1
+					heart1.enabled = true
 				2:
 					heartplate_to_delete = heartplate_2
+					heart2.enabled = true
 				3:
 					heartplate_to_delete = heartplate_3
+					heart3.enabled = true
 				4:
 					heartplate_to_delete = heartplate_4
+					heart4.enabled = true
 					
 			heartplate_to_delete.call_deferred("free")
 			enter_state(State.IDLE)
@@ -117,17 +121,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 				#Trigger endgame
 				
 			else:
-				spawn_timer.start(10)
+				spawn_timer.start(5)
 				enter_state(State.IDLE)
-				match current_wave:
-					1: 
-						heart1.enabled = true
-					2: 
-						heart2.enabled = true
-					3: 
-						heart3.enabled = true
-					4: 
-						heart4.enabled = true
 						
 			
 		"Dead":
@@ -146,6 +141,7 @@ func spawn_eggs():
 	egg.direction = shoot_dir.rotated(Vector3.UP, rand_range(-PI, PI))
 	#projectile.direction = self.global_transform.origin.direction_to(player_position + Vector3.UP)
 	self.get_parent().add_child(egg)
+	egg.wave = current_wave
 	egg.global_transform.origin = $Spawn_Position.global_transform.origin
 
 
