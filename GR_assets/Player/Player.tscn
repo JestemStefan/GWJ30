@@ -2952,7 +2952,7 @@ magnet = Vector3( 2, 2, -4 )
 target_node = NodePath("../../../SiphonAim")
 
 [node name="HeartAttach" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.763651, -6.4865e-09, 9.70187e-08, 3.7132e-09, 0.763339, 0.02181, -9.71649e-08, -0.0218101, 0.76334, 2.25694e-08, 1.75813, -0.164734 )
+transform = Transform( 0.90983, -5.9447e-09, 1.42123e-07, 1.88347e-09, 0.909459, 0.0259849, -1.42235e-07, -0.025985, 0.90946, -9.96454e-09, 1.75813, -0.164734 )
 bone_name = "heartbeat"
 
 [node name="Sprite3D" type="Sprite3D" parent="Armature/Skeleton/HeartAttach"]
