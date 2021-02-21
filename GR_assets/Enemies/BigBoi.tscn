@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://GR_assets/Enemies/BigBoi.material" type="Material" id=1]
 [ext_resource path="res://src/Enemy/BigBoi.gd" type="Script" id=2]
+[ext_resource path="res://raw_assets/audio/tranfusion_mumbo_growl.wav" type="AudioStream" id=3]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "BigBoi"
@@ -1090,7 +1091,7 @@ transform = Transform( 1.18852, 0, 0, 0, -1.93635e-07, 1.18852, 0, -1.18852, -1.
 shape = SubResource( 7 )
 
 [node name="PathTimer" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.5
 autostart = true
 
 [node name="ProjectileTimer" type="Timer" parent="."]
@@ -1102,6 +1103,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.00461, -2.01373 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2.57916 )
 shape = SubResource( 8 )
 disabled = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 3 )
+
+[node name="GrowlTimer" type="Timer" parent="."]
+one_shot = true
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="PathTimer" to="." method="_on_PathTimer_timeout"]
 [connection signal="timeout" from="ProjectileTimer" to="." method="_on_ProjectileTimer_timeout"]
+[connection signal="timeout" from="GrowlTimer" to="." method="_on_GrowlTimer_timeout"]

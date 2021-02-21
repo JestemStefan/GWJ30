@@ -36,5 +36,6 @@ normal_texture = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="Dome" type="MeshInstance" parent="."]
+cast_shadow = 0
 mesh = SubResource( 2 )
 material/0 = SubResource( 3 )
