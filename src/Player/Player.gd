@@ -284,6 +284,7 @@ func decrease_heart_rate(val):
 		die()
 
 func set_heartbeat_buff():
+	$Heartbeat.play()
 	heartbeat_buff = true
 	$HeartbeatTimer.start(0.2)
 	hud.heartbeat()

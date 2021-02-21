@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/CameraController.gd" type="Script" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://raw_assets/2D/character/slash.png" type="Texture" id=18]
 [ext_resource path="res://raw_assets/3D/characters/man_None_Metallic.png" type="Texture" id=19]
 [ext_resource path="res://raw_assets/audio/399904__mrthenoronha__shining-8-bit.wav" type="AudioStream" id=20]
+[ext_resource path="res://raw_assets/audio/transfusion_heartbeat_fx.wav" type="AudioStream" id=21]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.75
@@ -2701,7 +2702,7 @@ max_jump_speed = 16.0
 max_dodge_speed = 48.0
 gravity = -32.0
 weapon_container = NodePath("Armature/Skeleton/Weapon/GunOffset")
-heart_dist = 0.00867021
+heart_dist = 0.159392
 
 [node name="SiphonAim" type="Position3D" parent="."]
 transform = Transform( -0.867504, 0, -2.82669e-07, -2.82669e-07, -3.79198e-08, 0.867504, 0, 0.867504, 3.79198e-08, 0.780328, 1.34624, -0.281203 )
@@ -2873,7 +2874,7 @@ damage = 20.0
 fire_rate = 0.5
 
 [node name="HeartAttach" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.775335, 0.0010846, 0.00263361, -0.00124114, 0.773934, 0.0466616, -0.00256356, -0.0466656, 0.773932, 0.000159531, 1.99941, -0.370538 )
+transform = Transform( 0.746297, 0.00104398, 0.00253498, -0.00119466, 0.744948, 0.0449139, -0.00246755, -0.0449178, 0.744945, 0.000159538, 1.99941, -0.370538 )
 bone_name = "heartbeat"
 
 [node name="Sprite3D" type="Sprite3D" parent="Armature/Skeleton/HeartAttach"]
@@ -2984,6 +2985,10 @@ pitch_scale = 2.0
 [node name="BurstTimer" type="Timer" parent="."]
 wait_time = 0.05
 one_shot = true
+
+[node name="Heartbeat" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 21 )
+volume_db = -3.0
 [connection signal="body_entered" from="BloodAbsorb" to="BloodAbsorb" method="_on_BloodAbsorb_body_entered"]
 [connection signal="body_exited" from="BloodAbsorb" to="BloodAbsorb" method="_on_BloodAbsorb_body_exited"]
 [connection signal="timeout" from="HeartbeatTimer" to="." method="_on_HeartbeatTimer_timeout"]

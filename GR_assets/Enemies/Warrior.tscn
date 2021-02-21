@@ -3041,7 +3041,7 @@ bones/13/name = "hand_r"
 bones/13/parent = 12
 bones/13/rest = Transform( 0.995829, 0.0912305, 0.00096329, -0.0911678, 0.994627, 0.0490457, 0.00351635, -0.048929, 0.998796, -4.33647e-08, 0.38953, -2.23517e-08 )
 bones/13/enabled = true
-bones/13/bound_children = [ NodePath("Weapon") ]
+bones/13/bound_children = [  ]
 bones/14/name = "spine_4"
 bones/14/parent = 9
 bones/14/rest = Transform( 1, -1.2241e-07, -5.83157e-07, -3.60005e-07, 0.655743, -0.754984, 4.74819e-07, 0.754984, 0.655743, 2.09739e-10, 0.275545, -0.0012936 )
@@ -3084,7 +3084,7 @@ skin = SubResource( 54 )
 material/0 = SubResource( 56 )
 
 [node name="Weapon" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.980994, -0.191416, 0.0317594, 0.193626, -0.976328, 0.0963885, 0.012557, 0.100706, 0.994838, -0.544978, 1.37316, 0.0329187 )
+transform = Transform( -0.982113, -0.185555, 0.0319733, 0.187567, -0.979002, 0.0798315, 0.0164885, 0.0844008, 0.996296, -0.540899, 1.36971, 0.020647 )
 visible = false
 bone_name = "hand_r"
 
