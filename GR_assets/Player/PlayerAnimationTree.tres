@@ -73,7 +73,7 @@ animation = "Attack1"
 animation = "Idle"
 
 [sub_resource type="AnimationNodeAnimation" id=22]
-animation = "charactersRunFWD"
+animation = "RunFWD"
 
 [sub_resource type="AnimationNodeAnimation" id=23]
 animation = "RunBACK"
@@ -103,7 +103,7 @@ filter_enabled = true
 filters = [ ".", "CameraYaw/CameraPitch/GunAimPivot/GunAimOffset/GunAim:rotation_degrees", "CameraYaw/CameraPitch/GunAimPivot/GunAimOffset/GunAim:translation" ]
 
 [resource]
-graph_offset = Vector2( -459.2, 114 )
+graph_offset = Vector2( -195.2, 27.2 )
 nodes/Animation/node = SubResource( 3 )
 nodes/Animation/position = Vector2( 432, 368 )
 "nodes/Animation 2/node" = SubResource( 1 )
@@ -137,4 +137,4 @@ nodes/run_speed/node = SubResource( 27 )
 nodes/run_speed/position = Vector2( 32, 128 )
 nodes/switchgun/node = SubResource( 28 )
 nodes/switchgun/position = Vector2( 864, 208 )
-node_connections = [ "output", 0, "melee", "heart_rate", 0, "Animation", "melee_speed", 0, "melee_choice", "run_speed", 0, "run_blend", "melee", 0, "switchgun", "melee", 1, "melee_speed", "heart_blend", 0, "dodge_blend", "heart_blend", 1, "heart_rate", "melee_choice", 0, "melee_1_anim", "melee_choice", 1, "Animation 2", "jump_blend", 0, "run_speed", "jump_blend", 1, "jump_up_down", "dodge_blend", 0, "jump_blend", "dodge_blend", 1, "dodge_dir", "switchgun", 0, "heart_blend", "switchgun", 1, "Animation 3" ]
+node_connections = [ "output", 0, "melee", "run_speed", 0, "run_blend", "heart_rate", 0, "Animation", "jump_blend", 0, "run_speed", "jump_blend", 1, "jump_up_down", "melee_speed", 0, "melee_choice", "melee", 0, "switchgun", "melee", 1, "melee_speed", "heart_blend", 0, "dodge_blend", "heart_blend", 1, "heart_rate", "dodge_blend", 0, "jump_blend", "dodge_blend", 1, "dodge_dir", "melee_choice", 0, "melee_1_anim", "melee_choice", 1, "Animation 2", "switchgun", 0, "heart_blend", "switchgun", 1, "Animation 3" ]

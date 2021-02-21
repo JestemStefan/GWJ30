@@ -1,8 +1,7 @@
 [gd_resource type="Animation" format=2]
 
 [resource]
-resource_name = "Attack2"
-length = 0.5
+length = 0.416667
 step = 0.01
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -11,11 +10,17 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.26 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.2, 0.26, 0.33 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
+"args": [ true ],
+"method": "set_parry"
+}, {
 "args": [  ],
 "method": "melee_do_hit"
+}, {
+"args": [ false ],
+"method": "set_parry"
 } ]
 }
 tracks/1/type = "value"
@@ -25,7 +30,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.25, 0.31 ),
+"times": PoolRealArray( 0.22, 0.31 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -37,10 +42,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.25 ),
+"times": PoolRealArray( 0.22 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 0.00777107, 1.07955, 2.14776 ) ]
+"values": [ Vector3( -0.218378, 1.3888, 1.59335 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("SlashEffect:rotation_degrees")
@@ -49,8 +54,8 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.25 ),
+"times": PoolRealArray( 0.22 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 57.0315, 93.7539, 144.928 ) ]
+"values": [ Vector3( 71.8898, 15.8423, 75.9834 ) ]
 }
