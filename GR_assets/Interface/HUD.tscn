@@ -304,7 +304,7 @@ rect_min_size = Vector2( 256, 256 )
 mouse_filter = 2
 
 [node name="Ring" type="TextureRect" parent="Root/CenterContainer/ClickIndicatorOuter"]
-self_modulate = Color( 1, 0, 0, 0.501961 )
+self_modulate = Color( 1, 0.380392, 0.380392, 0.501961 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 32, 32 )

@@ -83,3 +83,8 @@ func do_hitstop(time: float):
 	Engine.time_scale = 0.1
 	yield(get_tree().create_timer(time), "timeout")
 	Engine.time_scale = 1.0
+
+func slow_hitstop(time: float):
+	Engine.time_scale = 0.5
+	yield(get_tree().create_timer(time), "timeout")
+	Engine.time_scale = 1.0

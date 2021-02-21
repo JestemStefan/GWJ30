@@ -144,10 +144,12 @@ func action_inputs():
 				$Powershot.play() 
 				burst = 3
 				_on_BurstTimer_timeout()
+				Utils.slow_hitstop(0.05)
 			elif current_weapon.fire(camera_controller.aim_position, heartbeat_buff):
 				blood -= 1
 				camera_controller.recoil += current_weapon.recoil
 				if heartbeat_buff:
+					Utils.slow_hitstop(0.05)
 					$Powershot.play() 
 		hud.set_blood(blood)
 	if Input.is_action_pressed("melee") and anim_tree.get("parameters/melee/active") == false and not is_sliding:

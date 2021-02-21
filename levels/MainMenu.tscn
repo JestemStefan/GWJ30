@@ -77,13 +77,13 @@ __meta__ = {
 }
 
 [node name="EffectOverlay" type="TextureRect" parent="."]
-modulate = Color( 1, 0, 0, 0.424282 )
+modulate = Color( 1, 0, 0, 0.300941 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -350.084
-margin_top = -114.653
-margin_right = -350.084
-margin_bottom = -114.653
+margin_left = -308.778
+margin_top = -163.143
+margin_right = -308.778
+margin_bottom = -163.143
 rect_min_size = Vector2( 800, 500 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
