@@ -7,7 +7,8 @@ var current_state: int
 
 var current_wave: int
 
-
+onready var player = get_tree().get_nodes_in_group("Player")[0]
+onready var HUD = get_tree().get_nodes_in_group("HUD")[0]
 onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 # Spawning
@@ -126,6 +127,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			print(current_wave)
 			if current_wave > 4:
 				enter_state(State.DIE)
+				player.isInvincibile = true
+				
 				#Trigger endgame
 				
 			else:
@@ -134,7 +137,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 						
 			
 		"Dead":
-			pass
+			HUD.game_won()
 
 
 func heart_destoyed():

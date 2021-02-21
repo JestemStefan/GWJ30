@@ -12,23 +12,22 @@
 [ext_resource path="res://raw_assets/2D/interface/crosshair102.png" type="Texture" id=10]
 [ext_resource path="res://raw_assets/2D/interface/crosshair151.png" type="Texture" id=11]
 
-[sub_resource type="DynamicFontData" id=6]
+[sub_resource type="DynamicFontData" id=1]
 font_path = "res://raw_assets/fonts/Another Danger - Demo.otf"
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 64
 outline_size = 2
 outline_color = Color( 1, 0, 0, 1 )
-font_data = SubResource( 6 )
+font_data = SubResource( 1 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=3]
 size = 64
 outline_size = 2
 outline_color = Color( 1, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "Damage"
+[sub_resource type="Animation" id=4]
 tracks/0/type = "value"
 tracks/0/path = NodePath("VignetteCenter/Vignette:self_modulate")
 tracks/0/interp = 1
@@ -54,7 +53,7 @@ tracks/1/keys = {
 "values": [ Vector2( 3600, 2600 ), Vector2( 2800, 2000 ), Vector2( 3600, 2600 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=5]
 length = 0.2
 step = 0.05
 tracks/0/type = "value"
@@ -70,8 +69,7 @@ tracks/0/keys = {
 "values": [ Vector2( 64, 64 ), Vector2( 96, 96 ), Vector2( 64, 64 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "Damage"
+[sub_resource type="Animation" id=6]
 tracks/0/type = "value"
 tracks/0/path = NodePath("VignetteCenter/Vignette:self_modulate")
 tracks/0/interp = 1
@@ -97,8 +95,7 @@ tracks/1/keys = {
 "values": [ Vector2( 3600, 2600 ), Vector2( 2400, 1800 ), Vector2( 3600, 2600 ) ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Heartbeat"
+[sub_resource type="Animation" id=7]
 length = 0.2
 step = 0.05
 tracks/0/type = "value"
@@ -150,7 +147,9 @@ tracks/3/keys = {
 "values": [ Vector2( 3600, 2600 ), Vector2( 2400, 1800 ), Vector2( 3600, 2600 ) ]
 }
 
-[node name="HUD" type="CanvasLayer"]
+[node name="HUD" type="CanvasLayer" groups=[
+"HUD",
+]]
 script = ExtResource( 3 )
 
 [node name="Root" type="Control" parent="."]
@@ -300,7 +299,7 @@ margin_right = 384.0
 margin_bottom = 169.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "BLOOD:"
 align = 2
 valign = 1
@@ -329,7 +328,7 @@ margin_right = 772.0
 margin_bottom = 169.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 3 )
 text = "2"
 valign = 1
 __meta__ = {
@@ -349,7 +348,7 @@ margin_right = 384.0
 margin_bottom = 169.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "HEARTRATE"
 align = 2
 valign = 1
@@ -380,12 +379,12 @@ __meta__ = {
 }
 
 [node name="CrosshairAnimation" type="AnimationPlayer" parent="Root"]
-anims/Damage = SubResource( 2 )
-anims/Heartbeat = SubResource( 3 )
-
-[node name="VignetteAnimation" type="AnimationPlayer" parent="Root"]
 anims/Damage = SubResource( 4 )
 anims/Heartbeat = SubResource( 5 )
+
+[node name="VignetteAnimation" type="AnimationPlayer" parent="Root"]
+anims/Damage = SubResource( 6 )
+anims/Heartbeat = SubResource( 7 )
 
 [node name="GameOver" type="Label" parent="Root"]
 visible = false
@@ -407,6 +406,27 @@ __meta__ = {
 [node name="PauseMenu" parent="Root" instance=ExtResource( 6 )]
 visible = false
 
+[node name="YouWon" type="Label" parent="Root"]
+visible = false
+modulate = Color( 0.729412, 0, 0, 1 )
+margin_left = 674.297
+margin_top = 314.521
+margin_right = 1247.3
+margin_bottom = 731.521
+rect_min_size = Vector2( 0, 50 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 8 )
+text = "You Won!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
 [node name="GameOverTimer" type="Timer" parent="."]
 pause_mode = 2
+
+[node name="YouWonTimer" type="Timer" parent="."]
+one_shot = true
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_GameOverTimer_timeout"]
+[connection signal="timeout" from="YouWonTimer" to="." method="_on_YouWonTimer_timeout"]

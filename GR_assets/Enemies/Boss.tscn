@@ -889,7 +889,7 @@ skin = SubResource( 2 )
 material/0 = ExtResource( 1 )
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.990243, 0.135835, -0.0311293, -0.134876, 0.990375, 0.0311051, 0.0350549, -0.0266031, 0.999031, 2.58547, 20.0809, -0.347655 )
+transform = Transform( 0.998745, 0.0481488, 0.0138293, -0.047958, 0.998754, -0.013816, -0.0144773, 0.0131354, 0.999809, 1.30907, 20.2637, 0.17447 )
 bone_name = "heart_1"
 
 [node name="Heart" parent="Armature/Skeleton/BoneAttachment" instance=ExtResource( 2 )]
@@ -905,7 +905,7 @@ transform = Transform( 0.999999, -9.75415e-08, 3.72529e-09, 1.22236e-07, 1, 4.74
 transform = Transform( 0.999998, -6.69388e-10, 0, 3.64671e-08, 1, 0, 1.86265e-09, -2.42144e-08, 1, 7.26812, -1.85404, 4.6188 )
 
 [node name="BoneAttachment2" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.999279, 0.0217777, -0.0311293, -0.0208092, 0.9993, 0.0311051, 0.0317849, -0.0304349, 0.999031, 4.28376, 32.4632, -0.680263 )
+transform = Transform( 0.998725, -0.048559, 0.0138293, 0.0487499, 0.998716, -0.013816, -0.0131406, 0.0144726, 0.999809, 1.91105, 32.7507, 0.338697 )
 bone_name = "heart_2"
 
 [node name="Heart" parent="Armature/Skeleton/BoneAttachment2" instance=ExtResource( 2 )]
