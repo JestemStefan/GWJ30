@@ -56,8 +56,10 @@ func take_damage(point, normal, damage):
 		Utils.instantiate(blood_pickup, self.global_transform.origin + Vector3.UP, Vector3.UP)
 		
 		if health <=0:
+			enabled = false
 			die()
-	
+
+
 func die():
 	Utils.instantiate(bigsplat, self.global_transform.origin, Vector3.FORWARD, 1.5)
 	player.increase_heart_rate(kill_hr_reward)

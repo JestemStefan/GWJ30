@@ -32,6 +32,7 @@ var isInvincibile: bool = false
 var heart_rate: float = 100.0
 var blood: int = 20
 var heartbeat_buff: bool = false
+var heartbeat_toggle: bool = false
 
 # Node assignments
 onready var camera_controller = $CameraYaw
@@ -274,9 +275,13 @@ func decrease_heart_rate(val):
 		die()
 
 func set_heartbeat_buff():
-	heartbeat_buff = true
-	$HeartbeatTimer.start(0.2)
-	hud.heartbeat()
+	if heartbeat_toggle == true:
+		heartbeat_toggle = false
+		heartbeat_buff = true
+		$HeartbeatTimer.start(0.2)
+		hud.heartbeat()
+	else:
+		heartbeat_toggle = true
 
 func _on_HeartbeatTimer_timeout():
 	heartbeat_buff = false
