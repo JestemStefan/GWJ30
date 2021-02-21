@@ -18,10 +18,8 @@ func _ready():
 func _on_HSlider_value_changed(value):
 	Globals.MOUSE_SENSITIVITY = value / 50.0
 
-
 func _on_CloseButton_pressed():
-	get_tree().change_scene("res://levels/MainMenu.tscn")
-
+	self.visible = false
 
 func _on_ScreenSettingsOptionButton_item_selected(index):
 	Globals.SCREEN_SETTING = Globals.SCREEN_SETTINGS[index]

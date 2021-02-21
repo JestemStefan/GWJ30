@@ -181,6 +181,7 @@ __meta__ = {
 }
 
 [node name="FPSCounter" type="Label" parent="Root"]
+visible = false
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -193.0
@@ -396,14 +397,6 @@ __meta__ = {
 
 [node name="PauseMenu" parent="Root" instance=ExtResource( 6 )]
 visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 0.0
-margin_top = 0.0
-margin_right = 1918.0
-margin_bottom = 1084.0
 
 [node name="GameOverTimer" type="Timer" parent="."]
 pause_mode = 2

@@ -927,6 +927,7 @@ radius = 3.29395
 "Enemy",
 ]]
 collision_layer = 2
+collision_mask = 3
 script = ExtResource( 2 )
 health = 600
 melee_damage = 25.0

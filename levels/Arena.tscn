@@ -112,3 +112,4 @@ spot_angle = 60.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = -20.0
+pitch_scale = 0.9

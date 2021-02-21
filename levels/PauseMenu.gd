@@ -1,4 +1,4 @@
-extends CenterContainer
+extends Control
 
 func _input(event):
 	if(event.is_action_pressed("ui_cancel")):
@@ -11,7 +11,9 @@ func _input(event):
 			get_tree().paused = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-
 func _on_ExitButton_pressed():
 	get_tree().paused = false
 	get_tree().change_scene("res://levels/MainMenu.tscn")
+
+func _on_OptionsButton_pressed():
+	$Options.visible = true

@@ -56,8 +56,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="GWJ30"
-run/main_scene="res://levels/Arena.tscn"
+config/name="Transfusion"
+run/main_scene="res://levels/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
