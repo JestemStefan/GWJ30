@@ -3084,7 +3084,7 @@ skin = SubResource( 54 )
 material/0 = SubResource( 56 )
 
 [node name="Weapon" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.982113, -0.185555, 0.0319733, 0.187567, -0.979002, 0.0798315, 0.0164885, 0.0844008, 0.996296, -0.540899, 1.36971, 0.020647 )
+transform = Transform( -0.982129, -0.185481, 0.0319165, 0.187461, -0.979155, 0.0781825, 0.0167496, 0.0827685, 0.996429, -0.540716, 1.37555, 0.0204467 )
 visible = false
 bone_name = "hand_r"
 

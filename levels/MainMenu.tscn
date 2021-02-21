@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://levels/HowToPlay.tscn" type="PackedScene" id=1]
 [ext_resource path="res://raw_assets/fonts/AnotherDanger60.tres" type="DynamicFont" id=2]
 [ext_resource path="res://levels/MainMenu.gd" type="Script" id=3]
-[ext_resource path="res://marketing/MainMenu.jpg" type="Texture" id=4]
+[ext_resource path="res://marketing/MainMenu.png" type="Texture" id=4]
 [ext_resource path="res://levels/OptionsMenu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://marketing/MainMenu.jpg" type="Texture" id=6]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://raw_assets/fonts/Another Danger - Demo.otf"
@@ -87,7 +88,7 @@ margin_bottom = -161.347
 rect_min_size = Vector2( 800, 500 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 4 )
+texture = ExtResource( 6 )
 expand = true
 stretch_mode = 6
 __meta__ = {
