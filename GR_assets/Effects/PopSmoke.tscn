@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://src/Effects/PopSmoke.gd" type="Script" id=1]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.296296, 1 )
+colors = PoolColorArray( 0.196922, 0.951172, 0, 0.392593, 0.648438, 0, 0, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.120253, 0.897727 ), 0.0, 0.0, 0, 0, Vector2( 0.607595, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+direction = Vector3( 0, 1, 0 )
+spread = 90.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 12.0
+radial_accel = 1.0
+tangential_accel = 15.3
+tangential_accel_random = 1.0
+damping = 7.15
+damping_random = 0.57
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=6]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id=7]
+material = SubResource( 6 )
+radial_segments = 8
+rings = 4
+
+[node name="PopSmoke" type="Particles"]
+amount = 32
+explosiveness = 1.0
+process_material = SubResource( 5 )
+draw_pass_1 = SubResource( 7 )
+script = ExtResource( 1 )
+
+[node name="Lifetime" type="Timer" parent="."]
+autostart = true
+[connection signal="timeout" from="Lifetime" to="." method="_on_Lifetime_timeout"]
