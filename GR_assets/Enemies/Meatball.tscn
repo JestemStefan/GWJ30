@@ -70,6 +70,7 @@ material/0 = ExtResource( 1 )
 shape = SubResource( 2 )
 
 [node name="Trail" type="Particles" parent="."]
+visible = false
 amount = 32
 local_coords = false
 process_material = SubResource( 7 )

@@ -6,6 +6,8 @@ var spawning: bool = false
 var enemies_spawn: int = 0
 var max_enemies_spawned: int = 1
 
+onready var pop_smoke = preload("res://GR_assets/Effects/PopSmoke.tscn")
+
 onready var leech = preload("res://GR_assets/Enemies/Leech.tscn")
 onready var bigboi = preload("res://GR_assets/Enemies/BigBoi.tscn")
 onready var warrior = preload("res://GR_assets/Enemies/Warrior.tscn")
@@ -39,6 +41,8 @@ func _on_Timer_timeout():
 		else:
 			Utils.instantiate(watcher, self.global_transform.origin, Vector3.FORWARD)
 			pass
+		
+		spawn_smoke()
 		enemies_spawn += 1
 	
 	else:
@@ -59,3 +63,8 @@ func _on_SpawnEgg_body_entered(body):
 			$Timer.start(1)
 		
 		#call_deferred("free")
+
+func spawn_smoke():
+	var smoke = pop_smoke.instance()
+	get_parent().add_child(smoke)
+	smoke.set_global_transform(global_transform)
