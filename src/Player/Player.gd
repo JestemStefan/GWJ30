@@ -26,6 +26,7 @@ var is_sliding: bool = false
 var current_weapon = null
 var wep_cont_node = null
 var parrying: bool = false
+var isInvincibile: bool = false
 
 # Gameplay
 var heart_rate: float = 100.0
@@ -205,7 +206,12 @@ func melee_do_hit():
 					$HitSound.pitch_scale = rand_range(1.0, 2.0)
 					$HitSound.play()
 				camera_controller.add_shake(0.5)
-				increase_heart_rate(10.0)
+				
+				if isInvincibile:
+					increase_heart_rate(1.0)
+				else:
+					increase_heart_rate(10.0)
+					
 				if not is_grounded and 10.0 > vertical_velocity:
 					vertical_velocity = 10.0
 				var midpoint = self.global_transform.origin - (self.global_transform.origin - target.global_transform.origin)/2
@@ -288,7 +294,16 @@ func take_damage(point, normal, damage):
 		yield(get_tree().create_timer(0.01), "timeout")
 		do_damage_flash(false, 0)
 		do_damage_flash(false, 1)
+		
+		if isInvincibile:
+			damage *= 0.1
+			$InvincibilityTimer.start(0.5)
+		else:
+			isInvincibile = true
+		
 		decrease_heart_rate(damage)
+			
+			
 	else:
 		if not $ParrySound.playing:
 			$ParrySound.play()
@@ -298,10 +313,16 @@ func take_damage(point, normal, damage):
 		Engine.time_scale = 0.1
 		yield(get_tree().create_timer(0.02), "timeout")
 		Engine.time_scale = 1.0
-
+	
+	
+	
 func die():
 	dead = true
 	hud.game_over()
 
 func set_parry(val):
 	parrying = val
+
+
+func _on_InvincibilityTimer_timeout():
+	isInvincibile = false
