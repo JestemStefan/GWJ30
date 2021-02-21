@@ -2926,7 +2926,7 @@ bones/13/name = "hand_r"
 bones/13/parent = 12
 bones/13/rest = Transform( 0.995829, 0.0912305, 0.00096329, -0.0911678, 0.994627, 0.0490457, 0.00351635, -0.048929, 0.998796, -4.33647e-08, 0.38953, -2.23517e-08 )
 bones/13/enabled = true
-bones/13/bound_children = [ NodePath("Weapon") ]
+bones/13/bound_children = [  ]
 bones/14/name = "spine_4"
 bones/14/parent = 9
 bones/14/rest = Transform( 1, -1.2241e-07, -5.83157e-07, -3.60005e-07, 0.655743, -0.754984, 4.74819e-07, 0.754984, 0.655743, 2.09739e-10, 0.275545, -0.0012936 )
@@ -2961,7 +2961,7 @@ bones/20/name = "heartbeat"
 bones/20/parent = 8
 bones/20/rest = Transform( 1, -4.18709e-10, 3.34656e-08, 5.27614e-10, 0.999995, -0.00325432, -3.3464e-08, 0.00325432, 0.999995, 4.34407e-08, 0.316479, -0.337611 )
 bones/20/enabled = true
-bones/20/bound_children = [ NodePath("HeartAttach") ]
+bones/20/bound_children = [  ]
 
 [node name="CharacterMesh" type="MeshInstance" parent="Armature/Skeleton"]
 mesh = SubResource( 3 )
@@ -2969,7 +2969,7 @@ skin = SubResource( 4 )
 material/0 = SubResource( 5 )
 
 [node name="Weapon" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.997677, 0.0520398, 0.0439518, 0.031621, -0.217675, 0.975509, 0.0603325, 0.974633, 0.215524, -0.39858, 1.87017, 0.762083 )
+transform = Transform( -0.981078, -0.191186, 0.030528, 0.19309, -0.97774, 0.0820951, 0.0141528, 0.0864365, 0.996157, -0.542099, 1.38022, 0.0275714 )
 bone_name = "hand_r"
 
 [node name="GunOffset" type="Spatial" parent="Armature/Skeleton/Weapon"]
@@ -2984,7 +2984,7 @@ damage = 20.0
 fire_rate = 0.5
 
 [node name="HeartAttach" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 1, 2.289e-13, 1.62136e-07, -4.63055e-09, 0.999592, 0.02856, -1.6207e-07, -0.0285602, 0.999593, -7.26295e-11, 2.00829, -0.348184 )
+transform = Transform( 1, 2.25125e-13, 1.62136e-07, -4.63055e-09, 0.999592, 0.02856, -1.6207e-07, -0.0285601, 0.999593, -7.263e-11, 2.00829, -0.348184 )
 bone_name = "heartbeat"
 
 [node name="Sprite3D" type="Sprite3D" parent="Armature/Skeleton/HeartAttach"]
