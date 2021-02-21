@@ -3,7 +3,7 @@
 [ext_resource path="res://levels/HowToPlay.tscn" type="PackedScene" id=1]
 [ext_resource path="res://raw_assets/fonts/AnotherDanger60.tres" type="DynamicFont" id=2]
 [ext_resource path="res://levels/MainMenu.gd" type="Script" id=3]
-[ext_resource path="res://raw_assets/2D/interface/MainMenu.png" type="Texture" id=4]
+[ext_resource path="res://marketing/MainMenu.jpg" type="Texture" id=4]
 [ext_resource path="res://levels/OptionsMenu.tscn" type="PackedScene" id=5]
 
 [sub_resource type="DynamicFontData" id=1]
