@@ -7,7 +7,6 @@ export(float) var damage
 
 onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 onready var flying_nav: Flying_Nav = get_tree().get_nodes_in_group("Flying_Nav")[0]
-
 var nav_point: Vector3
 
 enum State {WALK, ATTACK}
@@ -84,6 +83,7 @@ func shoot_attack():
 	bullet.init(damage, muzzle_velocity, [self])
 
 func die():
+	Utils.instantiate(bigsplat, self.global_transform.origin, Vector3.FORWARD, 0.5)
 	.die()
 	call_deferred("free")
 

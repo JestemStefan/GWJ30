@@ -221,6 +221,7 @@ func hit_timer_timeout():
 	.hit_timer_timeout()
 
 func die():
+	Utils.instantiate(bigsplat, self.global_transform.origin, Vector3.FORWARD, 0.5)
 	.die()
 	call_deferred("free")
 

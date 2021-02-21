@@ -7,6 +7,7 @@ export var melee_knockback: float = 0.0
 export var speed_modifier: float = 1
 export var kill_hr_reward: float = 10.0
 export var kill_blood_reward: int = 2
+onready var bigsplat = preload("res://GR_assets/Effects/MeatChunksBig.tscn")
 
 
 var path = []

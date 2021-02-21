@@ -5,7 +5,6 @@ onready var projectile_origin: Spatial = $ProjectileSpawn
 onready var meatball = preload("res://GR_assets/Enemies/Meatball.tscn")
 
 onready var growl = preload("res://raw_assets/audio/tranfusion_mumbo_growl.wav")
-
 enum State {IDLE, WALK, ATTACK, SHOOT, DIE}
 var current_state: int
 var speed: int = 10
@@ -95,6 +94,7 @@ func play_animation(anim_name: String):
 			animationPlayer.set_speed_scale(1)
 
 func die():
+	Utils.instantiate(bigsplat, self.global_transform.origin, Vector3.FORWARD, 1.0)
 	.die()
 	call_deferred("free")
 

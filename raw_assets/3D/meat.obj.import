@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/meat.obj-8e9b3755af369e3d819ff7259dd3836f.mesh"
+
+[deps]
+
+files=[ "res://.import/meat.obj-8e9b3755af369e3d819ff7259dd3836f.mesh" ]
+
+source_file="res://raw_assets/3D/meat.obj"
+dest_files=[ "res://.import/meat.obj-8e9b3755af369e3d819ff7259dd3836f.mesh", "res://.import/meat.obj-8e9b3755af369e3d819ff7259dd3836f.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/133968__audionautics__splat.wav-4c8c6136cc9fae29a57d8590e9ca720a.sample"
+
+[deps]
+
+source_file="res://raw_assets/audio/133968__audionautics__splat.wav"
+dest_files=[ "res://.import/133968__audionautics__splat.wav-4c8c6136cc9fae29a57d8590e9ca720a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0

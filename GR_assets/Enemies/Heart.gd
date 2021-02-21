@@ -8,6 +8,7 @@ export var health: int
 export var kill_hr_reward: float = 10.0
 export var kill_blood_reward: int = 5
 var blood_pickup = preload("res://GR_assets/Gameplay/BloodPickup.tscn")
+onready var bigsplat = preload("res://GR_assets/Effects/MeatChunksBig.tscn")
 
 var mesh_mats: Array = []
 var meshes: Array = []
@@ -58,6 +59,7 @@ func take_damage(point, normal, damage):
 			die()
 	
 func die():
+	Utils.instantiate(bigsplat, self.global_transform.origin, Vector3.FORWARD, 1.5)
 	player.increase_heart_rate(kill_hr_reward)
 	for n in range(kill_blood_reward):
 		Utils.instantiate(blood_pickup, self.global_transform.origin + Vector3.UP, Vector3.UP)

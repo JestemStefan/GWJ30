@@ -141,7 +141,7 @@ func action_inputs():
 				camera_controller.recoil += current_weapon.recoil
 				if heartbeat_buff:
 					#Utils.do_hitstop(0.02)
-					pass
+					$Powershot.play()
 	if Input.is_action_pressed("melee") and anim_tree.get("parameters/melee/active") == false and not is_sliding:
 		do_melee_attack()
 	if Input.is_action_just_pressed("dodge") and not is_sliding:
