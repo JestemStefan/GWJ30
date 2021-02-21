@@ -2952,7 +2952,7 @@ magnet = Vector3( 2, 2, -4 )
 target_node = NodePath("../../../SiphonAim")
 
 [node name="HeartAttach" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 1.07953, -9.95697e-10, 1.60797e-07, -3.5968e-09, 1.07909, 0.0308314, -1.6076e-07, -0.0308316, 1.07909, -2.25616e-09, 1.75813, -0.164734 )
+transform = Transform( 0.768849, 6.29503e-10, 1.18554e-07, -4.01496e-09, 0.768536, 0.0219584, -1.18488e-07, -0.0219585, 0.768536, -7.27254e-11, 1.75813, -0.164734 )
 bone_name = "heartbeat"
 
 [node name="Sprite3D" type="Sprite3D" parent="Armature/Skeleton/HeartAttach"]
@@ -2981,6 +2981,10 @@ shape = SubResource( 24 )
 
 [node name="HeartbeatTimer" type="Timer" parent="."]
 
+[node name="InvincibilityTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [node name="SwingSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 13 )
 unit_size = 6.0
@@ -2998,3 +3002,4 @@ max_db = -6.0
 [connection signal="body_entered" from="BloodAbsorb" to="BloodAbsorb" method="_on_BloodAbsorb_body_entered"]
 [connection signal="body_exited" from="BloodAbsorb" to="BloodAbsorb" method="_on_BloodAbsorb_body_exited"]
 [connection signal="timeout" from="HeartbeatTimer" to="." method="_on_HeartbeatTimer_timeout"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]
