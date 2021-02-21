@@ -1106,6 +1106,7 @@ disabled = true
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 3 )
+unit_size = 6.0
 
 [node name="GrowlTimer" type="Timer" parent="."]
 one_shot = true

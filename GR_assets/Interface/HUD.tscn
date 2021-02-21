@@ -1,6 +1,6 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://raw_assets/fonts/Inconsolata-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://raw_assets/fonts/Inconsolata-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://raw_assets/2D/interface/crosshair121.png" type="Texture" id=2]
 [ext_resource path="res://src/Player/HUD.gd" type="Script" id=3]
 [ext_resource path="res://GR_assets/Interface/HUDfONT.tres" type="DynamicFont" id=4]
@@ -12,7 +12,16 @@
 [ext_resource path="res://raw_assets/2D/interface/crosshair102.png" type="Texture" id=10]
 [ext_resource path="res://raw_assets/2D/interface/crosshair151.png" type="Texture" id=11]
 
+[sub_resource type="DynamicFontData" id=6]
+font_path = "res://raw_assets/fonts/Another Danger - Demo.otf"
+
 [sub_resource type="DynamicFont" id=1]
+size = 64
+outline_size = 2
+outline_color = Color( 1, 0, 0, 1 )
+font_data = SubResource( 6 )
+
+[sub_resource type="DynamicFont" id=7]
 size = 64
 outline_size = 2
 outline_color = Color( 1, 0, 0, 1 )
@@ -320,8 +329,8 @@ margin_right = 772.0
 margin_bottom = 169.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 1 )
-text = "0"
+custom_fonts/font = SubResource( 7 )
+text = "2"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false

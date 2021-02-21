@@ -145,25 +145,19 @@ func action_inputs():
 		do_melee_attack()
 	if Input.is_action_just_pressed("dodge") and not is_sliding:
 		dodge(rotated_input_vector)
-	if Input.is_action_just_pressed("wep1"):
-		wep_switchto = 0
-		anim_tree.set("parameters/switchgun/active", true)
-	if Input.is_action_just_pressed("wep2"):
-		wep_switchto = 1
-		anim_tree.set("parameters/switchgun/active", true)
-	if Input.is_action_just_pressed("wep3"):
-		wep_switchto = 2
+	if Input.is_action_just_pressed("toggle_wep"):
+		if wep_switchto == 0:
+			wep_switchto = 1
+		else:
+			wep_switchto = 0
 		anim_tree.set("parameters/switchgun/active", true)
 		
 
 func switch_weapon():
-	for n in range(3):
+	for n in range(2):
 		var wep = wep_cont.get_child(n)
 		if n == wep_switchto:
 			current_weapon = wep
-			wep.visible = true
-		else:
-			wep.visible = false
 	hud.set_crosshair(wep_switchto)
 
 func dodge(direction: Vector3):

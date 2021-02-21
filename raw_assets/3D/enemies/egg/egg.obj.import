@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/egg.obj-1a97fe50a6c2f0d7ae5fcd50a1a0544a.mesh"
+
+[deps]
+
+files=[ "res://.import/egg.obj-1a97fe50a6c2f0d7ae5fcd50a1a0544a.mesh" ]
+
+source_file="res://raw_assets/3D/enemies/egg/egg.obj"
+dest_files=[ "res://.import/egg.obj-1a97fe50a6c2f0d7ae5fcd50a1a0544a.mesh", "res://.import/egg.obj-1a97fe50a6c2f0d7ae5fcd50a1a0544a.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
