@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://raw_assets/3D/enemies/leech/Leech_Albedo.jpg" type="Texture" id=1]
 [ext_resource path="res://raw_assets/3D/enemies/leech/Leech_Roughness.jpg" type="Texture" id=2]
 [ext_resource path="res://raw_assets/3D/enemies/leech/Leech_Normal.png" type="Texture" id=3]
 [ext_resource path="res://src/Enemy/Leech.gd" type="Script" id=4]
+[ext_resource path="res://raw_assets/audio/transfusion_leechbite_fx.wav" type="AudioStream" id=5]
+[ext_resource path="res://raw_assets/audio/transfusion_leechhiss_short.wav" type="AudioStream" id=6]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Leech"
@@ -127,6 +129,20 @@ tracks/8/keys = {
 "method": "melee_do_hit"
 } ]
 }
+tracks/9/type = "audio"
+tracks/9/path = NodePath("AudioStreamPlayer")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 5 )
+} ],
+"times": PoolRealArray( 0 )
+}
 
 [sub_resource type="Animation" id=5]
 length = 2.0
@@ -246,6 +262,20 @@ tracks/7/loop_wrap = true
 tracks/7/imported = true
 tracks/7/enabled = true
 tracks/7/keys = PoolRealArray( 0, 1, 0, 0, 0, -0.258628, 6.09683e-17, -3.77473e-18, 0.965977, 1, 1, 1, 0.0666667, 1, 0, 0, 0, -0.156459, 3.68834e-17, -2.28357e-18, 0.987684, 1, 1, 1, 0.133333, 1, 0, 0, 0, -0.0520095, 1.22606e-17, -7.59098e-19, 0.998647, 1, 1, 1, 0.2, 1, 1.65762e-18, 0.00775331, 0.0116566, 0.0056062, -1.32159e-18, 8.1817e-20, 0.999984, 1, 1, 1, 0.333333, 1, 8.28811e-18, 0.0387666, 0.0582833, 0.0282658, -6.66336e-18, 4.1255e-19, 0.9996, 1, 1, 1, 0.4, 1, 2.81312e-17, 0.13158, 0.197823, -0.0881034, 2.07693e-17, -1.2859e-18, 0.996111, 1, 1, 1, 0.466667, 1, 4.79742e-17, 0.224394, 0.337362, -0.203081, 4.78738e-17, -2.96401e-18, 0.979162, 1, 1, 1, 0.533333, 1, 5.07236e-17, 0.288693, 0.400881, -0.288323, 6.79688e-17, -4.20815e-18, 0.957533, 1, 1, 1, 0.666667, 1, 2.20351e-17, 0.360261, 0.375877, -0.404351, 9.53208e-17, -5.90159e-18, 0.914604, 1, 1, 1, 0.8, 1, 4.06417e-18, 0.173327, 0.161134, -0.501578, 1.18241e-16, -7.32064e-18, 0.865113, 1, 1, 1, 0.866667, 1, -3.4281e-19, 0.101274, 0.0859582, -0.474829, 1.11935e-16, -6.93023e-18, 0.880078, 1, 1, 1, 0.933333, 1, -1.71418e-19, 0.0506372, 0.0429791, -0.368735, 8.69248e-17, -5.38177e-18, 0.929535, 1, 1, 1, 1, 1, 0, 0, 0, -0.258628, 6.09683e-17, -3.77473e-18, 0.965977, 1, 1, 1 )
+tracks/8/type = "audio"
+tracks/8/path = NodePath("AudioStreamPlayer")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 6 )
+} ],
+"times": PoolRealArray( 0 )
+}
 
 [sub_resource type="CapsuleShape" id=7]
 radius = 0.925962
@@ -255,7 +285,9 @@ height = 0.75
 radius = 0.933559
 height = 0.714141
 
-[node name="Leech" type="KinematicBody"]
+[node name="Leech" type="KinematicBody" groups=[
+"Enemy",
+]]
 collision_layer = 2
 script = ExtResource( 4 )
 melee_damage = 10.0
@@ -328,5 +360,9 @@ disabled = true
 
 [node name="PathTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 5 )
+unit_db = 10.0
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="PathTimer" to="." method="_on_PathTimer_timeout"]

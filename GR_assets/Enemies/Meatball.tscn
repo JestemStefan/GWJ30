@@ -52,7 +52,9 @@ height = 0.5
 radial_segments = 8
 rings = 2
 
-[node name="Meatball" type="RigidBody"]
+[node name="Meatball" type="RigidBody" groups=[
+"Enemy",
+]]
 input_ray_pickable = false
 contacts_reported = 1
 contact_monitor = true

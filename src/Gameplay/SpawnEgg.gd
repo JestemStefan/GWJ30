@@ -1,6 +1,7 @@
 extends RigidBody
 class_name Egg
 
+var wave: int = 1
 var spawning: bool = false
 var enemies_spawn: int = 0
 var max_enemies_spawned: int = 1
@@ -23,15 +24,16 @@ func _ready():
 	set_angular_velocity(Vector3(rand_range(-10, 10), rand_range(-10, 10), rand_range(-10, 10)))
 
 func _on_Timer_timeout():
-	if enemies_spawn < max_enemies_spawned:
-		var chance = randi() % 6
-		if chance <= 1:
+	if enemies_spawn < max_enemies_spawned * wave:
+		var chance = randi() % 100
+		if chance <= 50:
 			Utils.instantiate(leech, self.global_transform.origin, Vector3.FORWARD)
+			enemies_spawn -= 1
 			pass
-		elif chance <= 2:
+		elif chance <= 70:
 			Utils.instantiate(bigboi, self.global_transform.origin, Vector3.FORWARD)
 			pass
-		elif chance <= 4:
+		elif chance <= 85:
 			Utils.instantiate(warrior, self.global_transform.origin, Vector3.FORWARD)
 			pass
 		else:
