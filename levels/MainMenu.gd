@@ -1,6 +1,7 @@
 extends Control
 
 func _ready():
+	Engine.time_scale = 1.0
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _on_ExitButton_pressed():

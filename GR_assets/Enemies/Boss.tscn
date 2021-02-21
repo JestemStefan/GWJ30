@@ -786,12 +786,12 @@ bones/1/name = "heart_1"
 bones/1/parent = 0
 bones/1/rest = Transform( 0.998966, -0.0454723, 2.04584e-07, 0.0454723, 0.998966, -1.12037e-07, -1.99278e-07, 1.21224e-07, 1, -9.13449e-09, 13.9986, 1.49013e-08 )
 bones/1/enabled = true
-bones/1/bound_children = [  ]
+bones/1/bound_children = [ NodePath("BoneAttachment") ]
 bones/2/name = "heart_2"
 bones/2/parent = 1
 bones/2/rest = Transform( 0.995323, -0.0966039, -2.63712e-08, 0.0966039, 0.995323, -1.11904e-08, 2.73289e-08, 8.59049e-09, 1, 1.22165e-07, 12.5026, 1.49014e-08 )
 bones/2/enabled = true
-bones/2/bound_children = [  ]
+bones/2/bound_children = [ NodePath("BoneAttachment2") ]
 bones/3/name = "bone_3"
 bones/3/parent = 2
 bones/3/rest = Transform( 0.976447, -0.215756, -3.57347e-08, 0.215756, 0.976447, 1.75372e-08, 3.11093e-08, -2.48341e-08, 1, 4.9716e-07, 10.9414, -6.70553e-08 )
@@ -942,6 +942,7 @@ autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
+volume_db = 3.0
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
 [connection signal="timeout" from="LeechTimer" to="." method="_on_LeechTimer_timeout"]

@@ -7,7 +7,7 @@
 font_path = "res://raw_assets/fonts/Another Danger - Demo.otf"
 
 [sub_resource type="DynamicFont" id=2]
-size = 48
+size = 36
 extra_spacing_char = 8
 font_data = SubResource( 1 )
 
@@ -88,6 +88,9 @@ slaying enemies
 absorb their blood to power
 your weapons
 
+boost your shots by 
+firing with your heartbeat
+
 DESTROY THE HEARTS OF THE 
 ATRIAL WORM "
 align = 1
@@ -108,10 +111,10 @@ __meta__ = {
 }
 
 [node name="CloseButton" type="Button" parent="."]
-margin_left = 665.956
-margin_top = 916.224
-margin_right = 1244.96
-margin_bottom = 1006.22
+margin_left = 266.572
+margin_top = 884.188
+margin_right = 845.576
+margin_bottom = 1001.19
 rect_min_size = Vector2( 250, 0 )
 rect_pivot_offset = Vector2( 100, 0 )
 size_flags_horizontal = 3
