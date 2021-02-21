@@ -63,7 +63,6 @@ transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 48.4447, -32.8015 )
-max_dodge_speed = 36.0
 
 [node name="HUD" parent="Player" instance=ExtResource( 5 )]
 

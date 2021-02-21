@@ -215,7 +215,7 @@ func melee_do_hit():
 				if not is_grounded and 10.0 > vertical_velocity:
 					vertical_velocity = 10.0
 				var midpoint = self.global_transform.origin - (self.global_transform.origin - target.global_transform.origin)/2
-				target.take_damage(midpoint, self.global_transform.basis.z, 50.0)
+				target.take_damage(midpoint, self.global_transform.basis.z, 90.0)
 				Engine.time_scale = 0.1
 				yield(get_tree().create_timer(0.015), "timeout")
 				Engine.time_scale = 1.0
@@ -322,7 +322,6 @@ func die():
 
 func set_parry(val):
 	parrying = val
-
 
 func _on_InvincibilityTimer_timeout():
 	isInvincibile = false

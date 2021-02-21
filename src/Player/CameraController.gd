@@ -21,7 +21,8 @@ var recoil: Vector2 = Vector2.ZERO
 # Node assignments
 onready var camera_yaw = self
 onready var camera_pitch = $CameraPitch
-onready var camera = $CameraPitch/Camera
+onready var spring = $CameraPitch/SpringArm
+onready var camera = $CameraPitch/SpringArm/Camera
 onready var player = get_parent()
 
 func _ready():
@@ -35,7 +36,7 @@ func _ready():
 	# For raycasting
 	space_state = get_world().get_direct_space_state()
 	# Set third person offset to default camera position
-	third_person_offset = camera.transform.origin
+	third_person_offset = spring.transform.origin
 	desired_fov = default_fov
 
 func _process(delta):
@@ -49,9 +50,9 @@ func _physics_process(delta):
 	if cam_shake > 0.0:
 		var cam_shake_offset = Vector3.LEFT.rotated(Vector3.FORWARD, rand_range(0.0, 2 * PI)) * cam_shake
 		if third_person:
-			camera.translation = lerp(camera.translation, third_person_offset + cam_shake_offset, 0.5)
+			spring.translation = lerp(spring.translation, third_person_offset + cam_shake_offset, 0.5)
 		else:
-			camera.translation = lerp(camera.translation, cam_shake_offset, 0.5)
+			spring.translation = lerp(spring.translation, cam_shake_offset, 0.5)
 		cam_shake -= delta/2
 		if cam_shake <= 0.0:
 			cam_shake = 0.0
