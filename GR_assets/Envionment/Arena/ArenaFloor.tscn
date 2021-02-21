@@ -33,6 +33,7 @@ data = PoolVector3Array( -96.8498, 19.1663, 94.8318, -104.661, 4.1774, 48.3179, 
 [node name="ArenaFloor" type="StaticBody"]
 
 [node name="Arena_Floor" type="MeshInstance" parent="."]
+cast_shadow = 0
 mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
 

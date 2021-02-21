@@ -340,6 +340,7 @@ bones/7/enabled = true
 bones/7/bound_children = [  ]
 
 [node name="Leech" type="MeshInstance" parent="Armature001/Skeleton"]
+cast_shadow = 0
 mesh = SubResource( 1 )
 skin = SubResource( 2 )
 material/0 = SubResource( 3 )

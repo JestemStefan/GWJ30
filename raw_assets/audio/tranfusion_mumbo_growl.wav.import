@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/tranfusion_mumbo_growl.wav-0bda914dc0cac6e68b0fe02827668a01.sample"
+
+[deps]
+
+source_file="res://raw_assets/audio/tranfusion_mumbo_growl.wav"
+dest_files=[ "res://.import/tranfusion_mumbo_growl.wav-0bda914dc0cac6e68b0fe02827668a01.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

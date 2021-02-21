@@ -1,7 +1,7 @@
 extends Spatial
 
 var main_theme = preload("res://raw_assets/audio/transfusion_bloodshed.ogg")
-#var gameover_theme = preload("res://raw_assets/audio/transfusion_gameover.ogg")
+var gameover_theme = preload("res://raw_assets/audio/transfusion_gameover_ogg.ogg")
 
 func _ready():
 	play_main_theme()
@@ -13,5 +13,5 @@ func play_main_theme():
 	$AudioStreamPlayer.play()
 
 func play_gameover():
-	$AudioStreamPlayer.stream = main_theme
+	$AudioStreamPlayer.stream = gameover_theme
 	$AudioStreamPlayer.play()

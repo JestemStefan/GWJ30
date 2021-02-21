@@ -26,14 +26,14 @@ func _ready():
 func _on_Timer_timeout():
 	if enemies_spawn < max_enemies_spawned * wave:
 		var chance = randi() % 100
-		if chance <= 50:
+		if chance <= 60:
 			Utils.instantiate(leech, self.global_transform.origin, Vector3.FORWARD)
 			enemies_spawn -= 1
 			pass
-		elif chance <= 70:
+		elif chance <= 80:
 			Utils.instantiate(bigboi, self.global_transform.origin, Vector3.FORWARD)
 			pass
-		elif chance <= 85:
+		elif chance <= 90:
 			Utils.instantiate(warrior, self.global_transform.origin, Vector3.FORWARD)
 			pass
 		else:
