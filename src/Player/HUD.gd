@@ -35,6 +35,14 @@ func game_over():
 		$GameOverTimer.paused = false
 		$GameOverTimer.start(0.75)
 
+func game_won():
+	$Root/YouWon.visible = true
+	#$GameOverTimer.start(0.2)
+	if $YouWonTimer.is_stopped():
+		Engine.time_scale = 0.1
+		$YouWonTimer.paused = false
+		$YouWonTimer.start(0.75)
+
 func set_crosshair(num: int):
 	for n in range(3):
 		var crosshair = $Root/CenterContainer/CrosshairContainer.get_child(n)
@@ -44,5 +52,10 @@ func set_crosshair(num: int):
 			crosshair.visible = false
 
 func _on_GameOverTimer_timeout():
+	Engine.time_scale = 1.0
+	get_tree().change_scene("res://levels/MainMenu.tscn")
+
+
+func _on_YouWonTimer_timeout():
 	Engine.time_scale = 1.0
 	get_tree().change_scene("res://levels/MainMenu.tscn")
