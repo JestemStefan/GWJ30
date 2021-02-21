@@ -35,7 +35,7 @@ blend_point_3/pos = Vector2( 1, 0 )
 
 [sub_resource type="AnimationNodeBlend2" id=10]
 filter_enabled = true
-filters = [ ".", "Armature/Skeleton:heartbeat" ]
+filters = [ ".", ".:heart_dist", "Armature/Skeleton:heartbeat" ]
 
 [sub_resource type="AnimationNodeTimeScale" id=11]
 
@@ -103,7 +103,7 @@ filter_enabled = true
 filters = [ ".", "CameraYaw/CameraPitch/GunAimPivot/GunAimOffset/GunAim:rotation_degrees", "CameraYaw/CameraPitch/GunAimPivot/GunAimOffset/GunAim:translation" ]
 
 [resource]
-graph_offset = Vector2( 160, 242.4 )
+graph_offset = Vector2( 137.6, 128 )
 nodes/Animation/node = SubResource( 3 )
 nodes/Animation/position = Vector2( 432, 368 )
 "nodes/Animation 2/node" = SubResource( 1 )

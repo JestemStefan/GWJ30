@@ -22,6 +22,7 @@ func set_blood(val: int):
 func heartbeat():
 	$Root/CrosshairAnimation.stop(true)
 	$Root/CrosshairAnimation.play("Heartbeat")
+	pass
 
 func damage():
 	$Root/VignetteAnimation.stop(true)
@@ -59,3 +60,7 @@ func _on_GameOverTimer_timeout():
 func _on_YouWonTimer_timeout():
 	Engine.time_scale = 1.0
 	get_tree().change_scene("res://levels/MainMenu.tscn")
+
+func set_heart_dist(val):
+	var prop = 256 - (val * 192)
+	$Root/CenterContainer/ClickIndicatorOuter.rect_min_size = Vector2(prop,prop)

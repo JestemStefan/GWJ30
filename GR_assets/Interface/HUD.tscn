@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://raw_assets/fonts/Inconsolata-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://raw_assets/2D/interface/crosshair121.png" type="Texture" id=2]
@@ -9,8 +9,9 @@
 [ext_resource path="res://raw_assets/2D/interface/vignette.png" type="Texture" id=7]
 [ext_resource path="res://raw_assets/fonts/AnotherDanger120.tres" type="DynamicFont" id=8]
 [ext_resource path="res://raw_assets/2D/effects/blad.png" type="Texture" id=9]
-[ext_resource path="res://raw_assets/2D/interface/crosshair102.png" type="Texture" id=10]
+[ext_resource path="res://raw_assets/2D/interface/crosshair123.png" type="Texture" id=10]
 [ext_resource path="res://raw_assets/2D/interface/crosshair151.png" type="Texture" id=11]
+[ext_resource path="res://raw_assets/2D/interface/crosshair118.png" type="Texture" id=12]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://raw_assets/fonts/Another Danger - Demo.otf"
@@ -63,10 +64,22 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15, 0.2 ),
+"times": PoolRealArray( 0, 0.05, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 64, 64 ), Vector2( 96, 96 ), Vector2( 64, 64 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CenterContainer/CrosshairContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.933333, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -204,24 +217,18 @@ __meta__ = {
 }
 
 [node name="CenterContainer" type="CenterContainer" parent="Root"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -64.0
-margin_top = -64.0
-margin_right = 64.0
-margin_bottom = 64.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="CrosshairContainer" type="Control" parent="Root/CenterContainer"]
-margin_left = 32.0
-margin_top = 32.0
-margin_right = 96.0
-margin_bottom = 96.0
+margin_left = 928.0
+margin_top = 508.0
+margin_right = 992.0
+margin_bottom = 572.0
 rect_min_size = Vector2( 64, 64 )
 mouse_filter = 2
 
@@ -232,7 +239,7 @@ rect_min_size = Vector2( 64, 64 )
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 10 )
+texture = ExtResource( 12 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -261,6 +268,50 @@ mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 11 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ClickIndicatorInner" type="Control" parent="Root/CenterContainer"]
+visible = false
+margin_left = 928.0
+margin_top = 508.0
+margin_right = 992.0
+margin_bottom = 572.0
+rect_min_size = Vector2( 64, 64 )
+mouse_filter = 2
+
+[node name="Ring" type="TextureRect" parent="Root/CenterContainer/ClickIndicatorInner"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 32, 32 )
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 10 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ClickIndicatorOuter" type="Control" parent="Root/CenterContainer"]
+margin_left = 832.0
+margin_top = 412.0
+margin_right = 1088.0
+margin_bottom = 668.0
+rect_min_size = Vector2( 256, 256 )
+mouse_filter = 2
+
+[node name="Ring" type="TextureRect" parent="Root/CenterContainer/ClickIndicatorOuter"]
+self_modulate = Color( 1, 0, 0, 0.501961 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 32, 32 )
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 10 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false

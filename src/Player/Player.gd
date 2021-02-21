@@ -27,6 +27,7 @@ var current_weapon = null
 var wep_cont_node = null
 var parrying: bool = false
 var isInvincibile: bool = false
+export var heart_dist: float
 
 # Gameplay
 var heart_rate: float = 100.0
@@ -120,8 +121,9 @@ func _physics_process(delta):
 	
 	if anim_tree.get("parameters/melee/active") == false:
 		new_ik_interp = 0.9 - anim_tree.get("parameters/dodge_blend/blend_amount")
-	anim_tree.set("parameters/heart_rate/scale", heart_rate / 50.0)
+	anim_tree.set("parameters/heart_rate/scale", heart_rate / 200.0)
 	hud.set_heart_rate(heart_rate)
+	hud.set_heart_dist(heart_dist)
 	update_movement_vars()
 	# Finalize the IK interp so its always smooth
 	#if camera_controller.third_person:
@@ -280,13 +282,9 @@ func decrease_heart_rate(val):
 		die()
 
 func set_heartbeat_buff():
-	if heartbeat_toggle == true:
-		heartbeat_toggle = false
-		heartbeat_buff = true
-		$HeartbeatTimer.start(0.2)
-		hud.heartbeat()
-	else:
-		heartbeat_toggle = true
+	heartbeat_buff = true
+	$HeartbeatTimer.start(0.2)
+	hud.heartbeat()
 
 func _on_HeartbeatTimer_timeout():
 	heartbeat_buff = false
