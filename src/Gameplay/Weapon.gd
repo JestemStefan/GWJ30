@@ -5,7 +5,6 @@ export var fire_rate = 0.15
 export var burst: int = 1
 export var burst_rate: float = 0.0
 export var spread: float =  2.0
-export var ammo: int = 128
 export var recoil: Vector2 = Vector2.ZERO
 export var muzzle_velocity: float
 export var projectiles_per_shot: int
@@ -35,11 +34,12 @@ func _ready():
 		var _b = sfx_timer.connect("timeout", self, "sfx_timer_timeout")
 
 # Try to fire the weapon. Returns true if it fired
-func fire(point_to_shoot: Vector3, buffed: bool) -> bool:
+func fire(point_to_shoot: Vector3, buffed: bool, ignore_rof: bool = false) -> bool:
 	var direction = get_vector_to_location(muzzle, point_to_shoot)
-	if can_shoot and current_ammo > 0:
-		can_shoot = false
-		rof_timer.start(fire_rate)
+	if can_shoot:
+		if not ignore_rof:
+			can_shoot = false
+			rof_timer.start(fire_rate)
 		if not audio_one_shot:
 			if not sfx.playing:
 				sfx.play()
@@ -85,7 +85,7 @@ func shoot_timer_timeout():
 
 # If .05 seconds passed since shooting was allowed, and we still haven't shot again, assume player stopped shooting.
 func sfx_timer_timeout():
-	if sfx.playing and can_shoot:
+	if sfx.playing and can_shoot and not audio_one_shot:
 		sfx.stop()
 
 func get_vector_to_location(base, location) -> Vector3:

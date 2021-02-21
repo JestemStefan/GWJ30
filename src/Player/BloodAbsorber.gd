@@ -16,7 +16,7 @@ func _physics_process(delta):
 		if blood.global_transform.origin.distance_to(player.global_transform.origin + Vector3.UP * 2) < 2.0:
 			blood.queue_free()
 			_on_BloodAbsorb_body_exited(blood)
-			player.blood += 3
+			player.blood += 1
 			player.hud.set_blood(player.blood)
 
 func _on_BloodAbsorb_body_entered(body):
